@@ -29,7 +29,7 @@ class CreateEmpresasTable extends Migration
             $table->string('cidade');
             $table->string('estado');
             $table->string('cep');
-
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

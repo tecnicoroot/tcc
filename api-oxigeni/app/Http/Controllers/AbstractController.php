@@ -107,10 +107,11 @@ abstract class AbstractController extends BaseController implements ControllerIn
        * @param  string $param
        * @return JsonResponse
        */
-    public function editBy(Request $request, string $param): JsonResponse
+    public function editBy(string $param, Request $request): JsonResponse
     {
+        
         try {
-            $result['registo_alterado'] = $this->service->editBy($request->all(), $param);
+            $result['registo_alterado'] = $this->service->editBy($param, $request->all());
             $response = $this->successResponse($result);
         } catch (Exception $e) {
             $response = $this->errorResponse($e);

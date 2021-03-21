@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\V1\Medic;
+namespace App\Http\Controllers\V1\Convenio;
 
 use App\Http\Controllers\AbstractController;
-use App\Services\Medic\MedicService ;
+use App\Services\Convenio\ConvenioService ;
 
 /**
- * Class MedicController
- * @package App\Http\Controllers\V1\Medic
+ * Class Convenioontroller
+ * @package App\Http\Controllers\V1\Convenio
  */
-class MedicController extends AbstractController
+class ConvenioController extends AbstractController
 {
     /**
      * @var array|string[]
@@ -24,9 +24,9 @@ class MedicController extends AbstractController
     /**
      * __construct
      * MedicController constructor
-     * @param  MedicService $service
+     * @param  ConvenioService $service
      */
-    public function __construct(MedicService $service)
+    public function __construct(ConvenioService $service)
     {
         //$this->service = $service;
         parent::__construct($service);

@@ -1,0 +1,1000 @@
+  720  dotnet build
+  721  cd ..
+  722  ls
+  723  cd Oxygeni4/
+  724  ls
+  725  dotnet build
+  726  cd ..
+  727  cd Oxygeni
+  728  ls
+  729  dotnet 
+  730  dotnet rebuild
+  731  dotnet clear
+  732  dotnet clean
+  733  dotnet build
+  734  dotnet clean
+  735  dotnet build
+  736  cd Front/
+  737  npm start
+  738  dotnet build
+  739  cd ..
+  740  cd Oxygeni
+  741  ls
+  742  dotnet build
+  743  dotnet run --project Diretriz.FluidMed.API/Diretriz.FluidMed.API.csproj 
+  744  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  745  dotnet build
+  746  dotnet clean
+  747  dotnet build
+  748  dotnet add package Microsoft.EntityFrameworkCore --version 3.1.6
+  749  dotnet build
+  750  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.6
+  751  dotnet build
+  752  dotnet add package System.ComponentModel.Annotations --version 4.7.0
+  753  dotnet build
+  754  cd..
+  755  cd ..
+  756  cd re
+  757  cd Oxygeni.Repository/
+  758  dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 3.1.6
+  759  dotnet add package Microsoft.EntityFrameworkCore --version 3.1.6
+  760  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.6
+  761  dotnet add package Microsoft.EntityFrameworkCore.Tools --version 3.1.6
+  762  dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.21
+  763  dotnet build
+  764  cd ..
+  765  cd Oxygeni.Domain/
+  766  dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 3.1.6
+  767  dotnet add package Microsoft.IdentityModel.Tokens --version 6.7.1
+  768  dotnet build
+  769  cd ..
+  770  cd Oxygeni.Application/
+  771  dotnet add package AutoMapper --version 10.0.0
+  772  dotnet add package Microsoft.AspNetCore.Identity.UI --version 3.1.7
+  773  dotnet add package System.IdentityModel.Tokens.Jwt" --version 6.7.1
+  774  ;
+  775  dotnet add package System.IdentityModel.Tokens.Jwt" --version 6.7.1
+  776  dotnet add package System.IdentityModel.Tokens.Jwt --version 6.7.1
+  777  dotnet build
+  778  cd ..
+  779  cd Oxygeni.Api/
+  780  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.6
+  781  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.5
+  782  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Utils --version 2.1.5
+  783  dotnet build
+  784  cd ..
+  785  dotnet build
+  786  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  787  dotnet build
+  788  dotnet clean
+  789  dotnet build
+  790  dotnet clean
+  791  dotnet build
+  792  dotnet clean
+  793  dotnet build
+  794  dotnet clean
+  795  dotnet build
+  796  dotnet clean
+  797  dotnet build
+  798  dotnet clean
+  799  dotnet build
+  800  dotnet clean
+  801  dotnet build
+  802  ls
+  803  cd Oxygeni.Model/
+  804  ls
+  805  dotnet build
+  806  cd ..
+  807  cd Oxygeni.Repository/
+  808  dotnet build
+  809  dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 3.1.6
+  810  dotnet add package Microsoft.EntityFrameworkCore --version 3.1.6
+  811  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.6
+  812  dotnet add package Microsoft.EntityFrameworkCore.Tools --version 3.1.6
+  813  dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.21
+  814  cd ..
+  815  dotnet build
+  816  dotnet sln Oxygeni.sln add **/*.csproj
+  817  dotnet build
+  818  npm install
+  819  npm start
+  820  mongo
+  821  sudo mongo
+  822  sudo mongod --dbpath /mnt/Arquivos/db
+  823  cd Front/
+  824  ls
+  825  npm start
+  826  ls
+  827  cd Oxygeni/
+  828  dotnet build
+  829  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  830  dotnet build
+  831  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  832  dotnet build
+  833  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  834  dotnet build
+  835  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  836  dotnet build
+  837  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  838  dotnet build
+  839  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  840  dotnet build
+  841  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  842  dotnet build
+  843  dotnet run --project Oxygeni.Api/Oxygeni.Api.csproj 
+  844  cd Oxygeni/
+  845  dotnet build
+  846  dotnet clear
+  847  dotnet clean
+  848  dotnet build
+  849  cd Oxygeni.Model/
+  850  dotnet add package System.ComponentModel.Annotations --version 4.7.0
+  851  cd ..
+  852  dotnet build
+  853  cd Oxygeni.Ap
+  854  cd Oxygeni.Api
+  855  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.6
+  856  cd ..
+  857  dotnet build
+  858  cd Oxygeni.Api
+  859  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.6
+  860  cd ..
+  861  dotnet build
+  862  cd Oxygeni/
+  863  dotnet build
+  864  cd Oxygeni/
+  865  dotnet build
+  866  ls
+  867  dotnet build
+  868  sudo mongo
+  869  exit
+  870  sudo mongod --dbpath /mnt/Arquivos/db
+  871  cd Oxygeni
+  872  dotnet build
+  873  cd Oxygeni
+  874  dotnet build
+  875  cd Oxygeni
+  876  dotnet build
+  877  cd Oxygeni/
+  878  dotnet build
+  879  cd Oxygeni/
+  880  dotnet build
+  881  cd Oxygeni/
+  882  dotnet build
+  883  cd Oxygeni/
+  884  dotnet build
+  885  cd Oxygeni/
+  886  dotnet build
+  887  sudo apt install xrdp
+  888  sudo systemctl enable --now xrdp
+  889  cd Oxygeni/
+  890  dotnet build
+  891  cd Oxygeni/
+  892  dotnet build
+  893  cd Oxygeni/
+  894  dotnet build
+  895  cd Oxygeni/
+  896  dotnet build
+  897  cd Oxygeni/
+  898  dotnet build
+  899  cd Oxygeni/
+  900  dotnet build
+  901  cd Oxygeni/
+  902  dotnet build
+  903  composer
+  904  sudo apt install composer
+  905  ls
+  906  php composer.phar create-project slim/slim-skeleton:dev-master apislim
+  907  php composer create-project slim/slim-skeleton:dev-master apislim
+  908  composer create-project slim/slim-skeleton:dev-master apislim
+  909  ls
+  910  cd apislim/
+  911  ls
+  912  php -S localhost:8080 -t public public/index.php
+  913  php -S lo127.0.0.1:8080 -t public public/index.php
+  914  php -S 127.0.0.1:8080 -t public public/index.php
+  915  ls
+  916  composer install
+  917  php -S 127.0.0.1:8080 -t public public/index.php
+  918  sudo php -S 127.0.0.1:8080 -t public public/index.php
+  919  code .
+  920  php -S 127.0.0.1:8080 -t public public/index.php
+  921  sudo composer install
+  922  ls
+  923  cd public/
+  924  ls
+  925  php -S localhost:8888
+  926  phsudo p -S localhost:8888
+  927  sudo php -S localhost:8888
+  928  sudo apt remove composer
+  929  composer
+  930  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+  931  php -r "if (hash_file('sha384', 'composer-setup.php') === 'c31c1e292ad7be5f49291169c0ac8f683499edddcfd4e42232982d0fd193004208a58ff6f353fde0012d35fdd72bc394') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+  932  php composer-setup.php
+  933  php -r "unlink('composer-setup.php');"
+  934  ls
+  935  rm -F apislim/
+  936  rm -f apislim/
+  937  php composer.phar create-project slim/slim-skeleton:dev-master ApiSlim
+  938  php composer.phar install
+  939  cd ApiSlim/
+  940  php -S localhost:8080 -t public public/index.php
+  941  sudo php -S localhost:8080 -t public public/index.php
+  942  php -v
+  943  composer
+  944  php composer.phar install
+  945  php composer.phar --version
+  946  ls
+  947  sudo php -S localhost:8080
+  948  code .
+  949  sudo php -S https://localhost/codigoaberto/t1
+  950  sudo php -S localhost/codigoaberto/t1
+  951  sudo php -S localhost:8080/codigoaberto/t1
+  952  php -S localhost
+  953  sudo php -S localhost:8080
+  954  sudo php -S localhost:8081
+  955  cd ..
+  956  cd php
+  957  code .
+  958  ls
+  959  sudo php -S localhost:8081
+  960  php composer.phar init
+  961  php composer.phar init -y
+  962  php composer.phar -y
+  963  php composer.phar install
+  964  sudo php -S localhost:8081
+  965  php -S localhost:8081
+  966  php composer.phar irequire ext-json
+  967  php composer.phar require ext-json
+  968  php -S localhost:8081
+  969  cd Oxygeni/
+  970  dotnet build
+  971  cd Oxygeni/
+  972  dotnet build
+  973  composer
+  974  sudo apt install composer
+  975  ls
+  976  composer create-project --prefer-dist laravel/laravel naoepecado
+  977  ls
+  978  cd naoepecado/
+  979  php artisan serve
+  980  php --ini
+  981  php artisan serve
+  982  ls
+  983  sudo php artisan serve
+  984  sudo apt remove composer
+  985  ls
+  986  php composer.phar init
+  987  php composer.phar install
+  988  php artisan serve
+  989  ls
+  990  php composer.phar create-project --prefer-dist laravel/laravel naoepecado
+  991  php artisan serve
+  992  ls
+  993  cd naoepecado/
+  994  php artisan serve
+  995  code .
+  996  sudo apt install openssh-server
+  997  sudo service ssh status
+  998  ip -v4
+  999  ip address -v4
+ 1000  ip
+ 1001  ip address
+ 1002  sudo php composer.phar create-project --prefer-dist laravel/laravel naoepecado
+ 1003  composer.phar global require "laravel/installer"
+ 1004  ls
+ 1005  composer.phar global require "laravel/installer"
+ 1006  php composer.phar global require "laravel/installer"
+ 1007  php composer.phar create-project --prefer-dist laravel/laravel naoepecado
+ 1008  cd naoepecado/
+ 1009  php artisan serve
+ 1010  cd ..
+ 1011  cd ~
+ 1012  rm .composer
+ 1013  ls
+ 1014  cd /home/david/
+ 1015  ls
+ 1016  cd .composer
+ 1017  ls
+ 1018  cd naoepecado/
+ 1019  shutdown -h now
+ 1020  sudo shutdown -h now
+ 1021  ls
+ 1022  cd /mnt
+ 1023  ls
+ 1024  cd arquivos
+ 1025  cd Arquivos/
+ 1026  ls
+ 1027  dir
+ 1028  cd Projetos
+ 1029  ls
+ 1030  cd temp
+ 1031  dir
+ 1032  cd Temp/
+ 1033  dir
+ 1034  cd Projeto/
+ 1035  ls
+ 1036  top
+ 1037  cls
+ 1038  clean
+ 1039  clear
+ 1040  nano
+ 1041  vim
+ 1042  code .
+ 1043  curl -sS http://getcomposer.org/installer | php
+ 1044  ls
+ 1045  php composer.phar create-project --prefer-dist laravel/laravel naoepecado
+ 1046  cd naoepecado/
+ 1047  ls
+ 1048  php artisan serve
+ 1049  cd ..
+ 1050  php composer.phar update
+ 1051  cd naoepecado/
+ 1052  php ../composer.phar update
+ 1053  php ../composer.phar install
+ 1054  code .
+ 1055  php artisan serve
+ 1056  sudo apt install curl php-cli php-mbstring git unzip
+ 1057  php ../composer.phar 
+ 1058  php ../composer.phar run
+ 1059  php artisan serve
+ 1060  sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+ 1061  ls
+ 1062  php ../composer.phar install
+ 1063  sudo apt-get install php7.0-mbstring
+ 1064  sudo apt-get install php7.0-xml
+ 1065  composer update --ignore-platform-reqs
+ 1066  php ../composer.phar update --ignore-platform-reqs
+ 1067  php artisan key:generate
+ 1068  php artisan serve
+ 1069  php artisan serve --host=192.168.1.9 --port=8080
+ 1070  sudo shutdown -h now
+ 1071  ls
+ 1072  git git@github.com:tecnicoroot/digitalinovationone.git
+ 1073  git
+ 1074  git pull
+ 1075  git pull https://github.com/tecnicoroot/digitalinovationone.git
+ 1076  git pull https://github.com/tecnicoroot/digitalinovatioclone .git
+ 1077  clear
+ 1078  git clone https://github.com/tecnicoroot/digitalinovationone.git
+ 1079  ls
+ 1080  cd digitalinovationone/
+ 1081  ls
+ 1082  .code
+ 1083  code .
+ 1084  composer
+ 1085  sudo apt install composer
+ 1086  composer global require laravel/installer
+ 1087  composer global require update --ignore-platform-reqs laravel/installer
+ 1088  composer update
+ 1089  ls
+ 1090  composer update
+ 1091  composer /?
+ 1092  composer --
+ 1093  laravel
+ 1094  sudo apt remove composer
+ 1095  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+ 1096  php -r "if (hash_file('sha384', 'composer-setup.php') === 'c31c1e292ad7be5f49291169c0ac8f683499edddcfd4e42232982d0fd193004208a58ff6f353fde0012d35fdd72bc394') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+ 1097  php composer-setup.php
+ 1098  php -r "unlink('composer-setup.php');"
+ 1099  ls
+ 1100  clear
+ 1101  cd ..
+ 1102  php composer.phar create-project laravel/laravel digitalinnovstionone 8
+ 1103  php digitalinnovstionone/composer.phar create-project laravel/laravel digitalinnovstionone 8
+ 1104  php digitalinnovationone/composer.phar create-project laravel/laravel digitalinnovationone 8
+ 1105  ls
+ 1106  php digitalinovationone/composer.phar create-project laravel/laravel digitalinovationone 8
+ 1107  php digitalinovationone/composer.phar create-project laravel/laravel digitalinovationone 8
+ 1108  php composer.phar create-project laravel/laravel digitalinovationone 8
+ 1109  php ../composer.phar update --ignore-platform-reqs
+ 1110  ls
+ 1111  cd digitalinovationone/
+ 1112  php ../composer.phar update --ignore-platform-reqs
+ 1113  clear
+ 1114  sudo mongod --dbpath /mnt/Arquivos/db
+ 1115  sudo mongo
+ 1116  db.alunos.update(
+ 1117  )echo "# Oxygeni" >> README.md
+ 1118  git init
+ 1119  git add README.md
+ 1120  git commit -m "first commit"
+ 1121  git branch -M main
+ 1122  git remote add origin https://github.com/tecnicoroot/Oxygeni.git
+ 1123  git push -u origin main
+ 1124  git init
+ 1125  echo "# Oxygeni" >> README.md
+ 1126  git init
+ 1127  git add README.md
+ 1128  git commit -m "first commit"
+ 1129  git branch -M main
+ 1130  git remote add origin https://github.com/tecnicoroot/Oxygeni.git
+ 1131  git push -u origin main
+ 1132  clear
+ 1133  git remote add origin https://github.com/tecnicoroot/Oxygeni.git
+ 1134  git branch -M main
+ 1135  echo "# Oxygeni" >> README.md
+ 1136  git init
+ 1137  git add README.md
+ 1138  git commit -m "first commit"
+ 1139  git branch -M main
+ 1140  git remote add origin https://github.com/tecnicoroot/Oxygeni.git
+ 1141  git config --global user.email "tecnicoroot@gmail.com"
+ 1142  git config --global user.name "David Luis da Silva"
+ 1143  echo "# Oxygeni" >> README.md
+ 1144  git init
+ 1145  git add README.md
+ 1146  git commit -m "first commit"
+ 1147  git branch -M main
+ 1148  git remote add origin https://github.com/tecnicoroot/Oxygeni.git
+ 1149  git push -u origin main
+ 1150  ls
+ 1151  git init
+ 1152  ls
+ 1153  echo "# Oxygeni" >> README.md
+ 1154  git init
+ 1155  git add README.md
+ 1156  git commit -m "first commit"
+ 1157  git branch -M main
+ 1158  git remote add origin https://github.com/tecnicoroot/Oxygeni.git
+ 1159  git branch -M main
+ 1160  git push -u origin main
+ 1161  code .
+ 1162  git --version
+ 1163  echo "Olá Mundo" | openssl SHA1
+ 1164  mkdir livro-receitas
+ 1165  ls
+ 1166  cd livro-receitas/
+ 1167  git status
+ 1168  ls
+ 1169  git list
+ 1170  ls
+ 1171  git init
+ 1172  ls -a
+ 1173  touch stogonoff.md
+ 1174  ls
+ 1175  code .
+ 1176  ls
+ 1177  git init
+ 1178  composer create-project --prefer-dist laravel/lumen ./
+ 1179  composer.phar create-project --prefer-dist laravel/lumen ./
+ 1180  ls
+ 1181  composer.phar create-project --prefer-dist laravel/lumen ./
+ 1182  ls
+ 1183  php composer.phar 
+ 1184  composer.phar create-project --prefer-dist laravel/php lumen ./
+ 1185  ./composer.phar create-project --prefer-dist laravel/php lumen 
+ 1186  ./composer.phar create-project --prefer-dist laravel/lumen
+ 1187  ls
+ 1188  hystory > comandos.txt
+ 1189  history > comandos.txt
+ 1190  ls
+ 1191  cd lumen/
+ 1192  php ../composer.phar update --ignore-platform-reqs
+ 1193  lss
+ 1194  ls
+ 1195  cd ..
+ 1196  ls
+ 1197  ./composer.phar create-project --ignore-platform-reqs --prefer-dist laravel/lumen lumien2
+ 1198  git add .
+ 1199  ls
+ 1200  touch README.md
+ 1201  ls
+ 1202  code .
+ 1203  history > comandos.txt
+ 1204  git add .
+ 1205  git commit -m "Instalação do projeto inicial"
+ 1206  git branch -M main
+ 1207  git remote add origin https://github.com/tecnicoroot/controlegasesmedicinais.git
+ 1208  git push -u origin main
+ 1209  code .
+ 1210  php -S localhost:8000 -t public
+ 1211  php -S localhost:8080 -t public
+ 1212  php -S localhost:8000 -t public
+ 1213  code .
+ 1214  php -S localhost:8888 -t public
+ 1215  php -S localhost:8888 -t public
+ 1216  ls /
+ 1217  cd /var
+ 1218  ls
+ 1219  php -info
+ 1220  cd /etc/php/7.4/
+ 1221  ls
+ 1222  cd cli/
+ 1223  ls
+ 1224  code php.ini 
+ 1225  sudo code php.ini 
+ 1226  sudo nano php.ini 
+ 1227  ls
+ 1228  cd conf.d/
+ 1229  ls
+ 1230  cd ..
+ 1231  ls
+ 1232  cd .. 
+ 1233  la
+ 1234  ls
+ 1235  l
+ 1236  a
+ 1237  cd .. 
+ 1238  ls
+ 1239  php -i | grep "Loaded Configuration File"
+ 1240  cd php/
+ 1241  ls
+ 1242  sudo service apache restart
+ 1243  sudo service php restart
+ 1244  sudo apache2ctl restart
+ 1245  sudo apt install php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
+ 1246  composer require tymon/jwt-auth
+ 1247  php composer.phar require tymon/jwt-auth
+ 1248  php ../composer.phar update --ignore-platform-reqs
+ 1249  php composer.phar update --ignore-platform-reqs
+ 1250  php -S localhost:8000 -t public
+ 1251  php artisan migrate
+ 1252  php -S localhost:8000 -t public
+ 1253  php artisan jwt:secret
+ 1254  php -S localhost:8000 -t public
+ 1255  php artisan migrate:
+ 1256  php artisan migrate:install
+ 1257  php artisan migrat
+ 1258  php artisan migrate
+ 1259  php artisan migrate:install
+ 1260  php artisan migrate:fresh
+ 1261  php -S localhost:8000 -t public
+ 1262  php artisan migrate:fresh
+ 1263  php -S localhost:8000 -t public
+ 1264  php composer.phar --ignore-platform-reqs require tymon/jwt-auth 
+ 1265  php -S localhost:8000 -t public
+ 1266  php composer.phar dumpautoload
+ 1267  php -S localhost:8000 -t public
+ 1268  php composer.phar dumpautoload
+ 1269  php -S localhost:8000 -t public
+ 1270  php artisan migrate:fresh
+ 1271  php -S localhost:8000 -t public
+ 1272  php composer.phar dumpautoload
+ 1273  php -S localhost:8000 -t public
+ 1274  code .
+ 1275  php -S localhost:8000 -t public
+ 1276  php composer.phar require tymon/jwt-auth:dev-develop
+ 1277  php artisan jwt:secret
+ 1278  php -S localhost:8000 -t public
+ 1279  sudo mongod
+ 1280  sudo mongo
+ 1281  sudo mongod --dbpath /mnt/Arquivos/db &&
+ 1282  sudo mongod --dbpath /mnt/Arquivos/db 
+ 1283  git add *
+ 1284  git commit -m "Autenticaçao funcionando"
+ 1285  git remote add origin https://github.com/tecnicoroot/controlegasesmedicinais.git
+ 1286  git push -u origin main
+ 1287  git remote add origin https://github.com/tecnicoroot/gasesmedicinais.git
+ 1288  git push -u origin main
+ 1289  git add .
+ 1290  git push -u origin main
+ 1291  git remote add origin https://github.com/tecnicoroot/gasesmedicinais.git
+ 1292  git remote set-url origin https://github.com/tecnicoroot/gasesmedicinais.git
+ 1293  git remote -v
+ 1294  git push -u origin main
+ 1295  git list
+ 1296  git commit -m "Autenticaçao funcionando"
+ 1297  git push -u origin main
+ 1298  git remove -v
+ 1299  git remote -v
+ 1300  git remote rm origin
+ 1301  git remote -v
+ 1302  git remote set-url origin https://github.com/tecnicoroot/gasesmedicinais.git
+ 1303  git remote add origin https://github.com/tecnicoroot/gasesmedicinais.git
+ 1304  git push -u origin main
+ 1305  git remote -v
+ 1306  git push -u origin main
+ 1307  git pull
+ 1308  git push -u origin main
+ 1309  git push 
+ 1310  git pull
+ 1311  git pull origin main
+ 1312  git push -u origin main
+ 1313  git pull origin main
+ 1314  git push origin main
+ 1315  git remote -v
+ 1316  git remote add origin https://github.com/tecnicoroot/GasesMedicinais.git
+ 1317  git push -u origin main
+ 1318  git merge
+ 1319  git pull origin main
+ 1320  git pull origin master --allow-unrelated-histories
+ 1321  git pull origin main --allow-unrelated-histories
+ 1322  git push -u origin main
+ 1323  git pull origin main
+ 1324  git push origin main
+ 1325  git remote add origin https://github.com/tecnicoroot/Authentication.git
+ 1326  git branch -M main
+ 1327  git push -u origin main
+ 1328  git remote -v
+ 1329  git remote rm origin
+ 1330  git remote -v
+ 1331  git remote add origin https://github.com/tecnicoroot/Authentication.git
+ 1332  git branch -M main
+ 1333  git push -u origin main
+ 1334  cd /etc/php/7.4/apache2/
+ 1335  ls
+ 1336  sudo nano php.ini 
+ 1337  git add .
+ 1338  git commit "Criando Modelo Paciente"
+ 1339  git push -u origin main
+ 1340  php artisan migrate:update
+ 1341  php artisan migrate:fresh
+ 1342  ls
+ 1343  history > comandos.txt
+ 1344  php artisan make:migration create_agendamentos_table
+ 1345  php artisan migrate:fresh
+ 1346  npm start
+ 1347  php -S localhost:8000 -t public
+ 1348  cd lumen/
+ 1349  history > comandos.txt
+ 1350  cd..
+ 1351  cd ..
+ 1352  dotnet run --project ./Rootinformatica.Oxygeni.Api/Rootinformatica.Oxygeni.Api.csproj 
+ 1353  ls
+ 1354  cd Oxygeni/
+ 1355  ls
+ 1356  dotnet run --project ./Oxygeni.Api/Oxygeni.Api.csproj 
+ 1357  exit
+ 1358  npm start
+ 1359  php artisan migrate:fresh
+ 1360  php -S localhost:8000 -t public
+ 1361  php artisan migrate:fresh
+ 1362  php -S localhost:8000 -t public
+ 1363  php artisan migrate:fresh
+ 1364  php -S localhost:8000 -t public
+ 1365  code .
+ 1366  php artisan migrate:fresh
+ 1367  php -S localhost:8000 -t public
+ 1368  npm start
+ 1369  php -S localhost:8000 -t public
+ 1370  npm start
+ 1371  php -S localhost:8000 -t public
+ 1372  npm start
+ 1373  php -S localhost:8000 -t public
+ 1374  sudo wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
+ 1375  wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
+ 1376  sudo wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
+ 1377  sudo echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list
+ 1378  sudo su
+ 1379  php -S localhost:8000 -t public
+ 1380  npm start
+ 1381  sudo su
+ 1382  sudo su
+ 1383  php -S localhost:8000 -t public
+ 1384  npm start
+ 1385  npm install react-paginate
+ 1386  npm start
+ 1387  php -S localhost:8000 -t public
+ 1388  npm start
+ 1389  php -S localhost:8000 -t public
+ 1390  npm start
+ 1391  php -S localhost:8000 -t public
+ 1392  npm start
+ 1393  php -S localhost:8000 -t public
+ 1394  cd ..
+ 1395  ls
+ 1396  cd Front-ControleGasesMedicinais/
+ 1397  clean
+ 1398  clear
+ 1399  npm start
+ 1400  php -S localhost:8000 -t public
+ 1401  cd ..
+ 1402  cd Front-ControleGasesMedicinais/
+ 1403  npm start
+ 1404  ifconf
+ 1405  ifconfig
+ 1406  sudo su
+ 1407  sudo su
+ 1408  php -S localhost:8000 -t public
+ 1409  npm start
+ 1410  php -S localhost:8000 -t public
+ 1411  sudo su
+ 1412  sudu su
+ 1413  sudo su
+ 1414  sudo su
+ 1415  npm start
+ 1416  php -S localhost:8000 -t public
+ 1417  ping 8.8.8.8
+ 1418  ping 192.168.77.1
+ 1419  ping 8.8.8.8
+ 1420  ping 192.168.77.1
+ 1421  ping 8.8.8.8
+ 1422  ping 192.168.77.1
+ 1423  ping 8.8.8.8
+ 1424  ip -v4
+ 1425  ip 
+ 1426  ip -4
+ 1427  ip address -4
+ 1428  ip address 4
+ 1429  ip address 
+ 1430  ping 192.168.77.1
+ 1431  ping 8.8.8.8
+ 1432  ping 192.168.77.1
+ 1433  ip address 
+ 1434  ping 192.168.77.1
+ 1435  ping 8.8.8.8
+ 1436  ping 192.168.77.1
+ 1437  ping 8.8.8.8
+ 1438  ping 192.168.77.1
+ 1439  ping 8.8.8.8
+ 1440  ping 10.10.0.30
+ 1441  ping 10.10.0.1
+ 1442  ping 10.10.0.30
+ 1443  ip address
+ 1444  ping 10.10.0.30
+ 1445  ip address
+ 1446  cls
+ 1447  clear
+ 1448  ip address
+ 1449  clear
+ 1450  ip address
+ 1451  ping 192.168.254.30
+ 1452  ping 192.168.254.3
+ 1453  ip address
+ 1454  ping 192.168.254.3
+ 1455  ip address
+ 1456  sudo apt install fillezilla
+ 1457  sudo apt install filezilla
+ 1458  php -S localhost:8000 -t public
+ 1459  .code
+ 1460  code .
+ 1461  ip address
+ 1462  code .
+ 1463  npm start
+ 1464  php -S localhost:8000 -t public/
+ 1465  code . 
+ 1466  php -S localhost:8000 -t public/
+ 1467  python
+ 1468  version
+ 1469  cat /proc/version
+ 1470  python3
+ 1471  pip3
+ 1472  python3-pip
+ 1473  code .
+ 1474  cd /opt
+ 1475  ls
+ 1476  cd pycharm-community-2020.3.3/
+ 1477  ls
+ 1478  cd bin
+ 1479  ls
+ 1480  cd ~/.local/share/applications/
+ 1481  ls
+ 1482  code .
+ 1483  ls
+ 1484  $
+ 1485  sudo tar -xzf jetbrains-toolbox-1.17.7391.tar.gz -C /opt
+ 1486  ls
+ 1487  sudo tar -xzf pycharm-community-2020.3.3.tar.gz -C /opt
+ 1488  cd /opt
+ 1489  ls
+ 1490  cd pycharm-community-2020.3.3/
+ 1491  ls
+ 1492  cd bin/
+ 1493  ls
+ 1494  sh pycharm.sh 
+ 1495  ls
+ 1496  sh pycharm.sh 
+ 1497  cd /usr/local/share/applications 
+ 1498  ls
+ 1499  cd /usr
+ 1500  ls
+ 1501  cd local
+ 1502  ls
+ 1503  cd share
+ 1504  ls
+ 1505  cd ..
+ 1506  ls
+ 1507  cd share/
+ 1508  ls
+ 1509  cd applications/
+ 1510  ls
+ 1511  code .
+ 1512  sudo code .
+ 1513  php -S localhost:8080 -t public public/index.php
+ 1514  php -S localhost:8000 -t public public/index.php
+ 1515  php -S localhost:8080 -t public public/index.php
+ 1516  php artisa migrate:fresh
+ 1517  php artisan migrate:fresh
+ 1518  who
+ 1519  whoys
+ 1520  whos
+ 1521  php artisan migrate:fresh
+ 1522  php -S localhost:8080 -t public public/index.php
+ 1523  php artisan migrate:fresh
+ 1524  php -S localhost:8080 -t public public/index.php
+ 1525  php artisan migrate:fresh
+ 1526  php atrisan db:seed
+ 1527  php artisan db:seed
+ 1528  php -S localhost:8080 -t public public/index.php
+ 1529  php artisan migrate:fresh
+ 1530  php artisan db:seed
+ 1531  php -S localhost:8080 -t public public/index.php
+ 1532  code .
+ 1533  code .
+ 1534  ls
+ 1535  php artisan update
+ 1536  php artisan
+ 1537  php -S localhost:8080 -t public public/index.php
+ 1538  cd /usr/lib/php/
+ 1539  ls
+ 1540  apt install php7.0-sqlite
+ 1541  cd /etc/php/7.4/apache2/
+ 1542  ls
+ 1543  nano php.ini
+ 1544  sudo code php.ini
+ 1545  sudo  nano php.ini
+ 1546  sud apache2ctl restart
+ 1547  sudd apache2ctl restart
+ 1548  sudo apache2ctl restart
+ 1549  sudo /etc/init.d/apache2 restart
+ 1550  php artisan migrate
+ 1551  php artisan migrate:fresh
+ 1552  apt install php7.0-sqlite
+ 1553  php artisan migrate:fresh
+ 1554  ls
+ 1555  sqlite api-oxigeni.sqlite3 
+ 1556  sqlite3 api-oxigeni.sqlite3 
+ 1557  sudo apt install sqlitebrowser
+ 1558  php artisan db:seed
+ 1559  sudp apt install php7.0-sqlite
+ 1560  sudo apt install php7.0-sqlite
+ 1561  sudo apt install php7.4-sqlite
+ 1562  sudo apt find php
+ 1563  sudo apt search  php
+ 1564  sudo apt search  php7.4
+ 1565  sudo apt install php7.4-sqlite3
+ 1566  code .
+ 1567  ls -a
+ 1568  php -S localhost:8080 -t public public/index.php
+ 1569  php -v
+ 1570  ls
+ 1571  cd/
+ 1572  cd /
+ 1573  ls
+ 1574  cd /
+ 1575  cd dev
+ 1576  cd ..
+ 1577  cd ~
+ 1578  ls
+ 1579  php -S localhost:8080 -t public public/index.php
+ 1580  php -S localhost:8080 -t public public/index.php
+ 1581  code .
+ 1582  code .
+ 1583  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+ 1584  ls
+ 1585  chmod +x Miniconda3-latest-Linux-x86_64.sh
+ 1586  ./Miniconda3-latest-Linux-x86_64.sh
+ 1587  conda 
+ 1588  ls
+ 1589  cd ..
+ 1590  ls
+ 1591  cd miniconda3/
+ 1592  ls
+ 1593  conda
+ 1594  exit
+ 1595  ls
+ 1596  python --version
+ 1597  ls
+ 1598  conda --version
+ 1599  conda env list
+ 1600  ls
+ 1601  cd miniconda3/
+ 1602  ls
+ 1603  cd envs
+ 1604  ls
+ 1605  cd ..
+ 1606  cd..
+ 1607  cd ..
+ 1608  clear
+ 1609  ls
+ 1610  cd Notebook/
+ 1611  clear
+ 1612  pip 
+ 1613  clear
+ 1614  conda env create -n notebook python=3.8
+ 1615  conda create -n notebook python=3.8
+ 1616  conda env list
+ 1617  conda activate notebook
+ 1618  conda install jupyter
+ 1619  ls
+ 1620  jupyter notebook
+ 1621  php -S localhost:8080 -t public public/index.php
+ 1622  php artisan migrate:fresh
+ 1623  php artisan db:seed
+ 1624  php -S localhost:8080 -t public public/index.php
+ 1625  php artisan migrate:fresh
+ 1626  php -S localhost:8080 -t public public/index.php
+ 1627  code .
+ 1628  code . && clear
+ 1629  php artisan db:seed
+ 1630  php artisan migrate:frash
+ 1631  php artisan migrate:fresh
+ 1632  php artisan db:seed
+ 1633  gh repo clone tecnicoroot/tcc
+ 1634  git in
+ 1635  git ig
+ 1636  git init
+ 1637  git clone https://github.com/tecnicoroot/tcc.git
+ 1638  ls
+ 1639  git commit 
+ 1640  git add
+ 1641  git add.
+ 1642  git commit 
+ 1643  ls
+ 1644  git clone https://github.com/tecnicoroot/tcc.git
+ 1645  ls
+ 1646  git add.
+ 1647  git add
+ 1648  git commit  -m "primeiro commit"
+ 1649  php -S localhost:8080 -t public public/index.php
+ 1650  code .
+ 1651  ls
+ 1652  git add
+ 1653  git add *
+ 1654  git add -f
+ 1655  git add. -f
+ 1656  ls
+ 1657  sudo su
+ 1658  cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+ 1659  ls
+ 1660  cd Público/
+ 1661  ls
+ 1662  whois
+ 1663  ls
+ 1664  cls
+ 1665  sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+ 1666  cd Público/
+ 1667  ls
+ 1668  ccccccccccd Público/
+ 1669  cd Público/
+ 1670  cd /
+ 1671  cd home
+ 1672  cd /home
+ 1673  code .
+ 1674  code.
+ 1675  code .
+ 1676  sudo apt --purge remove php-comon
+ 1677  sudo apt --purge remove php-common
+ 1678  sudo apt install php-common php-mysql php-cli
+ 1679  php artisan 
+ 1680  sudo su
+ 1681  sudo /etc/init.d/apache2 restart
+ 1682  php artisan 
+ 1683  sudo su
+ 1684  php artisan 
+ 1685  cd api-oxigeni/
+ 1686  php artisan 
+ 1687  php artisan migrate:fresh
+ 1688  sudo apt install php7.4-sqlite3
+ 1689  php artisan migrate:fresh
+ 1690  php artisan migrate:fresh
+ 1691  php artisan migrate
+ 1692  php artisan
+ 1693  php -S localhost:8080 -t public public/index.php
+ 1694  sudo /etc/init.d/apache2 restart
+ 1695  php artisan migrate:fresh
+ 1696  cls
+ 1697  php artisan db:seed
+ 1698  php artisan migrate:fresh
+ 1699  php artisan db:seed
+ 1700  cd api-oxigeni/
+ 1701  ls
+ 1702  code .
+ 1703  php -S localhost:8080 -t public public/index.php
+ 1704  php artisan optimize:clear
+ 1705  ls
+ 1706  php artisan optimize:clear
+ 1707  php artisan 
+ 1708  php artisan cache:clear
+ 1709  php -S localhost:8080 -t public public/index.php
+ 1710  php artisan migrate:fresh
+ 1711  php artisan db:seed
+ 1712  php -S localhost:8080 -t public public/index.php
+ 1713  php artisan migrate:fresh
+ 1714  php artisan db:seed
+ 1715  php -S localhost:8080 -t public public/index.php
+ 1716  exit
+ 1717  code .
+ 1718  php -S localhost:8080 -t public public/index.php
+ 1719  history > comandos.txt

@@ -20,6 +20,7 @@ class CreateConveniosTable extends Migration
             $table->string('fax');
             $table->string('email');
 
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

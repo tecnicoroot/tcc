@@ -23,6 +23,7 @@ class CreateMedicosTable extends Migration
             $table->string('email');
 
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

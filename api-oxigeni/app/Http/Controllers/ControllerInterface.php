@@ -44,7 +44,7 @@ use Illuminate\Http\JsonResponse;
       * @param  string $param
       * @return JsonResponse
       */
-     public function editBy(Request $request, string $param): JsonResponse;
+     public function editBy(string $param, Request $request): JsonResponse;
 
      /**
       * delete

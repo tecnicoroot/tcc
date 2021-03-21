@@ -68,8 +68,10 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function editBy(string $param, array $data): bool
     {
-        $result = $this->model::find($param)->update($data);
-
+        
+       
+        $result = $this->model::find($param)
+            ->update($data);
         return $result ? true : false;
     }
 

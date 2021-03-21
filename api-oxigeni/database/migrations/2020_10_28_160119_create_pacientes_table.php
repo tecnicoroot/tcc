@@ -17,7 +17,7 @@ class CreatePacientesTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->date('data_nascimento');
-            $table->enum(   'sexo',['Masculino','Feminino']);
+            $table->enum('sexo',['Masculino','Feminino']);
             $table->string('cpf');
             $table->string('identidade');
             $table->string('celular');
@@ -32,7 +32,7 @@ class CreatePacientesTable extends Migration
             $table->string('cidade');
             $table->string('estado');
             $table->string('cep');
-
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

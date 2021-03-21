@@ -57,7 +57,7 @@ class AbstractService implements ServiceInterface
     */
    public function editBy(string $param, array $data): bool
    {
-        return $this->repository->editBy($param,$data);
+        return $this->repository->editBy($param, $data);
    }
 
    /**

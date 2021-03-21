@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->enum( 'perfil',['Administrador','Secretária','Enfermeiro','Médico']);
             $table->enum( 'status',['Ativo','Desativado']);
             $table->string('password');
+            $table->string('coren')->unique()->nullable();
+            $table->string('crm')->unique()->nullable();
             $table->rememberToken();
             
             $table->softDeletes();

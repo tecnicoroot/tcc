@@ -3,20 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Paciente extends Model
 {
+
+    use SoftDeletes;
     protected $fillable = [
         'nome',
-        'datanascimento',
+        'data_nascimento',
         'sexo',
         'cpf',
         'identidade',
         'telefone',
         'celular',
         'email',
-        'planosaude',
-        'numeroplano',
+        'plano_saude',
+        'numero_plano',
         'endereco',
         'numero','complemento','bairro','cidade','estado','cep'
     ];
