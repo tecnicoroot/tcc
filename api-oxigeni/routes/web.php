@@ -96,7 +96,10 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     /**
      * Atendimento
      */
-
+    $router->post('/v1/atendimento/register', 'V1\Atendimento\AtendimentoController@create');
+    $router->put('/v1/atendimento/register/{param}', "V1\Atendimento\AtendimentoController@editBy");
+    $router->get('/v1/atendimento/{id}', "V1\Atendimento\AtendimentoController@findOneBy");
+    $router->delete('/v1/atendimento/destroy/{id}', "V1\Atendimento\AtendimentoController@delete");
 
 });
 
