@@ -1,0 +1,1542 @@
+{
+	"info": {
+		"_postman_id": "d38bc8a0-8d7d-4abf-bc1c-272ef414f165",
+		"name": "Oxygeni Lumen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER/AUTH",
+			"item": [
+				{
+					"name": "Recuperação de senha",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Email\": \"tecnicoroot@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/api/User/forgotpassword",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"api",
+								"User",
+								"forgotpassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Efetuar Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1NTQ1ODY2LCJleHAiOjE2MTU1NDk0NjYsIm5iZiI6MTYxNTU0NTg2NiwianRpIjoiNnY5ZGppd280R0FhNDlQUiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.cCFqt1vWGQ_XZUFVMkg624NhVMi9ZGkKe8rle4xho-Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"tecnicoroot@gmail.com\",\n    \"password\": \"1qaz2wsx\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/auth/login",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuário - cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"email\": \"123446y@teeste.com\",\n    \"name\": \"teste 1oi\",\n    \"password\": \"123456\",\n    \"password_confirmation\": \"123456\",\n    \"perfil\": \"Administrador\",\n    \"status\": \"Ativo\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/user/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar usuário",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MDUwMjM1MjAsImV4cCI6MTYwNTAyNzEyMCwibmJmIjoxNjA1MDIzNTIwLCJqdGkiOiJYc0hINzhZZ3EycTJNb0hQIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwiZW1haWwiOiJ0ZWNuaWNvcm9vdEBnbWFpbC5jb20iLCJBdXRob3JpemF0aW9uQ2xhaW0iOlsiQWRtaW5pc3RyYWRvciJdLCJuYW1lIjoiRGF2aWQgTHVpcyBkYSBTaWx2YSJ9.RW15kVveTEqgncENt4p7aEam5wZZdICfLRQH4sD-vAI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testeteste@teeste.com\",\n    \"name\": \"David mudei\",\n    \"password\": \"123456\",\n    \"password_confirmation\": \"123456\",\n    \"perfil\": \"4\",\n    \"status\": \"1\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/auth/register/4",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trocar senha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1NTQ0MzQxLCJleHAiOjE2MTU1NDc5NDEsIm5iZiI6MTYxNTU0NDM0MSwianRpIjoiSDJQQVZCWGNxQUhKdGRNNSIsInN1YiI6MTAsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJlbWFpbCI6IjEyMzQ1QHRlZXN0ZS5jb20iLCJBdXRob3JpemF0aW9uQ2xhaW0iOlsiQWRtaW5pc3RyYWRvciJdLCJuYW1lIjoidGVzdGUgOSIsImlkIjoxMH0.ip900WuegIZpb9FLYd9tcLCwvQcWV3OTEVxLebYn-_o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"123456\"\n  \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/user/register/password/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"register",
+								"password",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Usuário",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1NDc2NjYwLCJleHAiOjE2MTU0ODAyNjAsIm5iZiI6MTYxNTQ3NjY2MCwianRpIjoiVFNKVUFyWUNlNVBNcVBEUiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.OuieBrHErc9BsPe3HPHQEDzuqxGchAGcKJNKrT-bUJg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_Lumen}}/v1/user/usuario/destroy/13",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"usuario",
+								"destroy",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/api/User/confirmemail?userId=92f41035-6f5a-4876-89ba-d3694926feee&code=CfDJ8D0FVnCDdRxGg0dj/yXkBE25uJCJK1Sh55CYtLa2y4v/AREY6aYBGIghwXveuFYLhUemSy4L2wny+TLj5S+WZ4SuIZiO8zv0CHbOeAlrLrPpF0+RFrMqXufuqwdJQKLGXbKafeeZMSrYEVloxpno9UPPzRR73tAxsmSDq7YPoz5Nr5efMGMhOlERCXC5ozwQr2DZxWEnjjzIFuCicr8AkzHvtGcHQ2uEWqBAV2HUYJ/KAO9/KrZNbu9yAQn+ES3q6Q==",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"api",
+								"User",
+								"confirmemail"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "92f41035-6f5a-4876-89ba-d3694926feee"
+								},
+								{
+									"key": "code",
+									"value": "CfDJ8D0FVnCDdRxGg0dj/yXkBE25uJCJK1Sh55CYtLa2y4v/AREY6aYBGIghwXveuFYLhUemSy4L2wny+TLj5S+WZ4SuIZiO8zv0CHbOeAlrLrPpF0+RFrMqXufuqwdJQKLGXbKafeeZMSrYEVloxpno9UPPzRR73tAxsmSDq7YPoz5Nr5efMGMhOlERCXC5ozwQr2DZxWEnjjzIFuCicr8AkzHvtGcHQ2uEWqBAV2HUYJ/KAO9/KrZNbu9yAQn+ES3q6Q=="
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar todos os Usuários",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1MjQ4MjUyLCJleHAiOjE2MTUyNTE4NTIsIm5iZiI6MTYxNTI0ODI1MiwianRpIjoid3lKZGc2YWtjYUhmZjZTYiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.Vwg8UIpNDQ_NbW1WaRTuv-gshJRwAto5mxMG1YFPNEs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"crm\":\"9999\",\"nome\":\"medico 01\",\"telefone\":\"99999999\",\"celular\":\"99999999\",\"fax\":\"99999999\",\"email\":\"medico@medico.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/medico/reg",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"medico",
+								"reg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um usuário",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1NTQ0MzQxLCJleHAiOjE2MTU1NDc5NDEsIm5iZiI6MTYxNTU0NDM0MSwianRpIjoiSDJQQVZCWGNxQUhKdGRNNSIsInN1YiI6MTAsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJlbWFpbCI6IjEyMzQ1QHRlZXN0ZS5jb20iLCJBdXRob3JpemF0aW9uQ2xhaW0iOlsiQWRtaW5pc3RyYWRvciJdLCJuYW1lIjoidGVzdGUgOSIsImlkIjoxMH0.ip900WuegIZpb9FLYd9tcLCwvQcWV3OTEVxLebYn-_o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"crm\":\"9999\",\"nome\":\"medico 01\",\"telefone\":\"99999999\",\"celular\":\"99999999\",\"fax\":\"99999999\",\"email\":\"medico@medico.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/user/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca com filtro",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MDU1NDE0NDUsImV4cCI6MTYwNTU0NTA0NSwibmJmIjoxNjA1NTQxNDQ1LCJqdGkiOiJqR1pqNGJ1OWpZcklWQlBUIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwiZW1haWwiOiJ0ZWNuaWNvcm9vdEBnbWFpbC5jb20iLCJBdXRob3JpemF0aW9uQ2xhaW0iOlsiQWRtaW5pc3RyYWRvciJdLCJuYW1lIjoiRGF2aWQgTHVpcyBkYSBTaWx2YSIsImlkIjoxfQ.wVUIJp8zi2rTm1VDqh5BYHF4wn6FVYuK9lvOUJhX_Co",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/api/usuario/teste",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"teste"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MEDIC",
+			"item": [
+				{
+					"name": "Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODUyNzExLCJleHAiOjE2MTU4NTYzMTEsIm5iZiI6MTYxNTg1MjcxMSwianRpIjoiNERoVU1PRWtrV0JsOWk3QSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.wccnBInnsEqMFrwy6V10bDSMtF6bxN2899eeXpGCwmU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99998\",\n    \"nome\":\"Medico 2\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico2@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/medic/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"medic",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODQ5NDA3LCJleHAiOjE2MTU4NTMwMDcsIm5iZiI6MTYxNTg0OTQwNywianRpIjoiSU1KTXlJQ2pjc0dmeE9ySCIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.ag7onu8wrmvdfJh4fHmGIpvASpTY8aV-pwAJnHlaPLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/medic/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"medic",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODQ5NDA3LCJleHAiOjE2MTU4NTMwMDcsIm5iZiI6MTYxNTg0OTQwNywianRpIjoiSU1KTXlJQ2pjc0dmeE9ySCIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.ag7onu8wrmvdfJh4fHmGIpvASpTY8aV-pwAJnHlaPLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/medic/register/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"medic",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODUyNzExLCJleHAiOjE2MTU4NTYzMTEsIm5iZiI6MTYxNTg1MjcxMSwianRpIjoiNERoVU1PRWtrV0JsOWk3QSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.wccnBInnsEqMFrwy6V10bDSMtF6bxN2899eeXpGCwmU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/medic/destroy/2",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"medic",
+								"destroy",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CONVENIO",
+			"item": [
+				{
+					"name": "cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODU0MjI3LCJleHAiOjE2MTU4NTc4MjcsIm5iZiI6MTYxNTg1NDIyNywianRpIjoiWG9LT1pQaHllc295RGVNdiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.MHOQud49Uc5_s_2mFK2xkFcQhwXe1sZ-45-gBFvqbo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"nome\":\"Convenio 1\",\n    \"telefone\":\"9999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico2@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/convenio/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"convenio",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODQ5NDA3LCJleHAiOjE2MTU4NTMwMDcsIm5iZiI6MTYxNTg0OTQwNywianRpIjoiSU1KTXlJQ2pjc0dmeE9ySCIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.ag7onu8wrmvdfJh4fHmGIpvASpTY8aV-pwAJnHlaPLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}/v1/convenio/1",
+							"host": [
+								"{{url_Lumen}"
+							],
+							"path": [
+								"v1",
+								"convenio",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODU0MjI3LCJleHAiOjE2MTU4NTc4MjcsIm5iZiI6MTYxNTg1NDIyNywianRpIjoiWG9LT1pQaHllc295RGVNdiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.MHOQud49Uc5_s_2mFK2xkFcQhwXe1sZ-45-gBFvqbo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"nome\":\"Convenio 2\",\n    \"telefone\":\"9999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico2@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/convenio/register/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"convenio",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODU0MjI3LCJleHAiOjE2MTU4NTc4MjcsIm5iZiI6MTYxNTg1NDIyNywianRpIjoiWG9LT1pQaHllc295RGVNdiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.MHOQud49Uc5_s_2mFK2xkFcQhwXe1sZ-45-gBFvqbo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/convenio/destroy/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"convenio",
+								"destroy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PACIENTE",
+			"item": [
+				{
+					"name": "cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODkxMDM1LCJleHAiOjE2MTU4OTQ2MzUsIm5iZiI6MTYxNTg5MTAzNSwianRpIjoiN3lWZGZYMUZFdGRWMEdnciIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.AVtYqABVCZFSAlq0xtNF3KCAxZkMlZnmjshma4QceH0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"nome\" : \"David luis\",\n    \"data_nascimento\" : \"1983-06-19\",\n    \"sexo\" : \"Masculino\",\n    \"cpf\" : \"99999999999\",\n    \"identidade\" : \"99999999\",\n    \"telefone\" : \"9999999999\",\n    \"celular\" : \"9999999999\",\n    \"email\" : \"teste@teste.com\",\n    \"plano_saude\" : \"1\",\n    \"numero_plano\" : \"999999999\",\n    \"endereco\" : \"rua X\",\n    \"numero\" : \"185\",\n    \"complemento\" : \"01\",\n    \"bairro\" : \"previ\",\n    \"cidade\" : \"jf\",\n    \"estado\" : \"mg\",\n    \"cep\" : \"99999999\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/paciente/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"paciente",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODkxMDM1LCJleHAiOjE2MTU4OTQ2MzUsIm5iZiI6MTYxNTg5MTAzNSwianRpIjoiN3lWZGZYMUZFdGRWMEdnciIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.AVtYqABVCZFSAlq0xtNF3KCAxZkMlZnmjshma4QceH0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/paciente/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"paciente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODkxMDM1LCJleHAiOjE2MTU4OTQ2MzUsIm5iZiI6MTYxNTg5MTAzNSwianRpIjoiN3lWZGZYMUZFdGRWMEdnciIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.AVtYqABVCZFSAlq0xtNF3KCAxZkMlZnmjshma4QceH0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"nome\" : \"David luis da Silva\",\n    \"data_nascimento\" : \"1983-06-19\",\n    \"sexo\" : \"Masculino\",\n    \"cpf\" : \"99999999999\",\n    \"identidade\" : \"99999999\",\n    \"telefone\" : \"9999999999\",\n    \"celular\" : \"9999999999\",\n    \"email\" : \"teste@teste.com\",\n    \"plano_saude\" : \"1\",\n    \"numero_plano\" : \"999999999\",\n    \"endereco\" : \"rua X\",\n    \"numero\" : \"185\",\n    \"complemento\" : \"01\",\n    \"bairro\" : \"previ\",\n    \"cidade\" : \"jf\",\n    \"estado\" : \"mg\",\n    \"cep\" : \"99999999\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/paciente/register/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"paciente",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1ODkxMDM1LCJleHAiOjE2MTU4OTQ2MzUsIm5iZiI6MTYxNTg5MTAzNSwianRpIjoiN3lWZGZYMUZFdGRWMEdnciIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.AVtYqABVCZFSAlq0xtNF3KCAxZkMlZnmjshma4QceH0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/paciente/destroy/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"paciente",
+								"destroy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EMPRESA",
+			"item": [
+				{
+					"name": "cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTMzMTE1LCJleHAiOjE2MTU5MzY3MTUsIm5iZiI6MTYxNTkzMzExNSwianRpIjoiQ0M5WmFQOFhHc2M2dEd3ZSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.GUkbTKRV1Hwl6OcKxViMyU2cqQLDRTOQ8lv5K3oa8Zs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"razao_social\" : \"empresa teste\",\n    \"nome_fantasia\" : \"testes\",\n    \"cnpj\" : \"9999999999999\",\n    \"ie\" : \"isento\",\n    \"telefone\" : \"99999999999\",\n    \"fax\" : \"99999999999\",\n    \"email\" : \"empresa@empresa\",\n    \"endereco\" : \"rua a\",\n    \"numero\" : \"01\",\n    \"complemento\" : \"01\",\n    \"bairro\" : \"centro\",\n    \"cidade\" : \"jf\",\n    \"estado\" : \"mg\",\n    \"cep\" : \"99999999\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/empresa/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"empresa",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTM5OTU5LCJleHAiOjE2MTU5NDM1NTksIm5iZiI6MTYxNTkzOTk1OSwianRpIjoicmkwa2J1UU80eUlIb1VtSSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.9Kz4oUoooVtM66zSE2FF2BpStxiw2Wuq5caVu6EhGug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/empresa/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"empresa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTM5OTU5LCJleHAiOjE2MTU5NDM1NTksIm5iZiI6MTYxNTkzOTk1OSwianRpIjoicmkwa2J1UU80eUlIb1VtSSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.9Kz4oUoooVtM66zSE2FF2BpStxiw2Wuq5caVu6EhGug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"razao_social\" : \"empresa teste2\",\n    \"nome_fantasia\" : \"testes\",\n    \"cnpj\" : \"9999999999999\",\n    \"ie\" : \"isento\",\n    \"telefone\" : \"99999999999\",\n    \"fax\" : \"99999999999\",\n    \"email\" : \"empresa@empresa\",\n    \"endereco\" : \"rua a\",\n    \"numero\" : \"01\",\n    \"complemento\" : \"01\",\n    \"bairro\" : \"centro\",\n    \"cidade\" : \"jf\",\n    \"estado\" : \"mg\",\n    \"cep\" : \"99999999\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/empresa/register/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"empresa",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTM5OTU5LCJleHAiOjE2MTU5NDM1NTksIm5iZiI6MTYxNTkzOTk1OSwianRpIjoicmkwa2J1UU80eUlIb1VtSSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.9Kz4oUoooVtM66zSE2FF2BpStxiw2Wuq5caVu6EhGug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/empresa/destroy/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"empresa",
+								"destroy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CAMARA",
+			"item": [
+				{
+					"name": "cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"camara teste\",\n    \"descricao\" : \"testes\",\n    \"em_manutencao\" : false\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/camara/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"camara",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/camara/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"camara",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    {\n    \"nome\" : \"camara teste\",\n    \"descricao\" : \"testes\",\n    \"em_manutencao\" : true\n    \n}\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/camara/register/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"camara",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/camara/destroy/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"camara",
+								"destroy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AGENDAMENTO",
+			"item": [
+				{
+					"name": "cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE2MzMxMTAzLCJleHAiOjE2MTYzMzQ3MDMsIm5iZiI6MTYxNjMzMTEwMywianRpIjoiZGhhTVlpZHRZTk83YUFRYiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.HIk_2jcSSxPb1QHj-3QxWxkydNqsuQoh4kqyrKKMpOg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nome\" : \"david\",\n        \"data_nascimento\": \"19/06/1983\",\n       \"data_hora_marcada\" :\"05/02/2021 09:00\",\n        \"eh_paciente\" : false\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/agendamento/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"agendamento",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE2MzMxMTAzLCJleHAiOjE2MTYzMzQ3MDMsIm5iZiI6MTYxNjMzMTEwMywianRpIjoiZGhhTVlpZHRZTk83YUFRYiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.HIk_2jcSSxPb1QHj-3QxWxkydNqsuQoh4kqyrKKMpOg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/agendamento/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"agendamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE2MzMxMTAzLCJleHAiOjE2MTYzMzQ3MDMsIm5iZiI6MTYxNjMzMTEwMywianRpIjoiZGhhTVlpZHRZTk83YUFRYiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.HIk_2jcSSxPb1QHj-3QxWxkydNqsuQoh4kqyrKKMpOg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nome\" : \"david\",\n        \"data_nascimento\": \"19/06/1983\",\n       \"data_hora_marcada\" :\"05/02/2021 09:00\",\n        \"eh_paciente\" : true\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/agendamento/register/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"agendamento",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE2MzMxMTAzLCJleHAiOjE2MTYzMzQ3MDMsIm5iZiI6MTYxNjMzMTEwMywianRpIjoiZGhhTVlpZHRZTk83YUFRYiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.HIk_2jcSSxPb1QHj-3QxWxkydNqsuQoh4kqyrKKMpOg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/agendamento/destroy/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"agendamento",
+								"destroy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATENDIMENTO",
+			"item": [
+				{
+					"name": "cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"camara teste\",\n    \"descricao\" : \"testes\",\n    \"em_manutencao\" : false\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/atendimento/register",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"atendimento",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/atendimento/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"atendimento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    {\n    \"nome\" : \"camara teste\",\n    \"descricao\" : \"testes\",\n    \"em_manutencao\" : true\n    \n}\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/atendimento/register/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"atendimento",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE1OTc4MTA5LCJleHAiOjE2MTU5ODE3MDksIm5iZiI6MTYxNTk3ODEwOSwianRpIjoiSmlSWFI0ODdyMjRWVEZKMiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImVtYWlsIjoidGVjbmljb3Jvb3RAZ21haWwuY29tIiwiQXV0aG9yaXphdGlvbkNsYWltIjpbIkFkbWluaXN0cmFkb3IiXSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJpZCI6MX0.7qqH_BkPJejHyqOHh_5urvoA4K1zfdfc_thAqJIba_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"crm\":\"99999\",\n    \"nome\":\"Medico 1\",\n    \"telefone\":\"9999999\",\n    \"celular\":\"999999\",\n    \"fax\":\"999999\",\n    \"email\":\"medico@medico.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Lumen}}/v1/atendimento/destroy/1",
+							"host": [
+								"{{url_Lumen}}"
+							],
+							"path": [
+								"v1",
+								"atendimento",
+								"destroy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
