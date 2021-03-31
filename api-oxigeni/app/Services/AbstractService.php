@@ -36,7 +36,7 @@ class AbstractService implements ServiceInterface
     * @param array $orderBy
     * @return array
     */
-   public function findAll(int $limit = 10, array $orderBy = []): array
+   public function findAll(int $limit = 5, array $orderBy = []): array
    {
        return $this->repository->findAll($limit,$orderBy);
    }
@@ -76,7 +76,7 @@ class AbstractService implements ServiceInterface
     * @param array $orderBy
     * @return array
     */
-   public function searchBy(string $string, array $searchFields, int $limit = 10, array $orderBy = []): array
+   public function searchBy(string $string, array $searchFields, int $limit = 5, array $orderBy = []): array
    {
         return $this->repository->searchBy($string,$searchFields,$limit,$orderBy);
    }

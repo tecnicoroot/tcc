@@ -61,7 +61,7 @@ abstract class AbstractController extends BaseController implements ControllerIn
     public function findAll(Request $request): JsonResponse
     {
         try {
-            $limit = (int) $request->get('limit', 10);
+            $limit = (int) $request->get('limit', 5);
             $orderBy = $request->get('order_by', []);
             $result = $this->service->findAll($limit,$orderBy);
             $searchString = $request->get('q','');
@@ -136,6 +136,43 @@ abstract class AbstractController extends BaseController implements ControllerIn
         }
         return response()->json($response, $response['status_code']);
     }
+
+    /**
+       * searchBy
+       *
+       * @param  Request $request
+       * @param  string $param
+       * @return JsonResponse
+       */
+    public function searchBy(Request $request, int $limit = 5, array $orderBy = []):JsonResponse
+    {
+       // dd($request->all());
+       try {
+            $string = (string) $request->get('param', '');
+            $searchFields = (array) $request->get('searchFields', []);
+            $limit = (int) $request->get('limit', 5);
+            $orderBy = $request->get('order_by', []);
+            $result = $this->service->searchBy($string,$searchFields, $limit,$orderBy);
+           // dd($result);
+            $searchString = $request->get('q','');
+        
+            if(!empty($searchString)){
+                $result = $this->service->searchBy(
+                    $searchString,
+                    $this->searchFields,
+                    $limit,
+                    $orderBy
+                );
+
+            }
+            $response = $this->successResponse($result, Response::HTTP_PARTIAL_CONTENT);
+        } catch (Exception $e) {
+            $response = $this->errorResponse($e);
+        }
+
+        return response()->json($response, $response['status_code']);
+    }
+
 
     /**
      * @param  array $data

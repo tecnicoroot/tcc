@@ -21,7 +21,7 @@ interface RepositoryInterface
      * @param array $orderBy
      * @return array
      */
-    public function findAll(int $limit = 10, array $orderBy = []): array;
+    public function findAll(int $limit = 5, array $orderBy = [], int $page = 1): array;
 
     /**
      * @param int $id
@@ -49,5 +49,5 @@ interface RepositoryInterface
      * @param array $orderBy
      * @return array
      */
-    public function searchBy(string $string, array $searchFields, int $limit = 10, array $orderBy = []): array;
+    public function searchBy(string $string, array $searchFields, int $limit = 5, array $orderBy = []): array;
 }

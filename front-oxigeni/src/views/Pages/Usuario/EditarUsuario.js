@@ -24,7 +24,7 @@ import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao"
 
 
-const api = new Api("auth");
+const api = new Api("v1", "user");
 
 const validacaoCadastro = Yup.object().shape({
   name: Yup.string().required("O nome é obrigatório"),
@@ -57,14 +57,17 @@ class EditarUsuario extends Component {
     if (id) {
       this.setState({disabled:true}) ;
       this.setState({ id }) // mesmo nome da variável
-      const { data } = await api.get(`usuario/${id}`)
-      this.setState({ usuario: data });
+      //console.log(id);
+      const { data } = await api.get(`${id}`)
+      //console.log(data);
+      this.setState({ usuario: data.data });
+      //console.log(this.state.usuario);
     }
   }
 
   salvar = async (usuario) => {
     const { id } = this.state;
-      
+    //console.info(usuario);  
     await api.put(`register/${id}`, usuario);
     this.props.setStatusNotificacao("WARNING");
        
@@ -90,7 +93,7 @@ class EditarUsuario extends Component {
 
   excluirUsuario = async (id) => {
     if (id) {
-        await api.delete(`usuario/destroy/${id}`);
+        await api.delete(`destroy/${id}`);
     }
     this.props.setStatusNotificacao("ERROR");
     this.props.history.push("/Usuario");

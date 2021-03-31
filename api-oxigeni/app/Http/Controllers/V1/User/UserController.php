@@ -20,8 +20,8 @@ class UserController extends AbstractController
      * @var array|string[]
      */
     protected array $searchFields = [
-        'nome',
-        'sobrenome'
+        'name',
+        'email'
     ];
     
     /**

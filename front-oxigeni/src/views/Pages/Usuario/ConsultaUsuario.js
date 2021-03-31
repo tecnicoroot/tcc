@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import ReactPaginate from 'react-paginate';
 //import Pagination from '../../../componentes/formulario/Pagination';
-const api1 = new Api("usuario");
+const api1 = new Api("v1","user");
 
 class ConsultaUsuario extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class ConsultaUsuario extends Component {
       totalUsers: 0,
       quantidade: 5,
       paginas: [],
-
+      links:[],
       busca : 0,
     };
 
@@ -64,12 +64,11 @@ class ConsultaUsuario extends Component {
           toast.error(this.props.notificacao);
       
       }
-      const dados = await api1.get("count");
-      this.setState({quantidade: dados.data});
-      //console.log(this.state.quantidade);
-      const {data: allUsers }  = await api1.get(`filtro?pagina=0&quantidade=5&filtro=`);
-
-      this.setState({currentUsers: allUsers}); 
+      const {data: allUsers }  = await api1.get("");
+      this.setState({currentUsers: allUsers.data.data});
+      this.setState({links: allUsers.data.links});
+      //console.log(allUsers.data);
+      
   
     } catch (ex) {
       console.log(ex);
@@ -94,18 +93,26 @@ class ConsultaUsuario extends Component {
   };
 
   filtrar = async () => {
-     
      const { textoPesquisa } = this.state;
+     
+     //console.log(textoPesquisa);
      if(textoPesquisa){
-      const {data: allUsers = []}  = await api1.get(`filtro?pagina=0&quantidade=${this.state.quantidade}&filtro=${textoPesquisa}`);
+
+        const {data: allUsers = []}  = await api1.get("searchby");
+        console.info(allUsers);
+
+      
+        
+
+      
       this.setState({allUsers});
-      this.setState({currentUsers: allUsers});
+      this.setState({currentUsers: allUsers.data.data});
       this.setState({busca : 1})
       
      }else{
-      const {data: allUsers =[]}  = await api1.get(`filtro?pagina=0&quantidade=5&filtro=`);
+      const {data: allUsers =[]}  = await api1.get(``);
       this.setState({allUsers});
-      this.setState({currentUsers: allUsers}); 
+      this.setState({currentUsers: allUsers.data.data}); 
       this.setState({busca : 0})
          
      }
@@ -113,12 +120,12 @@ class ConsultaUsuario extends Component {
   }
   
   exibePaginaSelecionada = async (pagina) => {
-    const var1 = pagina;
-    const var2 = pagina*6;
-    const {data: allUsers }  = await api1.get(`filtro?pagina=${var2}&quantidade=5&filtro=`);
-    this.setState({allUsers});
-    this.setState({currentUsers: allUsers}); 
+    
+    const {data: allUsers }  = await api1.get(`?page=${pagina}`);
+    this.setState({currentUsers: allUsers.data.data}); 
+    
   }
+
   editarusuario = (id) => {
     this.props.history.push(`/usuario/editar/${id}`);
   }
@@ -163,8 +170,6 @@ class ConsultaUsuario extends Component {
   render() {
     
          const lista = this.carregaDados(this.state.busca);
-        
-          //this.setState({paginas:lista})
         
     if (this.state.totalUsers.length === 0) return null;
 
@@ -241,16 +246,14 @@ class ConsultaUsuario extends Component {
               <div className="d-flex justify-content-end">
                 <Pagination>
                   <PaginationItem>
-                    <PaginationLink previous tag="button" />
+                    <PaginationLink previous tag="button" ></PaginationLink>
                   </PaginationItem>
                   {
-                    
-                   lista.map((pagina) => (
-                      
-                      <PaginationItem key={pagina}>
-                        <PaginationLink tag="button" onClick={() => this.exibePaginaSelecionada(pagina)}>{pagina+1}</PaginationLink>
+                      this.state.links.map((link) => (
+                        <PaginationItem key={link.label}>
+                        <PaginationLink tag="button" onClick={() => this.exibePaginaSelecionada(link.label)}>{link.label}</PaginationLink>
                       </PaginationItem>
-                    ))
+                      ))
                   }
                   
                   <PaginationItem>
@@ -277,4 +280,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(ConsultaUsuario);
-//export default ConsultaUsuario;

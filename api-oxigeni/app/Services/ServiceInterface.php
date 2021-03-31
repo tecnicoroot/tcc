@@ -21,7 +21,7 @@ interface ServiceInterface
      * @param array $orderBy
      * @return array
      */
-    public function findAll(int $limit = 10, array $orderBy = []): array;
+    public function findAll(int $limit = 5, array $orderBy = []): array;
 
     /**
      * @param int $id

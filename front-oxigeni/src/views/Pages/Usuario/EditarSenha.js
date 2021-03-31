@@ -16,8 +16,10 @@ import { Formik, Form } from "formik";
 import Field from "../../../componentes/formulario/input";
 import "./usuario.css";
 import Api from "../../../services/api";
+import { connect } from "react-redux";
+import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 
-const api = new Api("auth");
+const api = new Api("v1","user");
 
 const validacaoCadastro = Yup.object().shape({
   password: Yup.string().required('A senha é obrigatória'),
@@ -48,7 +50,7 @@ class EditarSenha extends Component {
     if (id) {
       this.setState({disabled:true}) ;
       this.setState({ id }) // mesmo nome da variável
-      const { data } = await api.get(`usuario/${id}`)
+      const { data } = await api.get(`${id}`)
       this.setState({ usuario: data });
     }
   }
@@ -57,11 +59,11 @@ class EditarSenha extends Component {
     const { id } = this.state;
     if (id) {
             await api.put(`register/${id}`, usuario);
-            localStorage.setItem("cadastroUsuario", "update");
+            this.props.setStatusNotificacao("WARNING");
     } else {
             await api.post("register", usuario);
     }
-    this.props.history.push('/');
+    this.props.history.push('/usuario');
   };
 
   abrirModal = () => {
@@ -176,4 +178,14 @@ class EditarSenha extends Component {
   }
 }
 
-export default EditarSenha;
+const mapStateToProps = state => ({
+  notificacao: state.notificacao
+});
+
+const mapDispatchToProps = dispatch => ({
+  setStatusNotificacao: status => dispatch(SET_STATUS_NOTIFICACAO(status))
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(EditarSenha);
+
+//export default EditarSenha;

@@ -36,7 +36,7 @@ abstract class AbstractRepository implements RepositoryInterface
      * @param array $orderBy
      * @return array
      */
-    public function findAll(int $limit = 10, array $orderBy = []): array
+    public function findAll(int $limit = 5, array $orderBy = [],int $page =1): array
     {
         $results = $this->model::query();
         foreach($orderBy as $key => $value){
@@ -91,10 +91,11 @@ abstract class AbstractRepository implements RepositoryInterface
      * @param array $orderBy
      * @return array
      */
-    public function searchBy(string $string, array $searchFields, int $limit = 10, array $orderBy = []): array
+    public function searchBy(string $string, array $searchFields, int $limit = 5, array $orderBy = []): array
     {
-        $result = $this->model::where($searchFields[0], 'like', '%');
-        if(count($searchFields) > 1 ){
+        
+        $results = $this->model::where($searchFields[0], 'like', '%'.$string.'%');
+            if(count($searchFields) > 1 ){
             foreach($searchFields as $field){
                 $results->orWhere($field, 'like','%'.$string.'%');
             }

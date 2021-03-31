@@ -7,15 +7,13 @@ import {
   Input,
   Row,
   Button,
-  //Pagination,
+  Pagination,
   PaginationItem,
   PaginationLink,
   //Badge,
   Table,
   InputGroupAddon,
   InputGroup,
-  //FormGroup,
-  //Label,
 } from "reactstrap";
 import axios from "axios";
 import "./usuario.css";
@@ -26,8 +24,10 @@ import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import ReactPaginate from 'react-paginate';
-import Pagination from '../../../componentes/formulario/Pagination';
-const api1 = new Api("usuario");
+import Progress from 'react-progress-2';
+import 'react-progress-2/main.css';
+//import Pagination from '../../../componentes/formulario/Pagination';
+const api1 = new Api("v1","user");
 
 class ConsultaUsuario extends Component {
   constructor(props) {
@@ -42,22 +42,21 @@ class ConsultaUsuario extends Component {
       
       allUsers: [],
       currentUsers: [], 
-      currentPage: null,
-      totalPages: null,
-     
+      currentPage: 1,
+      totalPages: 1,
+      /*this.state = {
+        posts: [],
+        completed: false,
+        pageCount: 1,
+        currentPage: 1
+      };
+  */
+      
+      
     };
-
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
-  onPageChanged = data => {
-    
-    const { allUsers } = this.state;
-    const { currentPage, totalPages, pageLimit } = data;
-    const offset = (currentPage - 1) * pageLimit;
-    const currentUsers = allUsers.slice(offset, offset + pageLimit);
-
-    this.setState({ currentPage, currentUsers, totalPages });
-  }
-
+  
   async componentDidMount() {
     try {
        if(this.props.notificacao !== ""){
@@ -70,10 +69,11 @@ class ConsultaUsuario extends Component {
       
       }
       
-      const { data: allUsers } = await api1.get("filtro?pagina=1&quantidade=5&filtro=");
+      const { data: allUsers = [] } = await api1.get("/");
+      const users = allUsers.data.data;
+      //console.log(allUsers.data);
+      this.setState({ currentUsers : users});
       
-      this.setState({ allUsers });
-  
     } catch (ex) {
       console.log(ex);
     }
@@ -96,22 +96,23 @@ class ConsultaUsuario extends Component {
     this.setState({ textoPesquisa: value });
   };
 
-  // filtrar = async () => {
+  filtrar = async () => {
     
-  //   const { textoPesquisa } = this.state;
-  //   if(textoPesquisa){
-  //     const { data: allUsers = [] } = await api1.get(`${textoPesquisa}`);
-  //     this.setState({ allUsers });
-  //     this.setState({currentUsers: allUsers})
-
-  //   }else{
-  //     const { data: allUsers = [] } = await api1.get("");
-  //     this.setState({ allUsers });
-  //     this.setState({currentUsers: allUsers})
-  
-  //   }
+     const { textoPesquisa } = this.state;
+        if(textoPesquisa){
+          //const { data: allUsers = [] } = await api1.get(`${textoPesquisa}`);
+          const { data: allUsers = [] } = await api1.get(`/`);
+          this.setState({ allUsers });
+          this.setState({currentUsers: allUsers})
+          console.log("1");
+        }else{
+          const { data: allUsers = [] } = await api1.get("/");
+          this.setState({ allUsers });
+          this.setState({currentUsers: allUsers})
+          console.log("2");
+        }
         
-  // }
+    }
 
   editarusuario = (id) => {
     this.props.history.push(`/usuario/editar/${id}`);
@@ -138,11 +139,52 @@ class ConsultaUsuario extends Component {
       this.editarusuario(linhaSelecionada);
     }
   }
-  
+  async handlePageClick(data) {
+		const page = data.selected >= 0 ? data.selected + 1 : 0;
+		await Promise.resolve(this.setState(() => ({ currentPage: page })));
+
+		this.getPostData();
+	}
+
+	async getPostData() {
+		//Progress.show();
+
+		if (this.props.history.pushState) {
+			const newUrl =
+				window.location.protocol +
+				'//' +
+				window.location.host +
+				window.location.pathname +
+				'?page=' +
+				this.state.currentPage;
+			window.history.pushState({ path: newUrl }, '', newUrl);
+
+			const response = await axios.post(newUrl);
+      console.log(response.data);
+			try {
+				if (response.data.status == 'success') {
+					this.setState(() => ({
+						posts: response.data.data.posts.data,
+						currentPage: response.data.data.posts.current_page,
+						pageCount: response.data.data.posts.last_page
+					}));
+					window.scrollTo(0, 0);
+					Progress.hide();
+				} else {
+					Progress.hide();
+					console.log("deu erro");
+				}
+			} catch (error) {
+				Progress.hide();
+				console.log(error);
+			}
+		}
+	}
   render() {
     const { allUsers, currentUsers, currentPage, totalPages } = this.state;
-    const totalUsers = allUsers.length;
-
+    const totalUsers = currentUsers.length;
+    
+    //console.log(currentUsers);
     if (totalUsers === 0) return null;
 
     const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();    
@@ -159,7 +201,7 @@ class ConsultaUsuario extends Component {
             </Col>
             <Col xl="2">
               <h5 className={headerClass}>
-                <strong>{totalUsers}</strong> Usuários
+                <strong>{totalUsers ? totalUsers : 0}</strong> Usuários
               </h5>
             </Col>  
             <Col xl="2">
@@ -227,7 +269,20 @@ class ConsultaUsuario extends Component {
                
               </Table>
    
-              <Pagination totalRecords={totalUsers} pageLimit={4} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+              <ReactPaginate
+                pageCount={this.state.pageCount}
+                initialPage={this.state.currentPage - 1}
+                forcePage={this.state.currentPage - 1}
+                pageRangeDisplayed={4}
+                marginPagesDisplayed={2}
+                previousLabel="&#x276E;"
+                nextLabel="&#x276F;"
+                containerClassName="uk-pagination uk-flex-center"
+                activeClassName="uk-active"
+                disabledClassName="uk-disabled"
+                onPageChange={this.handlePageClick}
+                disableInitialCallback={true}
+              />
                 
               </CardBody>
           </Card>

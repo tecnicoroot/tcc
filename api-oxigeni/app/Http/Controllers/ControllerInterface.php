@@ -55,4 +55,6 @@ use Illuminate\Http\JsonResponse;
       */
      public function delete(Request $request, int $id): JsonResponse;
 
+    public function searchBy(Request $request, int $limit = 5, array $orderBy = []): JsonResponse;
+
  }

@@ -25,7 +25,7 @@ import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao"
 
 
 
-const api = new Api("auth");
+const api = new Api("v1","user");
 
 const validacaoCadastro = Yup.object().shape({
   name: Yup.string().required("O nome é obrigatório"),
@@ -64,7 +64,7 @@ class CadastroUsuario extends Component {
     if (id) {
       this.setState({disabled:true}) ;
       this.setState({ id }) // mesmo nome da variável
-      const { data } = await api.get(`usuario/${id}`)
+      const { data } = await api.get(`${id}`)
       this.setState({ usuario: data });
     }
   }
