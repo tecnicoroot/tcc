@@ -28,7 +28,7 @@ import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import ReactPaginate from 'react-paginate';
 //import Pagination from '../../../componentes/formulario/Pagination';
 const api1 = new Api("v1","user");
-
+const api2 = new Api("v1","usuario/search")
 class ConsultaUsuario extends Component {
   constructor(props) {
     super(props);
@@ -97,22 +97,39 @@ class ConsultaUsuario extends Component {
      
      //console.log(textoPesquisa);
      if(textoPesquisa){
-
-        const {data: allUsers = []}  = await api1.get("searchby");
-        console.info(allUsers);
-
-      
+        const data = {body:{
+          "q": "tecnicoroot",
+      "searchFields":["email"]
+      }}
         
+        //
+        const { token } = localStorage;
+        fetch('http://localhost:8080/v1/usuario/search', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`},
+        body: JSON.stringify({
+            q: "tecnicoroot",
+          searchFields:["email"]
+        })
+          }).then( response => response.json()
+            
+          ).then(data => {
+            const {data: allUsers = []}  = data;
+            
+            this.setState({allUsers});
+            console.log(this.state.allUsers);
+            this.setState({currentUsers: allUsers.data});
+            this.setState({links: allUsers.links});
+        });
 
-      
-      this.setState({allUsers});
-      this.setState({currentUsers: allUsers.data.data});
       this.setState({busca : 1})
       
      }else{
       const {data: allUsers =[]}  = await api1.get(``);
       this.setState({allUsers});
       this.setState({currentUsers: allUsers.data.data}); 
+      this.setState({links: allUsers.data.links});
       this.setState({busca : 0})
          
      }
@@ -245,9 +262,7 @@ class ConsultaUsuario extends Component {
               </Table>
               <div className="d-flex justify-content-end">
                 <Pagination>
-                  <PaginationItem>
-                    <PaginationLink previous tag="button" ></PaginationLink>
-                  </PaginationItem>
+         
                   {
                       this.state.links.map((link) => (
                         <PaginationItem key={link.label}>
@@ -255,10 +270,6 @@ class ConsultaUsuario extends Component {
                       </PaginationItem>
                       ))
                   }
-                  
-                  <PaginationItem>
-                    <PaginationLink next tag="button" />
-                  </PaginationItem>
                 </Pagination>
               </div>
              

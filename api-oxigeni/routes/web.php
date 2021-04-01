@@ -38,15 +38,15 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
      */
 
     $router->post('/v1/user/register', 'V1\User\UserController@create');
-    $router->put('/v1/user/register/{param}', 'V1\User\UserController@editBy');
+    $router->put('/v1/user/register/{param}', 'V1\User\UserController@update');
     $router->put('/v1/user/register/password/{id}', 'V1\User\UserController@updatePassword'); 
     $router->get('/v1/user/{id}', "V1\User\UserController@findOneBy");
     $router->delete('/v1/user/destroy/{id}', "V1\User\UserController@delete");
 
     $router->get('/v1/user/', "V1\User\UserController@findAll");
-    //$router->get('/v1/user/searchby', "V1\User\UserController@searchBy");
+    $router->post('/v1/usuario/search', "V1\User\UserController@searchBy");
 
-    /**
+    /**0
      * Medico 
      */    
 

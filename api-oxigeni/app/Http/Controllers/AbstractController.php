@@ -146,7 +146,7 @@ abstract class AbstractController extends BaseController implements ControllerIn
        */
     public function searchBy(Request $request, int $limit = 5, array $orderBy = []):JsonResponse
     {
-       // dd($request->all());
+        //dd($request->all());
        try {
             $string = (string) $request->get('param', '');
             $searchFields = (array) $request->get('searchFields', []);
@@ -155,7 +155,7 @@ abstract class AbstractController extends BaseController implements ControllerIn
             $result = $this->service->searchBy($string,$searchFields, $limit,$orderBy);
            // dd($result);
             $searchString = $request->get('q','');
-        
+        //dd($searchString);
             if(!empty($searchString)){
                 $result = $this->service->searchBy(
                     $searchString,
