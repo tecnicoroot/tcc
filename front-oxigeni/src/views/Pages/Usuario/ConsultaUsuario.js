@@ -42,7 +42,7 @@ class ConsultaUsuario extends Component {
      
       allUsers: [],
       currentUsers: [], 
-      currentPage: null,
+      currentPage: 1,
       totalPages: null,
       totalUsers: 0,
       quantidade: 5,
@@ -62,14 +62,14 @@ class ConsultaUsuario extends Component {
           toast.warning(this.props.notificacao);
         if(this.props.notificacao === "Removido com sucesso")
           toast.error(this.props.notificacao);
-      
+          
       }
+      this.props.setStatusNotificacao("");
       const {data: allUsers }  = await api1.get("");
       this.setState({currentUsers: allUsers.data.data});
+     
       this.setState({links: allUsers.data.links});
-      //console.log(allUsers.data);
-      
-  
+    
     } catch (ex) {
       console.log(ex);
     }
@@ -97,10 +97,7 @@ class ConsultaUsuario extends Component {
      
      //console.log(textoPesquisa);
      if(textoPesquisa){
-        const data = {body:{
-          "q": "tecnicoroot",
-      "searchFields":["email"]
-      }}
+        
         
         //
         const { token } = localStorage;
@@ -109,8 +106,7 @@ class ConsultaUsuario extends Component {
         headers: {'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`},
         body: JSON.stringify({
-            q: "tecnicoroot",
-          searchFields:["email"]
+            q: textoPesquisa
         })
           }).then( response => response.json()
             
@@ -118,7 +114,7 @@ class ConsultaUsuario extends Component {
             const {data: allUsers = []}  = data;
             
             this.setState({allUsers});
-            console.log(this.state.allUsers);
+            //console.log(this.state.allUsers);
             this.setState({currentUsers: allUsers.data});
             this.setState({links: allUsers.links});
         });
@@ -139,8 +135,20 @@ class ConsultaUsuario extends Component {
   exibePaginaSelecionada = async (pagina) => {
     
     const {data: allUsers }  = await api1.get(`?page=${pagina}`);
-    this.setState({currentUsers: allUsers.data.data}); 
+    this.setState({currentUsers: allUsers.data.data});
+    this.setState({links: allUsers.data.links});
+    this.setState({currentPage: allUsers.data.current_page })
     
+  }
+
+  alteralink = (labelButton) => {
+    if(labelButton === "pagination.previous"){
+      return "Anterior"
+    }
+    if(labelButton === "pagination.next"){
+      return "Próxima"
+    }
+    return labelButton;
   }
 
   editarusuario = (id) => {
@@ -265,10 +273,12 @@ class ConsultaUsuario extends Component {
          
                   {
                       this.state.links.map((link) => (
+                        link.label = this.alteralink(link.label),
                         <PaginationItem key={link.label}>
-                        <PaginationLink tag="button" onClick={() => this.exibePaginaSelecionada(link.label)}>{link.label}</PaginationLink>
+                        <PaginationLink tag="button" className={link.label == this.state.currentPage ? 'isActive' : ''} onClick={() => this.exibePaginaSelecionada(link.url)}>{link.label}</PaginationLink>
                       </PaginationItem>
                       ))
+                      
                   }
                 </Pagination>
               </div>

@@ -6,6 +6,8 @@ const NotificacaoReducer = (state= "", action) => {
             return "Alterado com sucesso";
         case "ERROR":
             return "Removido com sucesso";
+        case "":
+            return "";
         default:
             return state;
     }

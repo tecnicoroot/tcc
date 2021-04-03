@@ -38,7 +38,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
      */
 
     $router->post('/v1/user/register', 'V1\User\UserController@create');
-    $router->put('/v1/user/register/{param}', 'V1\User\UserController@update');
+    $router->put('/v1/user/register/{param}', 'V1\User\UserController@editBy');
     $router->put('/v1/user/register/password/{id}', 'V1\User\UserController@updatePassword'); 
     $router->get('/v1/user/{id}', "V1\User\UserController@findOneBy");
     $router->delete('/v1/user/destroy/{id}', "V1\User\UserController@delete");
