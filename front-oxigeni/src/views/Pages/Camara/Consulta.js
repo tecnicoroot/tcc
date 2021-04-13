@@ -18,7 +18,7 @@ import {
   //Label,
 } from "reactstrap";
 import axios from "axios";
-import "./usuario.css";
+import "./camara.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateComponent from "../../../componentes/private-component";
@@ -27,9 +27,9 @@ import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import ReactPaginate from 'react-paginate';
 //import Pagination from '../../../componentes/formulario/Pagination';
-const api1 = new Api("v1","user");
-const api2 = new Api("v1","usuario/search")
-class ConsultaUsuario extends Component {
+const api1 = new Api("v1","camara");
+const api2 = new Api("v1","camaras/search")
+class Consulta extends Component {
   constructor(props) {
     super(props);
 
@@ -40,8 +40,8 @@ class ConsultaUsuario extends Component {
       corLinhaSelecionada: "row-clicked",
       dropdownOpen: new Array(19).fill(false),
      
-      allUsers: [],
-      currentUsers: [], 
+      allCamaras: [],
+      currentCamara: [], 
       currentPage: 1,
       totalPages: null,
       totalUsers: 0,
@@ -65,10 +65,10 @@ class ConsultaUsuario extends Component {
           
       }
       this.props.setStatusNotificacao("");
-      const {data: allUsers }  = await api1.get("");
-      this.setState({currentUsers: allUsers.data.data});
+      const {data: allCamaras }  = await api1.get("");
+      this.setState({currentCamara: allCamaras.data.data});
      
-      this.setState({links: allUsers.data.links});
+      this.setState({links: allCamaras.data.links});
     
     } catch (ex) {
       console.log(ex);
@@ -83,8 +83,8 @@ class ConsultaUsuario extends Component {
       dropdownOpen: newArray,
     });
   }
-  cadastrarusuario = () => {
-    this.props.history.push("/usuario/cadastrar");
+  cadastrarcamara = () => {
+    this.props.history.push("/camara/cadastrar");
   }
 
   dataBindind = (event) => {
@@ -98,7 +98,7 @@ class ConsultaUsuario extends Component {
      //console.log(textoPesquisa);
      if(textoPesquisa){
         const { token } = localStorage;
-        fetch('http://localhost:8080/v1/usuario/search', {
+        fetch('http://localhost:8080/v1/camaras/search', {
         method: 'post',
         headers: {'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`},
@@ -108,21 +108,21 @@ class ConsultaUsuario extends Component {
           }).then( response => response.json()
             
           ).then(data => {
-            const {data: allUsers = []}  = data;
+            const {data: allCamaras = []}  = data;
             
-            this.setState({allUsers});
-            //console.log(this.state.allUsers);
-            this.setState({currentUsers: allUsers.data});
-            this.setState({links: allUsers.links});
+            this.setState({allCamaras});
+            //console.log(this.state.allCamaras);
+            this.setState({currentCamara: allCamaras.data});
+            this.setState({links: allCamaras.links});
         });
 
       this.setState({busca : 1})
       
      }else{
-      const {data: allUsers =[]}  = await api1.get(``);
-      this.setState({allUsers});
-      this.setState({currentUsers: allUsers.data.data}); 
-      this.setState({links: allUsers.data.links});
+      const {data: allCamaras =[]}  = await api1.get(``);
+      this.setState({allCamaras});
+      this.setState({currentCamara: allCamaras.data.data}); 
+      this.setState({links: allCamaras.data.links});
       this.setState({busca : 0})
          
      }
@@ -131,10 +131,10 @@ class ConsultaUsuario extends Component {
   
   exibePaginaSelecionada = async (pagina) => {
     
-    const {data: allUsers }  = await api1.get(`?page=${pagina}`);
-    this.setState({currentUsers: allUsers.data.data});
-    this.setState({links: allUsers.data.links});
-    this.setState({currentPage: allUsers.data.current_page })
+    const {data: allCamaras }  = await api1.get(`?page=${pagina}`);
+    this.setState({currentCamara: allCamaras.data.data});
+    this.setState({links: allCamaras.data.links});
+    this.setState({currentPage: allCamaras.data.current_page })
     
   }
 
@@ -148,12 +148,12 @@ class ConsultaUsuario extends Component {
     return labelButton;
   }
 
-  editarusuario = (id) => {
-    this.props.history.push(`/usuario/editar/${id}`);
+  editarcamara = (id) => {
+    this.props.history.push(`/camara/editar/${id}`);
   }
 
-  exibirusuario = (id) => {
-    this.props.history.push(`/usuario/exibir/${id}`);
+  exibircamara = (id) => {
+    this.props.history.push(`/camara/exibir/${id}`);
   }
   selecionaLinha = (id) => {
  
@@ -165,12 +165,12 @@ class ConsultaUsuario extends Component {
     }
   }
 
-  exibirUsuarioSelecionado = () =>{
+  exibirCamaraSelecionada = () =>{
     const { linhaSelecionada } = this.state;
     if(linhaSelecionada === 0){
-      alert("Selecione um usuário!");
+      alert("Selecione uma Camara!");
     }else{
-      this.editarusuario(linhaSelecionada);
+      this.editarcamara(linhaSelecionada);
     }
   }
   carregaDados = (busca) => {
@@ -202,18 +202,18 @@ class ConsultaUsuario extends Component {
             <CardHeader>
               <Row>
               <Col xl="3">
-            <h4><span>Consulta de Usuário</span></h4>
+            <h4><span>Consulta de Câmara</span></h4>
             </Col>
             
             <Col xl="5">
             <Col xl="8" className="px-0">
                   <PrivateComponent permissao="Administrador">
-                      <Button onClick={this.cadastrarusuario}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
+                      <Button onClick={this.cadastrarcamara}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
                         Novo
                       </Button>
                   </PrivateComponent>
                                     
-                  <Button onClick={this.exibirUsuarioSelecionado}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
+                  <Button onClick={this.exibirCamaraSelecionada}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
                     Detalhes
                   </Button>
                 </Col>
@@ -238,24 +238,21 @@ class ConsultaUsuario extends Component {
                 <thead>
                   <tr>
                     <th>Nome </th>
-                    <th>Email</th>
-                    <th>Perfil</th>
-                    <th>Status</th>
+                    <th>Descrição</th>
                    
                   </tr>
                 </thead>
                 
                 <tbody>
-                  {this.state.currentUsers.map((usuario) => (
-                    <tr key={usuario.id}
-                        onClick={(e) => this.selecionaLinha(usuario.id)}
-                        id={usuario.id}
-                        className={usuario.id === this.state.linhaSelecionada ? "row-clicked" : ""}
+                  {this.state.currentCamara.map((camara) => (
+                    <tr key={camara.id}
+                        onClick={(e) => this.selecionaLinha(camara.id)}
+                        id={camara.id}
+                        className={camara.id === this.state.linhaSelecionada ? "row-clicked" : ""}
                     >
-                      <td>{usuario.name || "-"}</td>
-                      <td>{usuario.email || "-"}</td>
-                      <td>{usuario.perfil}</td>
-                      <td>{usuario.status}</td>
+                      <td>{camara.nome || "-"}</td>
+                      <td>{camara.descricao || "-"}</td>
+
                     </tr>
                   ))}
                 </tbody>
@@ -294,4 +291,4 @@ const mapDispatchToProps = dispatch => ({
   setStatusNotificacao: status => dispatch(SET_STATUS_NOTIFICACAO(status))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(ConsultaUsuario);
+export default connect(mapStateToProps,mapDispatchToProps)(Consulta);

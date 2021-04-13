@@ -7,3 +7,13 @@
 
 ### Objetivo
 <p> Gerenciar o tempo de aplicação no tratemento, visando maximizar a produtividade. </p>
+
+
+#### Próximos Passos
+ * empresa
+ * medico
+ * convenio
+ * camara
+ * paciente
+atendimento
+agendamento

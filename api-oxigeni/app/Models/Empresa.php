@@ -10,7 +10,9 @@ class Empresa extends Model
     use SoftDeletes;
     //use Notifiable;
     protected $fillable = [
-        'razao_social','nome_fantasia','cnpj','ie','telefone','fax','email','endereco','numero','complemento','bairro','cidade','estado','cep',
+        'razao_social','nome_fantasia','cnpj','ie','telefone','fax',
+        'email','endereco','numero','complemento','bairro','cidade',
+        'estado','cep','status','contato'
     ];
 
 

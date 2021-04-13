@@ -17,8 +17,7 @@ class EmpresaController extends AbstractController
      * @var array|string[]
      */
     protected  array $searchFields = [
-       'nome',
-       'crm'
+       'razao_social','nome_fantasia'
     ] ;
 
     /**

@@ -4,111 +4,49 @@ import {
   Card,
   CardHeader,
   CardBody,
+  CardFooter,
   FormGroup,
   Label,
   Input,
   Row,
   Button,
-  CardFooter,
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from "reactstrap";
+ } from "reactstrap";
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Field from "../../../componentes/formulario/input";
 import FieldMask from "../../../componentes/formulario/input-mask";
-import axios from "axios";
-import "./estabelecimento.css";
+import "./empresa.css";
 import Api from "../../../services/api";
-import { toast } from "react-toastify";
-
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao"
 
-//import {}
-const api = new Api("estabelecimento");
-const validacaoCadastro = {};
-/*
+
+
+const api = new Api("v1","empresa");
+
 const validacaoCadastro = Yup.object().shape({
-  razaoSocial: Yup.string().when("pessoa", (pessoa, schema) => {
-    const isPessoaJuridica = pessoa === "jurídica";
-    return isPessoaJuridica
-      ? schema
-          .max(240, "O tamanho máximo é de 240 caracteres")
-          .required("A razão social é obrigatória. ")
-      : schema.notRequired();
-  }),
-
-  nomeFantasia: Yup.string().when("pessoa", (pessoa, schema) => {
-    const isPessoaJuridica = pessoa === "jurídica";
-    return isPessoaJuridica
-      ? schema
-          .max(240, "O tamanho máximo é de 240 caracteres")
-          .required("O nome fantasia é obrigatório. ")
-      : schema.notRequired();
-  }),
-
-  cnpj: Yup.string().when("pessoa", (pessoa, schema) => {
-    return pessoa === "jurídica"
-      ? schema
-          .required("Informe um CNPJ válido")
-          .matches(/[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}-?[0-9]{2}/g, {
-            message: "Informe um CNPJ válido.",
-          })
-      : schema.notRequired();
-  }),
-
-  cpf: Yup.string().when("pessoa", (pessoa, schema) => {
-    return pessoa === "física"
-      ? schema
-          .required("Informe um CPF válido.")
-          .matches(/^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$/, {
-            message: "Informe um CPF válido.",
-          })
-      : schema.notRequired();
-  }),
-
+  name: Yup.string().required("O nome é obrigatório"),
+  perfil: Yup.string().required("O perfil é obrigatório"),
   status: Yup.string().required("O status é obrigatório"),
-
-  cep: Yup.string()
-    .max(9, "O tamanho é de 9 caracteres")
-    .required("O cep é obrigatório.")
-    .matches(/[0-9]{5}-[\d]{3}/g, {
-      message: "Informe um cep válido",
-    }),
-
-  cidade: Yup.string().required("A cidade é obrigatória."),
-
-  estado: Yup.string().required("O estado é obrigatório."),
-
-  logradouro: Yup.string().required("O logradouro é obrigatório."),
-
-  numero: Yup.number()
-    .typeError("informe um número válido")
-    .integer("informe um número válido")
-    .required("O número é obrigatório"),
-
-  contato: Yup.string().required("O contato é obrigatório"),
-
-  telefone: Yup.string()
-    .required("O telefone é obrigatório")
-    .matches(/\(\d{2,}\) \d{4,}-\d{4}/g, { message: "Telefone inválido" }),
-
+  password: Yup.string().required('A senha é obrigatória'),
+  password_confirmation: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'As senhas não coincidem')
+    .required('A senha é obrigatória'),
   email: Yup.string().required("O email é obrigatório").email("Email inválido"),
 });
-*/
 
-class Estabelecimento {
+class Empresa {
   pessoa = "física";
-  codigo = "";
-  razaoSocial = "";
-  nomeFantasia = "";
+  razao_social = "";
+  nome_fantasia = "";
   status = "";
   cep = "";
-  logradouro = "";
+  endereco = "";
   numero = "";
   complemento = "";
   cidade = "";
@@ -120,37 +58,60 @@ class Estabelecimento {
   email = "";
   logo = "";
   licenca =  0;
+  ie = "";
+  fax = "";
 }
 
-class CadastroEstabelecimento extends Component {
+class Cadastro extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
       modalRemover: false,
-      id:"",
+      id: "",
+      empresa: new Empresa(),
       pessoaJuridica: true,
       pessoaFisica: false,
       profileImg:'',
-      estabelecimento: new Estabelecimento(),
+      
     };
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     const { id } = this.props.match.params;
-    if(id){
+    
+    if (id) {
+      this.setState({disabled:true}) ;
       this.setState({ id }) // mesmo nome da variável
-      //const { data } = await axios.get(`http://localhost:3100/estabelecimento/${id}` );
-      const { data } = await api.get(id)
-      this.setState({estabelecimento: data});
-      if(this.state.estabelecimento.pessoa === "física"){
-        this.setPessoaFisica();
-      }else{
-        this.setPessoajuridica();
-      }
+      const { data } = await api.get(`${id}`)
+      this.setState({ empresa: data });
     }
   }
 
+  salvar = async (empresa) => {
+     console.log(empresa)
+      await api.post("register", empresa);
+      this.props.setStatusNotificacao("SUCCESS");
+      
+      this.props.history.push('/empresa');
+  };
+
+  abrirModal = () => {
+    this.setState({ modal: true })
+  }
+  fecharModal = () => {
+    this.setState({ modal: false })
+  }
+  cancelarModal = () => {
+    this.props.history.push("/empresa");
+  }
+
+  abrirModalRemover = () => {
+    this.setState({ modalRemover: true })
+  }
+  fecharModalRemover = () => {
+    this.setState({ modalRemover: false })
+  }
   setPessoajuridica = () => {
     this.setState({ pessoaJuridica: false, pessoaFisica: true });
   };
@@ -158,78 +119,18 @@ class CadastroEstabelecimento extends Component {
   setPessoaFisica = () => {
     this.setState({ pessoaFisica: false, pessoaJuridica: true });
   };
-  // remover a constante estabelecimentoTeste
-  // usar o parametro 
-  salvar = async (estabelecimento) => {
-    const estabelecimentoTeste = {
-      cnpj: "73817014000199",
-      razaoSocial:"Empresa teste99 ",
-      nomeFantasia: "teste99",
-      dataCriacao : new Date(),
-      ativo : true
-    }
-    const { id } = this.state;
-    if(this.state.profileImg !== ""){
-      estabelecimentoTeste.logo =  this.state.profileImg;
-    };
-    if(id){
-      //await axios.put(`http://localhost:3100/estabelecimento/${id}`, estabelecimento);
-      await api.put(id, estabelecimentoTeste);
-      
-    }else{
-      //await axios.post("http://localhost:3100/estabelecimento", estabelecimento);
-      await api.post("", estabelecimentoTeste);
-      
-    }
-    this.props.history.push('/estabelecimento');
-  };
-
-  abrirModal = () =>{
-    this.setState({ modal: true})
-  }
-  fecharModal = () => {
-   this.setState({ modal: false})
-  }
-  cancelarModal = () => {
-    this.props.history.push("/estabelecimento");
-  }
-
-  abrirModalRemover = () => {
-   this.setState({ modalRemover: true})
-  }
-  fecharModalRemover = () => {
-   this.setState({ modalRemover: false})
-  }
-
-  excluirestabelecimento = async (id) =>{
-    if(id){
-     await axios.delete(`http://localhost:3100/estabelecimento/${id}`);
-    }
-    localStorage.setItem("cadastroEstabelecimento", "del");
-    this.props.history.push("/estabelecimento");
-  }
-  imageHandler = (e) => {
-    const reader = new FileReader();
-    reader.onload = () =>{
-      if(reader.readyState === 2){
-        this.setState({profileImg: reader.result});
-      }
-    }
-    reader.readAsDataURL(e.target.files[0])
-  };
-
   render() {
     const { profileImg} = this.state
     return (
       <Row>
-        <Col xs="12" sm="12">
+         <Col xs="12" sm="12">
           <Card>
           <CardHeader>
                 <FormGroup row>
                   <Col xl="4">
                   <Col xl="12" >
                     <FormGroup row className="botoes-tela-lista">
-                    <h2><span>Cadastro de estabelecimento</span> </h2>
+                    <h2><span>Cadastro de empresa</span> </h2>
                     </FormGroup>
                   </Col>
                   </Col>
@@ -240,9 +141,9 @@ class CadastroEstabelecimento extends Component {
               <Formik
                 enableReinitialize={true}
                 // remover este comentário 
-                //validationSchema={validacaoCadastro}
+                validationSchema={validacaoCadastro}
                 validationSchema={null}
-                initialValues={this.state.estabelecimento}
+                initialValues={this.state.empresa}
                 onSubmit={this.salvar}
               >
                 {({ errors, touched, setFieldValue }) => (
@@ -311,12 +212,12 @@ class CadastroEstabelecimento extends Component {
 
                       <Col xl="4">
                         <FormGroup>
-                          <Label for="razaoSocial">Razão Social / Nome*</Label>
+                          <Label for="razao_social">Razão Social / Nome*</Label>
                           <Field
-                            htmlFor="razaoSocial"
+                            htmlFor="razao_social"
                             type="text"
-                            id="razaoSocial"
-                            name="razaoSocial"
+                            id="razao_social"
+                            name="razao_social"
                             placeholder="Insira a Razão Social"
 
                           />
@@ -325,11 +226,11 @@ class CadastroEstabelecimento extends Component {
 
                       <Col xl="4">
                         <FormGroup>
-                          <Label for="nomeFantasia">Nome Fantasia*</Label>
+                          <Label for="nome_fantasia">Nome Fantasia*</Label>
                           <Field
                             type="text"
-                            id="nomeFantasia"
-                            name="nomeFantasia"
+                            id="nome_fantasia"
+                            name="nome_fantasia"
                             placeholder="Insira o nome fantasia"
                             disabled={this.state.pessoaJuridica}
                           />
@@ -344,6 +245,17 @@ class CadastroEstabelecimento extends Component {
                             mask="99.999.999/9999-99"
                             name="cnpj"
                             disabled={this.state.pessoaJuridica}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col xl="3">
+                        <FormGroup>
+                          <Label htmlFor="ie">Inscrição estadual</Label>
+                          <FieldMask
+                            placeholder="ex Isento"
+                            
+                            name="ie"
+                           
                           />
                         </FormGroup>
                       </Col>
@@ -368,6 +280,7 @@ class CadastroEstabelecimento extends Component {
                           <Label for="status">Status*</Label>
                           <Field
                             label="Status"
+                            id="status"
                             name="status"
                             component={(props) => (
                               <Input type="select" {...props}>
@@ -398,7 +311,12 @@ class CadastroEstabelecimento extends Component {
                           <Field type="text" id="cidade" name="cidade" />
                         </FormGroup>
                       </Col>
-
+                      <Col xl="3">
+                        <FormGroup>
+                          <Label for="bairro">Bairro</Label>
+                          <Field type="text" id="bairro" name="bairro" />
+                        </FormGroup>
+                      </Col>
                       <Col xl="3">
                         <FormGroup>
                           <Label for="estado">Estado*</Label>
@@ -410,11 +328,11 @@ class CadastroEstabelecimento extends Component {
                     <FormGroup row>
                       <Col xl="5">
                         <FormGroup>
-                          <Label for="logradouro">Logradouro*</Label>
+                          <Label for="endereco">Endereco*</Label>
                           <Field
                             type="text"
-                            id="logradouro"
-                            name="logradouro"
+                            id="endereco"
+                            name="endereco"
                           />
                         </FormGroup>
                       </Col>
@@ -462,7 +380,16 @@ class CadastroEstabelecimento extends Component {
                             placeholder="ex (99) 9999-99999"
                           />
                         </FormGroup>
-
+                        <FormGroup>
+                          <Label for="fax">Fax</Label>
+                          <FieldMask
+                            type="text"
+                            id="fax"
+                            name="fax"
+                            mask="(99) 99999-9999"
+                            placeholder="ex (99) 9999-99999"
+                          />
+                        </FormGroup>
                         <FormGroup>
                           <Label for="email">E-mail*</Label>
                           <Field
@@ -549,13 +476,14 @@ class CadastroEstabelecimento extends Component {
                 className={'modal-danger ' + this.props.className+'exclui'}>
             <ModalHeader toggle={this.fecharModalRemover}>Confirmar Remoção?</ModalHeader>
             <ModalBody>
-            Tem certeza que deseja excluir este estabelecimento? {this.state.estabelecimento.razaoSocial }`?
+            Tem certeza que deseja excluir este empresa? {this.state.empresa.razaoSocial }`?
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" onClick={ () => this.excluirestabelecimento(this.state.estabelecimento.id)}>Sim</Button>{' '}
+              <Button color="danger" onClick={ () => this.excluirempresa(this.state.empresa.id)}>Sim</Button>{' '}
               <Button color="secondary" onClick={this.cancelarModal}>Cancelar</Button>
             </ModalFooter>
         </Modal>
+        
       </Row>
     );
   }
@@ -568,4 +496,5 @@ const mapDispatchToProps = dispatch => ({
   setStatusNotificacao: status => dispatch(SET_STATUS_NOTIFICACAO(status))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(CadastroEstabelecimento);
+export default connect(mapStateToProps,mapDispatchToProps)(Cadastro);
+

@@ -18,7 +18,7 @@ import {
   //Label,
 } from "reactstrap";
 import axios from "axios";
-import "./usuario.css";
+import "./medico.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateComponent from "../../../componentes/private-component";
@@ -27,9 +27,9 @@ import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import ReactPaginate from 'react-paginate';
 //import Pagination from '../../../componentes/formulario/Pagination';
-const api1 = new Api("v1","user");
-const api2 = new Api("v1","usuario/search")
-class ConsultaUsuario extends Component {
+const api1 = new Api("v1","medic");
+const api2 = new Api("v1","medics/search")
+class Consulta extends Component {
   constructor(props) {
     super(props);
 
@@ -40,8 +40,8 @@ class ConsultaUsuario extends Component {
       corLinhaSelecionada: "row-clicked",
       dropdownOpen: new Array(19).fill(false),
      
-      allUsers: [],
-      currentUsers: [], 
+      allMedicos: [],
+      currentMedico: [], 
       currentPage: 1,
       totalPages: null,
       totalUsers: 0,
@@ -65,10 +65,10 @@ class ConsultaUsuario extends Component {
           
       }
       this.props.setStatusNotificacao("");
-      const {data: allUsers }  = await api1.get("");
-      this.setState({currentUsers: allUsers.data.data});
+      const {data: allMedicos }  = await api1.get("");
+      this.setState({currentMedico: allMedicos.data.data});
      
-      this.setState({links: allUsers.data.links});
+      this.setState({links: allMedicos.data.links});
     
     } catch (ex) {
       console.log(ex);
@@ -83,8 +83,8 @@ class ConsultaUsuario extends Component {
       dropdownOpen: newArray,
     });
   }
-  cadastrarusuario = () => {
-    this.props.history.push("/usuario/cadastrar");
+  cadastrarmedico = () => {
+    this.props.history.push("/medico/cadastrar");
   }
 
   dataBindind = (event) => {
@@ -98,7 +98,7 @@ class ConsultaUsuario extends Component {
      //console.log(textoPesquisa);
      if(textoPesquisa){
         const { token } = localStorage;
-        fetch('http://localhost:8080/v1/usuario/search', {
+        fetch('http://localhost:8080/v1/medicos/search', {
         method: 'post',
         headers: {'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`},
@@ -108,21 +108,21 @@ class ConsultaUsuario extends Component {
           }).then( response => response.json()
             
           ).then(data => {
-            const {data: allUsers = []}  = data;
+            const {data: allMedicos = []}  = data;
             
-            this.setState({allUsers});
-            //console.log(this.state.allUsers);
-            this.setState({currentUsers: allUsers.data});
-            this.setState({links: allUsers.links});
+            this.setState({allMedicos});
+            //console.log(this.state.allMedicos);
+            this.setState({currentMedico: allMedicos.data});
+            this.setState({links: allMedicos.links});
         });
 
       this.setState({busca : 1})
       
      }else{
-      const {data: allUsers =[]}  = await api1.get(``);
-      this.setState({allUsers});
-      this.setState({currentUsers: allUsers.data.data}); 
-      this.setState({links: allUsers.data.links});
+      const {data: allMedicos =[]}  = await api1.get(``);
+      this.setState({allMedicos});
+      this.setState({currentMedico: allMedicos.data.data}); 
+      this.setState({links: allMedicos.data.links});
       this.setState({busca : 0})
          
      }
@@ -131,10 +131,10 @@ class ConsultaUsuario extends Component {
   
   exibePaginaSelecionada = async (pagina) => {
     
-    const {data: allUsers }  = await api1.get(`?page=${pagina}`);
-    this.setState({currentUsers: allUsers.data.data});
-    this.setState({links: allUsers.data.links});
-    this.setState({currentPage: allUsers.data.current_page })
+    const {data: allMedicos }  = await api1.get(`?page=${pagina}`);
+    this.setState({currentMedico: allMedicos.data.data});
+    this.setState({links: allMedicos.data.links});
+    this.setState({currentPage: allMedicos.data.current_page })
     
   }
 
@@ -148,12 +148,12 @@ class ConsultaUsuario extends Component {
     return labelButton;
   }
 
-  editarusuario = (id) => {
-    this.props.history.push(`/usuario/editar/${id}`);
+  editarmedico = (id) => {
+    this.props.history.push(`/medico/editar/${id}`);
   }
 
-  exibirusuario = (id) => {
-    this.props.history.push(`/usuario/exibir/${id}`);
+  exibirmedico = (id) => {
+    this.props.history.push(`/medico/exibir/${id}`);
   }
   selecionaLinha = (id) => {
  
@@ -165,12 +165,12 @@ class ConsultaUsuario extends Component {
     }
   }
 
-  exibirUsuarioSelecionado = () =>{
+  exibirMedicoSelecionada = () =>{
     const { linhaSelecionada } = this.state;
     if(linhaSelecionada === 0){
-      alert("Selecione um usuário!");
+      alert("Selecione uma Medico!");
     }else{
-      this.editarusuario(linhaSelecionada);
+      this.editarmedico(linhaSelecionada);
     }
   }
   carregaDados = (busca) => {
@@ -202,18 +202,18 @@ class ConsultaUsuario extends Component {
             <CardHeader>
               <Row>
               <Col xl="3">
-            <h4><span>Consulta de Usuário</span></h4>
+            <h4><span>Consulta de Medico</span></h4>
             </Col>
             
             <Col xl="5">
             <Col xl="8" className="px-0">
                   <PrivateComponent permissao="Administrador">
-                      <Button onClick={this.cadastrarusuario}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
+                      <Button onClick={this.cadastrarmedico}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
                         Novo
                       </Button>
                   </PrivateComponent>
                                     
-                  <Button onClick={this.exibirUsuarioSelecionado}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
+                  <Button onClick={this.exibirMedicoSelecionada}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
                     Detalhes
                   </Button>
                 </Col>
@@ -237,25 +237,25 @@ class ConsultaUsuario extends Component {
               <Table hover bordered striped responsive size="sm">
                 <thead>
                   <tr>
-                    <th>Nome </th>
-                    <th>Email</th>
-                    <th>Perfil</th>
-                    <th>Status</th>
+                    <th>Razão Social </th>
+                    <th>Nome Fantasia</th>
+                    <th>CNPJ</th>
+                    <th>Telefone</th>
                    
                   </tr>
                 </thead>
                 
                 <tbody>
-                  {this.state.currentUsers.map((usuario) => (
-                    <tr key={usuario.id}
-                        onClick={(e) => this.selecionaLinha(usuario.id)}
-                        id={usuario.id}
-                        className={usuario.id === this.state.linhaSelecionada ? "row-clicked" : ""}
+                  {this.state.currentMedico.map((medico) => (
+                    <tr key={medico.id}
+                        onClick={(e) => this.selecionaLinha(medico.id)}
+                        id={medico.id}
+                        className={medico.id === this.state.linhaSelecionada ? "row-clicked" : ""}
                     >
-                      <td>{usuario.name || "-"}</td>
-                      <td>{usuario.email || "-"}</td>
-                      <td>{usuario.perfil}</td>
-                      <td>{usuario.status}</td>
+                      <td>{medico.nome || "-"}</td>
+                      <td>{medico.crm || "-"}</td>
+                      <td>{medico.email}</td>
+                      <td>{medico.telefone}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -294,4 +294,4 @@ const mapDispatchToProps = dispatch => ({
   setStatusNotificacao: status => dispatch(SET_STATUS_NOTIFICACAO(status))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(ConsultaUsuario);
+export default connect(mapStateToProps,mapDispatchToProps)(Consulta);

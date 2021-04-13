@@ -18,7 +18,7 @@ import {
   //Label,
 } from "reactstrap";
 import axios from "axios";
-import "./usuario.css";
+import "./empresa.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateComponent from "../../../componentes/private-component";
@@ -27,9 +27,9 @@ import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import ReactPaginate from 'react-paginate';
 //import Pagination from '../../../componentes/formulario/Pagination';
-const api1 = new Api("v1","user");
-const api2 = new Api("v1","usuario/search")
-class ConsultaUsuario extends Component {
+const api1 = new Api("v1","empresa");
+const api2 = new Api("v1","empresas/search")
+class Consulta extends Component {
   constructor(props) {
     super(props);
 
@@ -40,8 +40,8 @@ class ConsultaUsuario extends Component {
       corLinhaSelecionada: "row-clicked",
       dropdownOpen: new Array(19).fill(false),
      
-      allUsers: [],
-      currentUsers: [], 
+      allEmpresas: [],
+      currentEmpresa: [], 
       currentPage: 1,
       totalPages: null,
       totalUsers: 0,
@@ -65,10 +65,10 @@ class ConsultaUsuario extends Component {
           
       }
       this.props.setStatusNotificacao("");
-      const {data: allUsers }  = await api1.get("");
-      this.setState({currentUsers: allUsers.data.data});
+      const {data: allEmpresas }  = await api1.get("");
+      this.setState({currentEmpresa: allEmpresas.data.data});
      
-      this.setState({links: allUsers.data.links});
+      this.setState({links: allEmpresas.data.links});
     
     } catch (ex) {
       console.log(ex);
@@ -83,8 +83,8 @@ class ConsultaUsuario extends Component {
       dropdownOpen: newArray,
     });
   }
-  cadastrarusuario = () => {
-    this.props.history.push("/usuario/cadastrar");
+  cadastrarempresa = () => {
+    this.props.history.push("/empresa/cadastrar");
   }
 
   dataBindind = (event) => {
@@ -98,7 +98,7 @@ class ConsultaUsuario extends Component {
      //console.log(textoPesquisa);
      if(textoPesquisa){
         const { token } = localStorage;
-        fetch('http://localhost:8080/v1/usuario/search', {
+        fetch('http://localhost:8080/v1/empresas/search', {
         method: 'post',
         headers: {'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`},
@@ -108,21 +108,21 @@ class ConsultaUsuario extends Component {
           }).then( response => response.json()
             
           ).then(data => {
-            const {data: allUsers = []}  = data;
+            const {data: allEmpresas = []}  = data;
             
-            this.setState({allUsers});
-            //console.log(this.state.allUsers);
-            this.setState({currentUsers: allUsers.data});
-            this.setState({links: allUsers.links});
+            this.setState({allEmpresas});
+            //console.log(this.state.allEmpresas);
+            this.setState({currentEmpresa: allEmpresas.data});
+            this.setState({links: allEmpresas.links});
         });
 
       this.setState({busca : 1})
       
      }else{
-      const {data: allUsers =[]}  = await api1.get(``);
-      this.setState({allUsers});
-      this.setState({currentUsers: allUsers.data.data}); 
-      this.setState({links: allUsers.data.links});
+      const {data: allEmpresas =[]}  = await api1.get(``);
+      this.setState({allEmpresas});
+      this.setState({currentEmpresa: allEmpresas.data.data}); 
+      this.setState({links: allEmpresas.data.links});
       this.setState({busca : 0})
          
      }
@@ -131,10 +131,10 @@ class ConsultaUsuario extends Component {
   
   exibePaginaSelecionada = async (pagina) => {
     
-    const {data: allUsers }  = await api1.get(`?page=${pagina}`);
-    this.setState({currentUsers: allUsers.data.data});
-    this.setState({links: allUsers.data.links});
-    this.setState({currentPage: allUsers.data.current_page })
+    const {data: allEmpresas }  = await api1.get(`?page=${pagina}`);
+    this.setState({currentEmpresa: allEmpresas.data.data});
+    this.setState({links: allEmpresas.data.links});
+    this.setState({currentPage: allEmpresas.data.current_page })
     
   }
 
@@ -148,12 +148,12 @@ class ConsultaUsuario extends Component {
     return labelButton;
   }
 
-  editarusuario = (id) => {
-    this.props.history.push(`/usuario/editar/${id}`);
+  editarempresa = (id) => {
+    this.props.history.push(`/empresa/editar/${id}`);
   }
 
-  exibirusuario = (id) => {
-    this.props.history.push(`/usuario/exibir/${id}`);
+  exibirempresa = (id) => {
+    this.props.history.push(`/empresa/exibir/${id}`);
   }
   selecionaLinha = (id) => {
  
@@ -165,12 +165,12 @@ class ConsultaUsuario extends Component {
     }
   }
 
-  exibirUsuarioSelecionado = () =>{
+  exibirEmpresaSelecionada = () =>{
     const { linhaSelecionada } = this.state;
     if(linhaSelecionada === 0){
-      alert("Selecione um usuário!");
+      alert("Selecione uma Empresa!");
     }else{
-      this.editarusuario(linhaSelecionada);
+      this.editarempresa(linhaSelecionada);
     }
   }
   carregaDados = (busca) => {
@@ -202,18 +202,18 @@ class ConsultaUsuario extends Component {
             <CardHeader>
               <Row>
               <Col xl="3">
-            <h4><span>Consulta de Usuário</span></h4>
+            <h4><span>Consulta de Empresa</span></h4>
             </Col>
             
             <Col xl="5">
             <Col xl="8" className="px-0">
                   <PrivateComponent permissao="Administrador">
-                      <Button onClick={this.cadastrarusuario}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
+                      <Button onClick={this.cadastrarempresa}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
                         Novo
                       </Button>
                   </PrivateComponent>
                                     
-                  <Button onClick={this.exibirUsuarioSelecionado}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
+                  <Button onClick={this.exibirEmpresaSelecionada}  color="ghost-info" style={{ width: "100px", marginRight: "20px"}}>
                     Detalhes
                   </Button>
                 </Col>
@@ -238,24 +238,24 @@ class ConsultaUsuario extends Component {
                 <thead>
                   <tr>
                     <th>Nome </th>
-                    <th>Email</th>
-                    <th>Perfil</th>
-                    <th>Status</th>
+                    <th>CRM</th>
+                    <th>e-mail</th>
+                    <th>Telefone</th>
                    
                   </tr>
                 </thead>
                 
                 <tbody>
-                  {this.state.currentUsers.map((usuario) => (
-                    <tr key={usuario.id}
-                        onClick={(e) => this.selecionaLinha(usuario.id)}
-                        id={usuario.id}
-                        className={usuario.id === this.state.linhaSelecionada ? "row-clicked" : ""}
+                  {this.state.currentEmpresa.map((empresa) => (
+                    <tr key={empresa.id}
+                        onClick={(e) => this.selecionaLinha(empresa.id)}
+                        id={empresa.id}
+                        className={empresa.id === this.state.linhaSelecionada ? "row-clicked" : ""}
                     >
-                      <td>{usuario.name || "-"}</td>
-                      <td>{usuario.email || "-"}</td>
-                      <td>{usuario.perfil}</td>
-                      <td>{usuario.status}</td>
+                      <td>{empresa.razao_social || "-"}</td>
+                      <td>{empresa.nome_fantasia || "-"}</td>
+                      <td>{empresa.cnpj}</td>
+                      <td>{empresa.telefone}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -294,4 +294,4 @@ const mapDispatchToProps = dispatch => ({
   setStatusNotificacao: status => dispatch(SET_STATUS_NOTIFICACAO(status))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(ConsultaUsuario);
+export default connect(mapStateToProps,mapDispatchToProps)(Consulta);

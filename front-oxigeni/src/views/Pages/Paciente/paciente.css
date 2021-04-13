@@ -32,3 +32,8 @@ h2, span {
   color: cornflowerblue;
   font-weight: bold;
 }
+
+.isActive {
+    color:white;
+    background-color:blue ;
+}

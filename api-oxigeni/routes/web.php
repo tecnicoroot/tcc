@@ -54,6 +54,8 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->put('/v1/medic/register/{param}', "V1\Medic\MedicController@editBy");
     $router->get('/v1/medic/{id}', "V1\Medic\MedicController@findOneBy");
     $router->delete('/v1/medic/destroy/{id}', "V1\Medic\MedicController@delete");
+    $router->get('/v1/medic/', "V1\Medic\MedicController@findAll");
+    $router->post('/v1/medics/search', "V1\Medic\MedicController@searchBy");
 
     /**
      * Convenio 
@@ -63,6 +65,8 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->put('/v1/convenio/register/{param}', "V1\Convenio\ConvenioController@editBy");
     $router->get('/v1/convenio/{id}', "V1\Convenio\ConvenioController@findOneBy");
     $router->delete('/v1/convenio/destroy/{id}', "V1\Convenio\ConvenioController@delete");
+    $router->get('/v1/convenio/', "V1\Convenio\ConvenioController@findAll");
+    $router->post('/v1/convenio/search', "V1\Convenio\ConvenioController@searchBy");
     /**
      * Paciente 
      */    
@@ -70,7 +74,8 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->put('/v1/paciente/register/{param}', "V1\Paciente\PacienteController@editBy");
     $router->get('/v1/paciente/{id}', "V1\Paciente\PacienteController@findOneBy");
     $router->delete('/v1/paciente/destroy/{id}', "V1\Paciente\PacienteController@delete");
-
+    $router->get('/v1/paciente/', "V1\Paciente\PacienteController@findAll");
+    $router->post('/v1/paciente/search', "V1\Paciente\PacienteController@searchBy");
      /**
      * Empresa 
      */    
@@ -79,6 +84,8 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->put('/v1/empresa/register/{param}', "V1\Empresa\EmpresaController@editBy");
     $router->get('/v1/empresa/{id}', "V1\Empresa\EmpresaController@findOneBy");
     $router->delete('/v1/empresa/destroy/{id}', "V1\Empresa\EmpresaController@delete");
+    $router->get('/v1/empresa/', "V1\Empresa\EmpresaController@findAll");
+    $router->post('/v1/empresas/search', "V1\Empresa\EmpresaController@searchBy");
 
     /**
      * Câmara Hiperbárica
@@ -87,15 +94,18 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->put('/v1/camara/register/{param}', "V1\Camara\CamaraController@editBy");
     $router->get('/v1/camara/{id}', "V1\Camara\CamaraController@findOneBy");
     $router->delete('/v1/camara/destroy/{id}', "V1\Camara\CamaraController@delete");
+    $router->get('/v1/camara/', "V1\Camara\CamaraController@findAll");
+    $router->post('/v1/camaras/search', "V1\Camara\CamaraController@searchBy");
 
      /**
-     * Agendamento 
+     * Agenda 
      */    
-    $router->post('/v1/agendamento/register', 'V1\Agendamento\AgendamentoController@create');
-    $router->put('/v1/agendamento/register/{param}', "V1\Agendamento\AgendamentoController@editBy");
-    $router->get('/v1/agendamento/{id}', "V1\Agendamento\AgendamentoController@findOneBy");
-    $router->delete('/v1/agendamento/destroy/{id}', "V1\Agendamento\AgendamentoController@delete");
-    
+    $router->post('/v1/agenda/register', 'V1\Agenda\AgendaController@create');
+    $router->put('/v1/agenda/register/{param}', "V1\Agenda\AgendaController@editBy");
+    $router->get('/v1/agenda/{id}', "V1\Agenda\AgendaController@findOneBy");
+    $router->delete('/v1/agenda/destroy/{id}', "V1\Agenda\AgendaController@delete");
+    $router->get('/v1/agenda/', "V1\Agenda\AgendaController@findAll");
+    $router->post('/v1/agendas/search', "V1\Agenda\AgendaController@searchBy");
     /**
      * Atendimento
      */

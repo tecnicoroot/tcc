@@ -27,9 +27,15 @@ export const ehTokenValido = () => {
 
 export const getClaims = () => {
     const { AuthorizationClaim= []} = getTokenInfo();
+    
     return AuthorizationClaim;
 }
 
+/*export const getClaim = () => {
+    const { claim = ""} = getTokenInfo();
+    return claim;
+}
+*/
 export const user = () => {
     const { name = '' } = getTokenInfo();
     return name;

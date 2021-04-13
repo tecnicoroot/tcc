@@ -59,6 +59,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 'AuthorizationClaim' => [$this->perfil] ,
                 'name' => $this->name,  
                 'id' => $this->id,  
+
             ];
     }
 
