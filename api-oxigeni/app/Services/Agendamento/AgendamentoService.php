@@ -24,4 +24,8 @@ use App\Repositories\Agendamento\AgendamentoRepository;
         $this->repository = $repository;
     
     }
+    public function findAllDay(int $limit = 5, array $orderBy = []): array
+   {
+       return $this->repository->findAllDay($limit,$orderBy);
+   }
 }

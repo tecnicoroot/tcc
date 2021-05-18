@@ -16,4 +16,7 @@
  * camara
  * paciente
 atendimento
+ * instalação do react-agenda
+ * configuração
 agendamento
+

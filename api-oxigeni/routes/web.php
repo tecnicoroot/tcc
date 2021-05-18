@@ -106,6 +106,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->delete('/v1/agenda/destroy/{id}', "V1\Agenda\AgendaController@delete");
     $router->get('/v1/agenda/', "V1\Agenda\AgendaController@findAll");
     $router->post('/v1/agendas/search', "V1\Agenda\AgendaController@searchBy");
+    $router->get('/v1/agendadia/', "V1\Agenda\AgendaController@findAllDay");
     /**
      * Atendimento
      */

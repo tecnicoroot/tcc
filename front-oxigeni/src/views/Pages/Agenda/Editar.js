@@ -23,21 +23,24 @@ import FieldMask from "../../../componentes/formulario/input-mask";
 import "./agenda.css";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
+import moment from 'moment';
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao"
 
 
 const api = new Api("v1", "agenda");
-
+const api2 = new Api("v1","convenio");
 const validacaoCadastro = Yup.object().shape({
   
   nome: Yup.string().required("O nome é obrigatório"),
-  descricao: Yup.string().required("O descrição é obrigatório"),
+  
 });
 
 class Agenda {
   nome = "";
-  descricao = "";
-  em_manutencao = "";
+  data_nascimento = "";
+  id_convenio = "";
+  data_hora_marcada = "";
+  eh_paciente = 0;
 }
 
 class Editar extends Component {
@@ -48,6 +51,7 @@ class Editar extends Component {
       modalRemover: false,
       id: "",
       agenda: new Agenda(),
+      planos : []
 
     };
   }
@@ -60,12 +64,20 @@ class Editar extends Component {
       this.setState({ id }) // mesmo nome da variável
       //console.log(id);
       const { data } = await api.get(`${id}`)
+      //console.log(data);
+      const dados = new Agenda();
+      this.setState({agenda : dados});
+      data.data.data_hora_marcada = moment(data.data.data_hora_marcada).format('YYYY-MM-DDTHH:mm')
       this.setState({ agenda: data.data });
       
     }
+
+    const planos  = await api2.get("");
+    this.setState({ planos: planos.data.data.data });
   }
 
   salvar = async (agenda) => {
+    //console.log("editar", agenda)
     const { id } = this.state;
     //console.info(agenda);  
     await api.put(`register/${id}`, agenda);
@@ -101,123 +113,151 @@ class Editar extends Component {
 
   
   render() {
-    const { profileImg} = this.state
+    const { profileImg} = this.state;
+    const elements = this.state.planos;
     return (
       <Row>
-        <Col xs="12" sm="12">
+         <Col xs="12" sm="12">
           <Card>
-            <CardHeader>
-              <FormGroup row>
-                <Col xl="4">
+          <CardHeader>
+                <FormGroup row>
+                  <Col xl="4">
                   <Col xl="12" >
                     <FormGroup row className="botoes-tela-lista">
-                      <h2><span>Editar de Agenda</span> </h2>
+                    <h2><span>Cadastro de Agenda</span> </h2>
                     </FormGroup>
                   </Col>
-                </Col>
+                  </Col>
 
-              </FormGroup>
-            </CardHeader>
-            <CardBody>
-            <Formik
+                </FormGroup>
+              </CardHeader>
+              <CardBody>
+              <Formik
                 enableReinitialize={true}
-                // remover este comentário 
                 validationSchema={validacaoCadastro}
-                validationSchema={null}
                 initialValues={this.state.agenda}
                 onSubmit={this.salvar}
               >
                 {({ errors, touched, setFieldValue }) => (
-                 <Form>
-                 <FormGroup row>
-                   <Col xl="6">
-                     <FormGroup>
-                       <Label for="nome">Nome*</Label>
-                       <Field
-                         htmlFor="nome"
-                         type="text"
-                         id="nome"
-                         name="nome"
-                         placeholder="Insira o nome"
-                       />
-                     </FormGroup>
-                   </Col>
-                  
-                 </FormGroup>
-
-                 <FormGroup row>
-                 <Col xl="6">
-                     <FormGroup>
-                       <Label for="descricao">Descrição</Label>
-                       <Field
-                         type="text"
-                         id="descricao"
-                         name="descricao"
-                         placeholder="ex: Descrição do equipamento."
-                       />
-                     </FormGroup>
-                   </Col>
-                   <Col xl="6">
-                   <FormGroup>
-                          <Label for="em_manutencao">Em manutenção*</Label>
+                  <Form>
+                    <FormGroup row>
+                      <Col xl="6">
+                        <FormGroup>
+                          <Label for="nome">Nome*</Label>
                           <Field
-                            label="em_manutencao"
-                            name="em_manutencao"
+                            htmlFor="nome"
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            placeholder="Insira o nome"
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col xl="6">
+                      <FormGroup>
+                          <Label for="plano_saude">Plano de Saúde*</Label>
+                          <Field
+                            label="Plano de Saúde"
+                            id="plano_saude"
+                            name="plano_saude"
                             component={(props) => (
                               <Input type="select" {...props}>
-                                <option value="">Selecione um Perfil</option>
-                                <option value="true">Sim</option>
-                                <option value="false">Não</option>
+                               {
+                                  elements.map((element, index)=>{
+                                      return(<option key={element.id}  value={element.id}>{element.nome}</option>);
+                                    })
+                              }
+                            </Input>
+                            )}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </FormGroup>
+
+                    <FormGroup row>
+                    <Col xl="6">
+                        <FormGroup>
+                          <Label for="data_nascimento">Data Nascimento</Label>
+                          <Field
+                            type="date"
+                            id="data_nascimento"
+                            name="data_nascimento"
+                            //value={this.state.agenda.data_nascimento}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col xl="6">
+                        <FormGroup>
+                          <Label for="data_hora_marcada">Horário</Label>
+                          <Field
+                            type="datetime-local"
+                            id="data_hora_marcada"
+                            name="data_hora_marcada"
+                           
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col xl="6">
+                      <FormGroup>
+                          <Label for="eh_paciente">Já é cliente*</Label>
+                          <Field
+                            label="eh_paciente"
+                            name="eh_paciente"
+                            component={(props) => (
+                              <Input type="select" {...props}>
+                                <option value="">Selecione</option>
+                                <option value={1}>Sim</option>
+                                <option value={0}>Não</option>
                               </Input>
                             )}
                           />
                         </FormGroup>
-                   </Col>
+                      </Col>
 
-                 </FormGroup>
+                    </FormGroup>
 
 
-                 <div className="d-flex justify-content-end mt-5">
-                   <Button
-                     style={{ width: "150px" }}
-                     color="success"
-                     className="btn mr-3"
-                     type="submit"
-                   >
-                     {this.state.id ? "Atualizar" : "Salvar"}
-                   </Button>
+                    <div className="d-flex justify-content-end mt-5">
+                      <Button
+                        style={{ width: "150px" }}
+                        color="success"
+                        className="btn mr-3"
+                        type="submit"
+                        
+                      >
+                        {this.state.id ? "Atualizar" : "Salvar"}
+                      </Button>
 
-                   <Button
-                     onClick={this.abrirModal}
-                     style={{ width: "150px" }}
-                     color="warning"
-                     className="btn mr-3"
-                   >
-                     Cancelar
-                   </Button>
-                   {this.state.id ? (
-                     <Button
-                       onClick={this.abrirModalRemover}
-                       style={{ width: "150px" }}
-                       color="danger"
-                       className="btn mr-3 hide"
-                     >
-                       Apagar
-                     </Button>
-                   ) : (
-                       ""
-                     )}
+                      <Button
+                        onClick={this.abrirModal}
+                        style={{ width: "150px" }}
+                        color="warning"
+                        className="btn mr-3"
+                      >
+                        Cancelar
+                      </Button>
+                      {this.state.id ? (
+                        <Button
+                          onClick={this.abrirModalRemover}
+                          style={{ width: "150px" }}
+                          color="danger"
+                          className="btn mr-3 hide"
+                        >
+                          Apagar
+                        </Button>
+                      ) : (
+                          ""
+                        )}
 
-                 </div>
-               </Form>
-             
+                    </div>
+                  </Form>
                 )}
               </Formik>
             </CardBody>
           </Card>
         </Col>
         <Modal isOpen={this.state.modal} toggle={this.fecharModal}
-          className={'modal-success ' + this.props.className + 'cancela'}>
+                className={'modal-success ' + this.props.className+'cancela'}>
           <ModalHeader toggle={this.fecharModal}>Cancelar Edição</ModalHeader>
           <ModalBody>
             Tem certeza que dejesa cancelar?
@@ -228,18 +268,21 @@ class Editar extends Component {
           </ModalFooter>
         </Modal>
         <Modal isOpen={this.state.modalRemover} toggle={this.fecharModalRemover}
-          className={'modal-danger ' + this.props.className + 'exclui'}>
-          <ModalHeader toggle={this.fecharModalRemover}>Confirmar Remoção?</ModalHeader>
-          <ModalBody>
-            Tem certeza que deseja excluir este Agenda? {this.state.agenda.nome}`?
+                className={'modal-danger ' + this.props.className+'exclui'}>
+            <ModalHeader toggle={this.fecharModalRemover}>Confirmar Remoção?</ModalHeader>
+            <ModalBody>
+            Tem certeza que deseja excluir este agenda? {this.state.agenda.razaoSocial }`?
             </ModalBody>
-          <ModalFooter>
-            <Button color="danger" onClick={() => this.excluiragenda(this.state.agenda.id)}>Sim</Button>{' '}
-            <Button color="secondary" onClick={this.cancelarModal}>Cancelar</Button>
-          </ModalFooter>
+            <ModalFooter>
+              <Button color="danger" onClick={ () => this.excluiragenda(this.state.agenda.id)}>Sim</Button>{' '}
+              <Button color="secondary" onClick={this.cancelarModal}>Cancelar</Button>
+            </ModalFooter>
         </Modal>
+        
+
       </Row>
-    );
+    
+      );
   }
 }
 const mapStateToProps = state => ({

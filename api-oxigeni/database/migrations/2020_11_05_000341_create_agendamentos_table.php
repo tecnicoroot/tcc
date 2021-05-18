@@ -19,6 +19,8 @@ class CreateAgendamentosTable extends Migration
             $table->date('data_nascimento');            
             $table->dateTime('data_hora_marcada', 0);
             $table->boolean('eh_paciente');
+            $table->unsignedInteger('id_convenio');
+            $table->foreign('id_convenio')->references('id')->on('convenios')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

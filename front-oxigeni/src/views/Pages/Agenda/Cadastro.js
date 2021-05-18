@@ -24,22 +24,23 @@ import "./agenda.css";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao"
-
+import moment from 'moment';
 
 
 const api = new Api("v1","agenda");
-
+const api2 = new Api("v1","convenio");
 const validacaoCadastro = Yup.object().shape({
   
   nome: Yup.string().required("O nome é obrigatório"),
-  descricao: Yup.string().required("O descrição é obrigatório"),
+  
 });
 
 class Agenda {
   nome = "";
   data_nascimento = "";
+  id_convenio = "";
   data_hora_marcada = "";
-  eh_paciente = "";
+  eh_paciente = 0;
 }
 
 class Cadastro extends Component {
@@ -50,7 +51,9 @@ class Cadastro extends Component {
       modalRemover: false,
       id: "",
       agenda: new Agenda(),
+      planos : []
     };
+    
   }
 
   async componentDidMount() {
@@ -62,10 +65,16 @@ class Cadastro extends Component {
       const { data } = await api.get(`${id}`)
       this.setState({ agenda: data });
     }
+    const planos  = await api2.get("");
+    this.setState({ planos: planos.data.data.data });
+    const {horaInicial} = localStorage
+    const dados = new Agenda();
+    dados.data_hora_marcada = moment(horaInicial).format('YYYY-MM-DDTHH:mm');
+    this.setState({agenda : dados});
   }
-
+  
   salvar = async (agenda) => {
-     console.log(agenda)
+     //console.log(agenda)
       await api.post("register", agenda);
       this.props.setStatusNotificacao("SUCCESS");
       
@@ -91,6 +100,8 @@ class Cadastro extends Component {
   
   render() {
     const { profileImg} = this.state
+    const elements = this.state.planos;
+    const {horaInicial} = localStorage;
     return (
       <Row>
          <Col xs="12" sm="12">
@@ -129,32 +140,63 @@ class Cadastro extends Component {
                           />
                         </FormGroup>
                       </Col>
-                     
+                      <Col xl="6">
+                      <FormGroup>
+                          <Label for="id_convenio">Plano de Saúde*</Label>
+                          <Field
+                            label="Plano de Saúde"
+                            //id="id_convenio"
+                            name="id_convenio"
+                            component={(props) => (
+                              <Input type="select" {...props}>
+                               <option value="">Selecione</option>
+                               {
+                                  elements.map((element, index)=>{
+                                      return(<option key={element.id} value={element.id}>{element.nome}</option>);
+                                    })
+                              }
+                            </Input>
+                            )}
+                          />
+                        </FormGroup>
+                      </Col>
                     </FormGroup>
 
                     <FormGroup row>
                     <Col xl="6">
                         <FormGroup>
-                          <Label for="descricao">Descrição</Label>
+                          <Label for="data_nascimento">Data Nascimento</Label>
                           <Field
-                            type="text"
-                            id="descricao"
-                            name="descricao"
-                            placeholder="ex: Descrição do equipamento."
+                            type="date"
+                            id="data_nascimento"
+                            name="data_nascimento"
+                            
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col xl="6">
+                        <FormGroup>
+                          <Label for="data_hora_marcada">Horário</Label>
+                          <Field
+                            type="datetime-local"
+                            id="data_hora_marcada"
+                            name="data_hora_marcada"
+                            
+                            
                           />
                         </FormGroup>
                       </Col>
                       <Col xl="6">
                       <FormGroup>
-                          <Label for="em_manutencao">Em manutenção*</Label>
+                          <Label for="eh_paciente">Já é cliente*</Label>
                           <Field
-                            label="em_manutencao"
-                            name="em_manutencao"
+                            label="eh_paciente"
+                            name="eh_paciente"
                             component={(props) => (
                               <Input type="select" {...props}>
-                                <option value="">Selecione um Perfil</option>
-                                <option value={true}>Sim</option>
-                                <option value={false}>Não</option>
+                                <option value="">Selecione</option>
+                                <option value={1}>Sim</option>
+                                <option value={0}>Não</option>
                               </Input>
                             )}
                           />
@@ -170,6 +212,7 @@ class Cadastro extends Component {
                         color="success"
                         className="btn mr-3"
                         type="submit"
+                        
                       >
                         {this.state.id ? "Atualizar" : "Salvar"}
                       </Button>

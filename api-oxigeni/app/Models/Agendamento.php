@@ -12,6 +12,7 @@ class Agendamento extends Model
         'nome',
         'data_nascimento',
         'data_hora_marcada',
-        'eh_paciente'
+        'eh_paciente',
+        'id_convenio'
     ];
 }
