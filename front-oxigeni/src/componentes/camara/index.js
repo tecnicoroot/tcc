@@ -17,21 +17,18 @@ import {
    import ReactDOM from 'react-dom';
    import {CCard, CCardBody, CCardHeader, CCardText, CCardTitle} from '@coreui/react';
    
-   function Agenda(props){
+   function Camara(props){
        return(
            <>  
            
             <CCard 
-            color="success"
-            textColor="white"
-            className={`mb-3 border-top-success border-top-3`}
-            style={{ maxWidth: '18rem' }}
+            color="default"
+            textColor="success"
             
             >
             <CCardHeader>{props.titulo}</CCardHeader>
                 <CCardBody>
-                    <CCardTitle>{props.header}</CCardTitle>
-                    <CCardText>
+                        <CCardText>
                         {props.body}
                     </CCardText>
                 </CCardBody>
@@ -39,4 +36,4 @@ import {
            </>
        );
    }
-export default Agenda;
+export default Camara;

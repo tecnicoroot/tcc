@@ -40,8 +40,16 @@ h2, span {
     color:white;
     background-color:blue ;
 }
-.agenda-delete-modele {
-    color:rgb(240, 232, 232);
-    background-color:rgb(255, 0, 0) ;
+.camara{
+    /*background-color: chartreuse;
+    height: 100%;
     width: 100%;
+    position: relative;*/
+    margin-bottom: 10px;
+}
+
+.card{
+    font-size: smaller;
+    margin-bottom: 0;
+    font-weight: bold;
 }

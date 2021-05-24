@@ -61,7 +61,6 @@ const getListStyle = isDraggingOver => ({
 });
 
 const id2List = {
-  
   droppable: 'items',
   droppable2: 'selected'
 };
@@ -127,7 +126,6 @@ class Atendimento extends Component {
        elements.data.forEach(element => {
          //console.log(element);
          const item = {};
-         item.id = element.id
          item.nome = element.nome;
          item.descricao = element.descricao;
          itens.push(item);
@@ -138,6 +136,8 @@ class Atendimento extends Component {
     
   }
  dadosAtendimento = () =>{
+
+
   const items = agenda.get('');
   const { token } = localStorage;
   fetch('http://localhost:8080/v1/agendadia', {
@@ -244,67 +244,90 @@ getList = id => this.state[id2List[id]];
       <Row>
       <Col xs="12" sm="12">
           <Card>
-            
+            <CardHeader>Atendimento</CardHeader>
             <CardBody >
             <Row>
             <DragDropContext onDragEnd={this.onDragEnd}>
-            <Col sm="4">
-            <Camara titulo="Agendamentos"
-                    body={
-                      <Droppable droppableId="droppable">
-                          {(provided, snapshot) => (
-                              <div
-                                  ref={provided.innerRef}
-                                  style={getListStyle(snapshot.isDraggingOver)}>
-                                  {this.state.items.map((item, index) => (
-                                      <Draggable
-                                          key={item._id}
-                                          draggableId={item.name+item._id}
-                                          index={index}>
-                                          {(provided, snapshot) => (
-                                              <div
-                                                  ref={provided.innerRef}
-                                                  {...provided.draggableProps}
-                                                  {...provided.dragHandleProps}
-                                                  style={getItemStyle(
-                                                      snapshot.isDragging,
-                                                      provided.draggableProps.style
-                                                  )}>
-                                                  {item.content}
-                                                  <Card className="card">
-                                                    <CardHeader>
-                                                    Paciente: {item.name}
-                                                    </CardHeader>
-                                                    <CardFooter>
-                                                      Data Nascimento: {item.data_nascimento}
-                                                    </CardFooter>
-                                                  </Card>
-                                              </div>
-                                          )}
-                                      </Draggable>
-                                  ))}
-                                  {provided.placeholder}
-                              </div>
-                          )}
-                      </Droppable>
-                    }
-            >
-            </Camara>
-               
+            <Col xs="6" sm="4">
+            <Droppable droppableId="droppable">
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            style={getListStyle(snapshot.isDraggingOver)}>
+                            {this.state.items.map((item, index) => (
+                                <Draggable
+                                    key={item._id}
+                                    draggableId={item.name}
+                                    index={index}>
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            style={getItemStyle(
+                                                snapshot.isDragging,
+                                                provided.draggableProps.style
+                                            )}>
+                                            {item.content}
+                                            <Card className="card">
+                                              <CardHeader>
+                                              Paciente: {item.name}
+                                              </CardHeader>
+                                              <CardFooter>
+                                                Data Nascimento: {item.data_nascimento}
+                                              </CardFooter>
+                                            </Card>
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+                
             </Col>
               <Col xs="6" sm="4">
-                {
-                  this.state.camaras.map((camara,index) => (
-                    <Camara titulo={camara.nome} key={camara.id}>
-
-                    </Camara>
-                  ))
-                }
-
+              <Droppable droppableId="droppable2">
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            style={getListStyle(snapshot.isDraggingOver)}>
+                            {this.state.selected.map((item, index) => (
+                                <Draggable
+                                    key={item._id}
+                                    draggableId={item.name}
+                                    index={index}>
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            style={getItemStyle(
+                                                snapshot.isDragging,
+                                                provided.draggableProps.style
+                                            )}>
+                                            {item.content}
+                                            <Card>
+                                              <CardHeader>
+                                              {item.name}
+                                              </CardHeader>
+                                            </Card>
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+              
               </Col>
             </DragDropContext>
         
             </Row>
+            
+              
             </CardBody>
           </Card>
         </Col>   
