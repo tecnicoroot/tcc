@@ -12,6 +12,10 @@ class Camara extends Model
     protected $fillable = [
         'nome',
         'descricao',
+        'nome_descricao_sem_espaco',
         'em_manutencao',
     ];
+
+   
+   
 }

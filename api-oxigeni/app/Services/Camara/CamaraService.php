@@ -24,4 +24,14 @@ use App\Repositories\Camara\CamaraRepository;
         $this->repository = $repository;
     
     }
+
+    public function trimString(int $id) : string
+    {
+        
+        $result = $this->repository->findOneBy($id);
+
+        dd(str_replace(' ', '',$result['nome']));
+        return $result;
+
+    }
 }

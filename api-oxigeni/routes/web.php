@@ -76,6 +76,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->delete('/v1/paciente/destroy/{id}', "V1\Paciente\PacienteController@delete");
     $router->get('/v1/paciente/', "V1\Paciente\PacienteController@findAll");
     $router->post('/v1/paciente/search', "V1\Paciente\PacienteController@searchBy");
+    $router->post('/v1/paciente/pacineteIsRegistered', "V1\Paciente\PacienteController@pacienteIsRegistered");
      /**
      * Empresa 
      */    
@@ -96,6 +97,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->delete('/v1/camara/destroy/{id}', "V1\Camara\CamaraController@delete");
     $router->get('/v1/camara/', "V1\Camara\CamaraController@findAll");
     $router->post('/v1/camaras/search', "V1\Camara\CamaraController@searchBy");
+    //$router->get('/v1/camara/semespaco/{id}', "V1\Camara\CamaraController@trimString");
 
      /**
      * Agenda 

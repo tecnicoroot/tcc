@@ -24,4 +24,10 @@ use App\Repositories\Paciente\PacienteRepository;
         $this->repository = $repository;
     
     }
+    public function pacienteIsRegistered(array $data): bool
+    {
+        $nome = $data["nome"];
+        $dataBurn = $data["data_nascimento"];
+        return $this->repository->pacienteIsRegistered($nome, $dataBurn);
+    }
 }

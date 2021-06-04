@@ -52,4 +52,9 @@ use App\Models\Agendamento;
             'limit' => $limit
         ])->toArray();
     }
+
+    public function userIsRegistered() : boolean
+    {
+        dd("teste");
+    }
  }

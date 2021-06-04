@@ -29,6 +29,7 @@ import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import moment from 'moment';
 import { ReactAgenda , ReactAgendaCtrl, guid , getUnique , getLast , getFirst /*, Modal */} from 'react-agenda';
+import CardFooter from "reactstrap/lib/CardFooter";
 
 var now = new Date();
 
@@ -188,7 +189,7 @@ handleDateRangeChange (startDate, endDate) {
 }
 
 handleRangeSelection (selected) {
-  console.log("arrastar", selected)
+  //console.log("arrastar", selected)
   this.setState({selected:selected , showCtrl:true})
   this._openModal();
 }
@@ -205,7 +206,7 @@ _closeModal(e){
 }
 
 handleItemChange(items , item){
-  console.log("soltar", item);
+  //console.log("soltar", item);
   this.setState({items:items})
 }
 
@@ -245,9 +246,19 @@ changeView (days , event ){
   render() {
         var AgendaItem = function(props){
         //console.log( ' item component props' , props)
-        return <div draggable="true" style={{display:'block', position:'absolute' , background:'#999'}} >{props.item.name} 
-          <button onClick={()=> props.edit(props.item)}>Edit </button>
-          <button onClick={()=> props.remove(props.item)}>del </button>
+        return <div draggable="true" style={{display:'block', position:'absolute' , background:'#999'}} >
+          <Card>
+            <CardHeader>
+              {props.item.name} 
+            </CardHeader>
+            <CardFooter>
+              <Button  color="secondary"onClick={()=> props.edit(props.item)}>Editar </Button>
+              <Button  color="danger" onClick={()=> props.remove(props.item)}>Cancelar </Button>
+            </CardFooter>
+          </Card>
+          
+          
+          
           </div>
     }
     

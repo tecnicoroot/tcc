@@ -6,7 +6,9 @@ namespace App\Http\Controllers\V1\Paciente;
 
 use App\Http\Controllers\AbstractController;
 use App\Services\Paciente\PacienteService ;
-
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 /**
  * Class Pacienteontroller
  * @package App\Http\Controllers\V1\Paciente
@@ -31,4 +33,18 @@ class PacienteController extends AbstractController
         //$this->service = $service;
         parent::__construct($service);
     }
+    public function pacienteIsRegistered(Request $request) : JsonResponse
+    {
+        try {
+        
+               
+            $result['exist'] = $this->service->pacienteIsRegistered($request->all());
+            $response = $this->successResponse($result);
+           
+        } catch (Exception $e) {
+            $response = $this->errorResponse($e);
+        }
+
+        return response()->json($response, $response['status_code']);
+    } 
 }

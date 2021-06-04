@@ -63,6 +63,8 @@ class Editar extends Component {
       id: "",
       paciente: new Paciente(),
       planos : [],
+      nome : "",
+      data_nascimento : ""
     };
   }
 

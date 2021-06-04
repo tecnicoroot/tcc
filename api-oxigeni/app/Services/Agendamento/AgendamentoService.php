@@ -28,4 +28,6 @@ use App\Repositories\Agendamento\AgendamentoRepository;
    {
        return $this->repository->findAllDay($limit,$orderBy);
    }
+
+  
 }

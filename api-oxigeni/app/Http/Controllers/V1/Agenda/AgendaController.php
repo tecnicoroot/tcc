@@ -79,4 +79,6 @@ class AgendaController extends AbstractController
 
         return response()->json($response, $response['status_code']);
     }
+
+    
 }

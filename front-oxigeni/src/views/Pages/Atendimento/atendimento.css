@@ -46,10 +46,11 @@ h2, span {
     width: 100%;
     position: relative;*/
     margin-bottom: 10px;
+    max-width: 100%;
 }
 
 .card{
-    font-size: smaller;
+    /*font-size: smaller;*/
     margin-bottom: 0;
     font-weight: bold;
 }

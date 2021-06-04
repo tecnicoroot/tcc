@@ -25,10 +25,12 @@ import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao"
 import moment from 'moment';
+import { element } from "prop-types";
 
 
 const api = new Api("v1","agenda");
 const api2 = new Api("v1","convenio");
+const api3 = new Api("v1", "paciente");
 const validacaoCadastro = Yup.object().shape({
   
   nome: Yup.string().required("O nome é obrigatório"),
@@ -40,7 +42,7 @@ class Agenda {
   data_nascimento = "";
   id_convenio = "";
   data_hora_marcada = "";
-  eh_paciente = 0;
+  eh_paciente = "";
 }
 
 class Cadastro extends Component {
@@ -53,6 +55,7 @@ class Cadastro extends Component {
       agenda: new Agenda(),
       planos : []
     };
+    //this.onBlurHandler = this.onBlurHandler.bind(this);
     
   }
 
@@ -74,7 +77,7 @@ class Cadastro extends Component {
   }
   
   salvar = async (agenda) => {
-     //console.log(agenda)
+      //console.log(agenda)
       await api.post("register", agenda);
       this.props.setStatusNotificacao("SUCCESS");
       
@@ -97,7 +100,15 @@ class Cadastro extends Component {
   fecharModalRemover = () => {
     this.setState({ modalRemover: false })
   }
+  handleBlur = async (e) => {
+    e.preventDefault()
+    const {name, value} = e.target;
+    const agend = this.state.agenda;
+    agend[name] = value
+   
+    this.setState({agenda : agend});
   
+  }
   render() {
     const { profileImg} = this.state
     const elements = this.state.planos;
@@ -137,6 +148,8 @@ class Cadastro extends Component {
                             id="nome"
                             name="nome"
                             placeholder="Insira o nome"
+                            onBlur={(e) => this.handleBlur(e)}
+                            
                           />
                         </FormGroup>
                       </Col>
@@ -170,6 +183,42 @@ class Cadastro extends Component {
                             type="date"
                             id="data_nascimento"
                             name="data_nascimento"
+                            //onBlur={(e) => this.onBlurHandler(e.target.value)}
+                            onBlur={async (e) => {
+                              
+                              e.preventDefault()
+                              const {name, value} = e.target;
+                              const agend = this.state.agenda;
+                              agend[name] = value;
+                            
+                              this.setState({agenda : agend});
+                              const { token } = localStorage;
+                              if(name == "data_nascimento"){
+                                const {nome, data_nascimento} = this.state.agenda;
+                                const result =  await api3.post("pacineteIsRegistered", 
+                                                  {
+                                                    "nome": nome, 
+                                                    "data_nascimento": data_nascimento
+                                                  },
+                                                  {
+                                                    headers: {'Content-Type': 'application/json',
+                                                    Authorization: `Bearer ${token}`},
+                                                  }
+                                                  ).then(data => {
+                                    const agend = this.state.agenda;
+                                  if(data.data.data.exist == true){
+                                    setFieldValue("eh_paciente", "1", true);
+                                  }else{
+                                    setFieldValue("eh_paciente", "0", true);
+                                  }
+
+                                  this.setState({agenda : agend});
+                                  //console.log(this.state.agenda);
+                                });
+                              
+                              }
+                              
+                            }}
                             
                           />
                         </FormGroup>
@@ -192,11 +241,16 @@ class Cadastro extends Component {
                           <Field
                             label="eh_paciente"
                             name="eh_paciente"
+                            
                             component={(props) => (
-                              <Input type="select" {...props}>
+                               
+                              <Input type="select" {...props} 
+                             
+                              > 
                                 <option value="">Selecione</option>
-                                <option value={1}>Sim</option>
-                                <option value={0}>Não</option>
+                                
+                                <option value="0" >Não</option>
+                                <option value="1" >Sim</option>
                               </Input>
                             )}
                           />

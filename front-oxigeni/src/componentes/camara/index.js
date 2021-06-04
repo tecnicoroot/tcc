@@ -19,21 +19,17 @@ import {
    
    function Camara(props){
        return(
-           <>  
-           
             <CCard 
             color="default"
-            textColor="success"
-            
+            textColor= {props.cor}
+            className={`mb-3 border-top-success border-top-3`}
+            style={{ maxWidth: '100%' }}
             >
             <CCardHeader>{props.titulo}</CCardHeader>
                 <CCardBody>
-                        <CCardText>
                         {props.body}
-                    </CCardText>
                 </CCardBody>
-            </CCard>
-           </>
+            </CCard>     
        );
    }
 export default Camara;

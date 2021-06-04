@@ -35,7 +35,6 @@ import Container from "reactstrap/lib/Container";
 import Agenda from "../../../componentes/agenda";
 import Camara from "../../../componentes/camara";
 import CardFooter from "reactstrap/lib/CardFooter";
-import Cadastro from "../Paciente/Cadastro";
 var now = new Date();
 
 
@@ -58,7 +57,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? 'lightblue' : 'lightgrey',
     padding: grid,
-    width: '100%'
+    width: 250
 });
 
 let id2List = {
@@ -75,13 +74,13 @@ class Atendimento extends Component {
         listaAtendimento : [],
         camaras : [],
         items: [],
-        selected: [],
-        modal: false,
+        selected: []
     };  
 
       this.dadosAtendimento();
       this.dadosCamaras();
   }
+
 
   cadastrarAtendimento = () => {
     this.props.history.push("/atendimento/cadastrar");
@@ -99,10 +98,13 @@ class Atendimento extends Component {
           toast.error(this.props.notificacao);
           
       }
+      
+        
     } catch (ex) {
       console.log(ex);
     }
   }
+  
   
   toggle(i) {
     const newArray = this.state.dropdownOpen.map((element, index) => {
@@ -138,9 +140,10 @@ class Atendimento extends Component {
        });
        
        this.setState({ camaras : itens});
+       
     });
+    
   }
-
  dadosAtendimento = () =>{
   const items = agenda.get('');
   const { token } = localStorage;
@@ -156,20 +159,24 @@ class Atendimento extends Component {
      this.setState({elements : items.data});
      const itens = [];
      elements.data.forEach(element => {
-       console.log(element);
+       
        const item = {};
        item._id = element.id;
        item.name  = element.nome;
        item.startDateTime = new Date(element.data_hora_marcada);
        item.endDateTime   = new Date(element.data_hora_marcada).setMinutes(140);
        item.classes     = 'color-1' ;
-       item.eh_paciente = element.eh_paciente;
+
        item.data_nascimento  = element.data_nascimento;
        itens.push(item);
      });
      this.setState({items  : itens});
+  
   });
+
+   
 }
+
 
 reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -182,6 +189,7 @@ reorder = (list, startIndex, endIndex) => {
 
 
 move = (source, destination, droppableSource, droppableDestination) => {
+  //console.log(destination)
   const sourceClone = Array.from(source);
   const destClone = Array.from(destination);
   const [removed] = sourceClone.splice(droppableSource.index, 1);
@@ -198,6 +206,11 @@ move = (source, destination, droppableSource, droppableDestination) => {
 getList = id => this.state[id];
 
 onDragEnd = (result) => {
+  //console.log('result',result);
+  //console.log('destination',destination);
+  //console.log('droppableSource',droppableSource);
+  //console.log('droppableDestination',droppableDestination);
+
   const { source, destination } = result;
 
   if (!destination) {
@@ -211,6 +224,11 @@ onDragEnd = (result) => {
     );
 
     let state = { items };
+
+    if (source.droppableId === 'droppable2') {
+        state = { selected: items };
+    }
+
     this.setState(state);
   } else {
     const result = this.move(
@@ -220,38 +238,74 @@ onDragEnd = (result) => {
         destination
     );
 
+      //console.log('result', result);
+
+    
       this.setState({
-          [source.droppableId] : result[source.droppableId],
-          [destination.droppableId] : result[destination.droppableId],
+          items : result.items,
+          camarateste: result.camarateste
       })
-  }
+   
+      
+    
+}
+
+
 }  
 
-  abrirModal = () =>{
-    this.setState({ modal: true})
-    this.props.history.push("/paciente/cadastrar");
-  }
-  fecharModal = () => {
-  this.setState({ modal: false})
-  }
-  cancelarModal = () => {
-    this.props.history.push("/atendimentos");
-  }
+onDragEnd2 = result => {
+     
+        const { source, destination } = result;
+console.log(source, destination)
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
+
+        if (source.droppableId === destination.droppableId) {
+            const items = this.reorder(
+                this.getList(source.droppableId),
+                source.index,
+                destination.index
+            );
+
+            let state = { items };
+
+            if (source.droppableId === 'droppable2') {
+                state = { selected: items };
+            }
+
+            this.setState(state);
+        } else {
+            const result = this.move(
+                this.getList(source.droppableId),
+                this.getList(destination.droppableId),
+                source,
+                destination
+            );
+
+            this.setState({
+                items: result.items,
+                selected: result.droppable2
+            });
+        }
+    };
+
+
   render() {
-    //console.log(this.state)
+    console.log(this.state)
     return (
       <>
       
       <Row>
-      <Col xs="12">
+      <Col xs="12" sm="12">
           <Card>
           
             <CardBody >
             <Row>
             <DragDropContext onDragEnd={this.onDragEnd}>
-            <Col xs="6">
+            <Col sm="8">
             <Camara titulo="Agendamentos"
-                   
                     body={
                       <Droppable droppableId="items">
                           {(provided, snapshot) => (
@@ -262,9 +316,7 @@ onDragEnd = (result) => {
                                       <Draggable
                                           key={item._id}
                                           draggableId={item.name+item._id}
-                                          index={index}
-                                          
-                                          >
+                                          index={index}>
                                           {(provided, snapshot) => (
                                               <div
                                                   ref={provided.innerRef}
@@ -275,21 +327,12 @@ onDragEnd = (result) => {
                                                       provided.draggableProps.style
                                                   )}>
                                                   {item.content}
-                                                  <Card className="card" 
-                                                        style={{color: item.eh_paciente==0 ? "red": "green"}}
-                                                       
-                                                        >
+                                                  <Card className="card">
                                                     <CardHeader>
                                                     Paciente: {item.name}
                                                     </CardHeader>
                                                     <CardFooter>
-                                                      Data Nascimento: {moment(item.data_nascimento).format('DD/MM/YYYY')} <br></br>
-                                                      {
-                                                        item.eh_paciente === 0  ? (
-                                                          <Button color="success" onClick={this.abrirModal}>Cadastrar Paciente</Button>
-                                                        ): ''
-                                                        
-                                                      }
+                                                      Data Nascimento: {item.data_nascimento}
                                                     </CardFooter>
                                                   </Card>
                                               </div>
@@ -305,10 +348,10 @@ onDragEnd = (result) => {
             </Camara>
                
             </Col>
-              <Col xs="6">
+              <Col sm="4">
                 {
                   this.state.camaras.map((camara,index) => (
-                    <Camara style="wi" titulo={camara.nome_descricao_sem_espaco} key={camara.id}
+                    <Camara titulo={camara.nome_descricao_sem_espaco} key={camara.id}
                     body={  
                       <Droppable droppableId={camara.nome_descricao_sem_espaco}>
                           {(provided, snapshot) => (
@@ -335,7 +378,7 @@ onDragEnd = (result) => {
                                                     Paciente: {item.name}
                                                     </CardHeader>
                                                     <CardFooter>
-                                                      Data Nascimento: {moment(item.data_nascimento).format('DD/MM/YYYY')}
+                                                      Data Nascimento: {item.data_nascimento}
                                                     </CardFooter>
                                                   </Card>
                                               </div>
@@ -361,16 +404,7 @@ onDragEnd = (result) => {
             </CardBody>
           </Card>
         </Col>   
-        <Modal isOpen={this.state.modal} toggle={this.fecharModal}
-                className={'modal-success ' + this.props.className+'cadastro'}>
-          <ModalHeader toggle={this.fecharModal}>Cancelar Edição</ModalHeader>
-          <ModalBody>
-             
-          </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onClick={this.fecharModal}>Cancelar</Button>
-          </ModalFooter>
-        </Modal>
+        
       </Row>
       
       </>

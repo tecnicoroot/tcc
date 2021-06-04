@@ -18,4 +18,16 @@ use App\Models\Paciente;
     {
       $this->model =  $model;
     }
+    public function pacienteIsRegistered(string $nome, string $dataBorn) : bool
+    {
+      $results = $this->model->where('nome', 'like', '%'.$nome.'%')
+                              ->where('data_nascimento' , '=' , $dataBorn)
+                              ->first();
+     
+      if($results != null){
+        return true;
+      };
+
+      return false;
+    }
  }

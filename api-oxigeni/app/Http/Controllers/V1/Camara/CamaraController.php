@@ -6,6 +6,9 @@ namespace App\Http\Controllers\V1\Camara;
 
 use App\Http\Controllers\AbstractController;
 use App\Services\Camara\CamaraService ;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /**
  * Class CamaraController
@@ -30,5 +33,11 @@ class CamaraController extends AbstractController
     {
         //$this->service = $service;
         parent::__construct($service);
+    }
+
+    public function trimString(int $id) : string
+    {
+        //dd($id);
+        return $this->service->trimString($id);
     }
 }

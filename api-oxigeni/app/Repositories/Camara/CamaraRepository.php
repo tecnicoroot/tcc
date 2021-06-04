@@ -18,4 +18,13 @@ use App\Models\Camara;
     {
       $this->model =  $model;
     }
+
+    public function create(array $data): array
+    {
+      $data['nome_descricao_sem_espaco'] = str_replace(' ', '',$data['nome']);
+      //dd($data);
+
+
+        return $this->model::create($data)->toArray();
+    }
  }

@@ -16,6 +16,7 @@ class CreateCamarasTable extends Migration
         Schema::create('camaras', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->string('nome_descricao_sem_espaco')->nullable();
             $table->string('descricao');
             $table->boolean('em_manutencao');
             $table->timestamps();
