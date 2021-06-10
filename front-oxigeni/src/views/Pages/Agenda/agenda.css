@@ -45,3 +45,9 @@ h2, span {
     background-color:rgb(255, 0, 0) ;
     width: 100%;
 }
+.btnagenda{
+    font-size: smaller;
+}
+.paragenda{
+    font-size: large;
+}

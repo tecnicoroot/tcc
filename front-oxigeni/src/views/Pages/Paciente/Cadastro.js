@@ -29,6 +29,7 @@ import { element } from "prop-types";
 const api = new Api("v1","paciente");
 const api2 = new Api("v1","convenio");
 
+
 const validacaoCadastro = Yup.object().shape({
   nome: Yup.string().required("O nome é obrigatório"),
   crm: Yup.string().required("O perfil é obrigatório"),
@@ -86,10 +87,28 @@ class Cadastro extends Component {
 
   salvar = async (paciente) => {
      //console.log(paciente)
+     const { token } = localStorage;
       await api.post("register", paciente);
+      /*await api.post("verificaExistePacienteAgendamento", {
+        'nome': paciente.nome,
+        'nascimento': paciente.data_nascimento
+      }, {
+        headers: {'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`},
+      }
+      ).then(function(data) {
+        console.log(data.data.data);
+        if(data.data.data == true){
+          return 1;
+        }else{
+          return 0;
+        }
+        
+      }
+    );*/
       this.props.setStatusNotificacao("SUCCESS");
-      
-      this.props.history.push('/paciente');
+      this.props.history.goBack();
+      //this.props.history.push('/paciente');
   };
 
   abrirModal = () => {
@@ -99,7 +118,8 @@ class Cadastro extends Component {
     this.setState({ modal: false })
   }
   cancelarModal = () => {
-    this.props.history.push("/paciente");
+    this.props.history.goBack();
+    //this.props.history.push("/paciente");
   }
 
   abrirModalRemover = () => {
@@ -193,7 +213,7 @@ class Cadastro extends Component {
                     </FormGroup>
 
                     <FormGroup row>
-                      <Col xl="2">
+                      <Col xl="3">
                         <FormGroup>
                           <Label for="cpf">CPF*</Label>
                           <FieldMask
@@ -205,7 +225,17 @@ class Cadastro extends Component {
                           />
                         </FormGroup>
                       </Col>
-
+                      <Col xl="3">
+                        <FormGroup>
+                          <Label for="identidade">Identidade*</Label>
+                          <FieldMask
+                            placeholder="Número da identidade"
+                            name="identidade"
+                            label="identidade"
+                            
+                          />
+                        </FormGroup>
+                      </Col>
                       <Col xl="2">
                         <FormGroup>
                           <Label for="cep">CEP*</Label>

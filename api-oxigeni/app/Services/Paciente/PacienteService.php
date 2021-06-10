@@ -30,4 +30,10 @@ use App\Repositories\Paciente\PacienteRepository;
         $dataBurn = $data["data_nascimento"];
         return $this->repository->pacienteIsRegistered($nome, $dataBurn);
     }
+
+    public function verificaExistePacienteAgendamento(string $nome, string $nascimento): array
+    {
+       
+        return $this->repository->verificaExistePacienteAgendamento($nome,$nascimento);
+    }
 }

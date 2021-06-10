@@ -46,5 +46,20 @@ class PacienteController extends AbstractController
         }
 
         return response()->json($response, $response['status_code']);
-    } 
+    }
+    
+    public function verificaExistePacienteAgendamento(Request $request) : JsonResponse
+    {
+       
+        try {   
+            $result = $this->service->verificaExistePacienteAgendamento($request->get('nome'), $request->get('nascimento'));
+            $response = $this->successResponse($result);
+           
+        } catch (Exception $e) {
+            $response = $this->errorResponse($e);
+        }
+
+        return response()->json($response, $response['status_code']);
+
+    }
 }

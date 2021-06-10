@@ -21,6 +21,8 @@ class CreateAtendimentosTable extends Migration
             $table->foreign('id_camara')->references('id')->on('camaras')->onDelete('cascade');
             $table->unsignedInteger('id_convenio');
             $table->foreign('id_convenio')->references('id')->on('convenios')->onDelete('cascade');
+            $table->unsignedInteger('id_agendamento');
+            $table->foreign('id_agendamento')->references('id')->on('agendamentos')->onDelete('cascade');
             $table->dateTime('data_hora_chegada_paciente', 0);
             $table->dateTime('data_hora_inicio_procedimento', 0);
             $table->dateTime('data_hora_fim_procedimento', 0);

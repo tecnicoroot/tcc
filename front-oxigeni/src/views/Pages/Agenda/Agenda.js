@@ -72,10 +72,10 @@ class Agenda extends Component {
       
         items:[],
         selected:[],
-        cellHeight:(60 / 4),
+        cellHeight:(60 / 2),
         showModal:false,
         locale:"pt-br",
-        rowsPerHour:1,
+        rowsPerHour:6,
         numberOfDays:5,
         startDate: new Date()
 
@@ -246,16 +246,13 @@ changeView (days , event ){
   render() {
         var AgendaItem = function(props){
         //console.log( ' item component props' , props)
-        return <div draggable="true" style={{display:'block', position:'absolute' , background:'#999'}} >
-          <Card>
-            <CardHeader>
-              {props.item.name} 
-            </CardHeader>
-            <CardFooter>
-              <Button  color="secondary"onClick={()=> props.edit(props.item)}>Editar </Button>
-              <Button  color="danger" onClick={()=> props.remove(props.item)}>Cancelar </Button>
-            </CardFooter>
-          </Card>
+        return <div draggable="true" style={{display:'block', position:'absolute'}} >
+          
+              <p className="paragenda">{props.item.name} </p>
+              <p  ><Button color="secondary" className="btnagenda" onClick={()=> props.edit(props.item)}>Editar </Button>
+              <Button  color="danger" className="btnagenda" onClick={()=> props.remove(props.item)}>Cancelar </Button></p>
+              
+            
           
           
           

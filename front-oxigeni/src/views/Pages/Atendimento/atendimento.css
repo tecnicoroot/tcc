@@ -54,3 +54,10 @@ h2, span {
     margin-bottom: 0;
     font-weight: bold;
 }
+
+.btnagenda{
+    font-size: smaller;
+}
+.labelDados{
+    margin: 0.2rem;
+}

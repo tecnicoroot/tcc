@@ -30,7 +30,6 @@ const api2 = new Api("v1","convenio");
 
 const validacaoCadastro = Yup.object().shape({
   nome: Yup.string().required("O nome é obrigatório"),
-  crm: Yup.string().required("O perfil é obrigatório"),
   email: Yup.string().required("O email é obrigatório").email("Email inválido"),
 });
 
@@ -85,11 +84,51 @@ class Editar extends Component {
 
   salvar = async (paciente) => {
     const { id } = this.state;
+    const { token } = localStorage;
     //console.info(paciente);  
     await api.put(`register/${id}`, paciente);
-    this.props.setStatusNotificacao("WARNING");
+    console.log( paciente.nome,  paciente.data_nascimento )
+    /*await api.post("verificaExistePacienteAgendamento", {
+      'nome': paciente.nome,
+      'nascimento': paciente.data_nascimento
+    }, {
+      headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*',
+      Authorization: `Bearer ${token}`},
+    }
+    ).then(function(data) {
+      console.log(data.data.data);
+      if(data.data.data == true){
+        return 1;
+      }else{
+        return 0;
+      }
+      
+    }
+  );
+    await fetch('http://localhost:8080/v1/paciente/verificaExistePacienteAgendamento', {
+    method: 'post',
+    //mode:"no-cors",
+    credentials: 'same-origin',
+    origins: '*',
+    headers: {'Content-Type': 'application/json',Accept: 'application/json',
+    Authorization: `Bearer ${token}`},
+    body: JSON.stringify({
+      "nome": paciente.nome, 
+      "nascimento": paciente.data_nascimento
+    })
+      }).then(data => {
        
-      this.props.history.push('/paciente');
+                               
+        console.log(data);
+        
+                
+       });
+*/
+    
+
+    this.props.setStatusNotificacao("WARNING");
+    this.props.history.goBack(); 
+    //this.props.history.push('/paciente');
   };
 
   abrirModal = () => {
@@ -201,7 +240,7 @@ class Editar extends Component {
                    </FormGroup>
 
                    <FormGroup row>
-                     <Col xl="2">
+                     <Col xl="3">
                        <FormGroup>
                          <Label for="cpf">CPF*</Label>
                          <FieldMask
@@ -213,7 +252,17 @@ class Editar extends Component {
                          />
                        </FormGroup>
                      </Col>
-
+                     <Col xl="3">
+                        <FormGroup>
+                          <Label for="identidade">Identidade*</Label>
+                          <FieldMask
+                            placeholder="Número da identidade"
+                            name="identidade"
+                            label="identidade"
+                            
+                          />
+                        </FormGroup>
+                      </Col>
                      <Col xl="2">
                        <FormGroup>
                          <Label for="cep">CEP*</Label>

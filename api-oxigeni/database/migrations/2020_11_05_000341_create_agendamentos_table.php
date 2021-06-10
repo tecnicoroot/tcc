@@ -14,12 +14,13 @@ class CreateAgendamentosTable extends Migration
     public function up()
     {
         Schema::create('agendamentos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nome');
             $table->date('data_nascimento');            
             $table->dateTime('data_hora_marcada', 0);
             $table->boolean('eh_paciente');
             $table->unsignedInteger('id_convenio');
+            $table->boolean('comfirmado',0 )->nullable();
             $table->foreign('id_convenio')->references('id')->on('convenios')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
