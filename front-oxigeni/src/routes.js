@@ -45,6 +45,8 @@ const Agenda = React.lazy(() => import('./views/Pages/Agenda/Agenda'));
 //const CadastroAtendimento = React.lazy(() => import('./views/Pages/Agenda/Cadastro'));
 //const EditarAgenda = React.lazy(() => import('./views/Pages/Agenda/Editar'));
 const Atendimento  = React.lazy(() => import('./views/Pages/Atendimento/Atendimento'));
+const Procedimento  = React.lazy(() => import('./views/Pages/Atendimento/Procedimento'));
+
 
 const routes = [
    { path: '/', exact: true, name: 'Home' },
@@ -89,6 +91,7 @@ const routes = [
     /* Atendimento */
     
     { path: '/atendimento', exact: true, name: 'Atendimento', component: Atendimento},
+    { path: '/Procedimento', exact: true, name: 'Procedimento', component: Procedimento},
 ];
 
 export default routes;

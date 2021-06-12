@@ -163,6 +163,7 @@ class Atendimento extends Component {
     ).then(data => {
       const { data: elements = [] } = data;
       const itens = [];
+      
       let nome = 0
       elements.data.forEach(element => {
          const item = {};
@@ -179,6 +180,7 @@ class Atendimento extends Component {
   }
   dadosAgendamento = async () => {
     const itens = [];
+    const itens2 =[]
     const elementos = [];
     const { token } = localStorage;
     fetch('http://localhost:8080/v1/agendadia', {
@@ -197,6 +199,11 @@ class Atendimento extends Component {
         return data.comfirmado == 0 || data.comfirmado == null;
       })
 
+      const filtro2 = elements.data.filter(function(data){
+        
+        return data.comfirmado == 1;
+      })
+
       filtro.forEach(element => {
         const item = {};
         item._id = element.id;
@@ -213,8 +220,24 @@ class Atendimento extends Component {
 
       });
 
-      this.setState({ items: itens });    
+      filtro2.forEach(element => {
+        const atendimentos = {};
+        itens._id = element.id;
+        itens.name = element.nome;
+        itens.startDateTime = new Date(element.data_hora_marcada);
+        itens.endDateTime = new Date(element.data_hora_marcada).setMinutes(140);
+        itens.classes = 'color-1';
+        itens.data_nascimento = element.data_nascimento;
+        itens.comfirmado = element.comfirmado;
+        itens.eh_paciente = element.eh_paciente;
+        itens.id_convenio = element.id_convenio;
 
+        itens2.push(itens);
+
+      });
+
+      this.setState({ items: itens });    
+      this.setState({ atendimentos: itens2 });    
 
     });
 
@@ -462,7 +485,7 @@ class Atendimento extends Component {
                     <Col xs="6">
                     <Camara titulo={
                         <>
-                          Confirmação Agendamento
+                          Atendimentos Confirmados
                         </>
                         }
                         body={
@@ -498,13 +521,12 @@ class Atendimento extends Component {
                                           <CardFooter>
                                             Data Nascimento: {moment(item.data_nascimento).format('DD/MM/YYYY')} <br></br>
                                             {
-
-                                              
+                                              item.comfirmado != 1 ? (
                                                 <>
-                                                  <Button color="success" onClick={() => this.abrirModal(item)}>Cadastrar Atendimento</Button>
+                                                <Button color="success" onClick={() => this.abrirModal(item)}>Cadastrar Atendimento</Button>
 
-                                                </>
-                                              
+                                              </>
+                                              ) : ''
 
                                             }
                                           </CardFooter>

@@ -52,6 +52,13 @@ const menu = [
   },
   {
     _tag: 'CSidebarNavItem',
+    name: 'Procedimento',
+    to: '/procedimento',
+    icon: 'cil-puzzle',
+    permissao : "Enfermeiro",
+  },
+  {
+    _tag: 'CSidebarNavItem',
     name: 'Agenda',
     to: '/agenda',
     icon: 'cil-puzzle',
