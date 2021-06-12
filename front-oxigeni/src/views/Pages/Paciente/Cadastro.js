@@ -89,15 +89,15 @@ class Cadastro extends Component {
      //console.log(paciente)
      const { token } = localStorage;
       await api.post("register", paciente);
-      /*await api.post("verificaExistePacienteAgendamento", {
+      await api.post("existePacienteAgendamento", JSON.stringify({
         'nome': paciente.nome,
         'nascimento': paciente.data_nascimento
-      }, {
+      }), {
         headers: {'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`},
       }
       ).then(function(data) {
-        console.log(data.data.data);
+       
         if(data.data.data == true){
           return 1;
         }else{
@@ -105,7 +105,7 @@ class Cadastro extends Component {
         }
         
       }
-    );*/
+    );
       this.props.setStatusNotificacao("SUCCESS");
       this.props.history.goBack();
       //this.props.history.push('/paciente');
@@ -344,9 +344,10 @@ class Cadastro extends Component {
                             name="plano_saude"
                             component={(props) => (
                               <Input type="select" {...props}>
+                                <option value="">Selecione</option>
                                {
                                   elements.map((element, index)=>{
-                                      return(<option key={element.id}>{element.nome}</option>);
+                                      return(<option key={element.id} value={element.id}>{element.nome}</option>);
                                     })
                               }
                             </Input>

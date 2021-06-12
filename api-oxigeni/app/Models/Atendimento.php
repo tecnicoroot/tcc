@@ -12,6 +12,7 @@ class Atendimento extends Model
         'id_paciente',
         'id_camara',
         'id_convenio',
+        'id_agendamento',
         'data_hora_chegada_paciente',
         'data_hora_inicio_procedimento',
         'data_hora_fim_procedimento'

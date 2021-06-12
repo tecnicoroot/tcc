@@ -78,6 +78,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->post('/v1/paciente/search', "V1\Paciente\PacienteController@searchBy");
     $router->post('/v1/paciente/pacineteIsRegistered', "V1\Paciente\PacienteController@pacienteIsRegistered");
     $router->post('/v1/paciente/verificaExistePacienteAgendamento', "V1\Paciente\PacienteController@verificaExistePacienteAgendamento");
+    $router->post('/v1/paciente/existePacienteAgendamento', "V1\Paciente\PacienteController@existePacienteAgendamento");
      /**
      * Empresa 
      */    

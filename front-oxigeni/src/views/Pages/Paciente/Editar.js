@@ -87,16 +87,15 @@ class Editar extends Component {
     const { token } = localStorage;
     //console.info(paciente);  
     await api.put(`register/${id}`, paciente);
-    console.log( paciente.nome,  paciente.data_nascimento )
-    /*await api.post("verificaExistePacienteAgendamento", {
+    
+    await api.post("existePacienteAgendamento", JSON.stringify({
       'nome': paciente.nome,
       'nascimento': paciente.data_nascimento
-    }, {
-      headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*',
+    }), {
+      headers: {'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`},
     }
     ).then(function(data) {
-      console.log(data.data.data);
       if(data.data.data == true){
         return 1;
       }else{
@@ -105,25 +104,6 @@ class Editar extends Component {
       
     }
   );
-    await fetch('http://localhost:8080/v1/paciente/verificaExistePacienteAgendamento', {
-    method: 'post',
-    //mode:"no-cors",
-    credentials: 'same-origin',
-    origins: '*',
-    headers: {'Content-Type': 'application/json',Accept: 'application/json',
-    Authorization: `Bearer ${token}`},
-    body: JSON.stringify({
-      "nome": paciente.nome, 
-      "nascimento": paciente.data_nascimento
-    })
-      }).then(data => {
-       
-                               
-        console.log(data);
-        
-                
-       });
-*/
     
 
     this.props.setStatusNotificacao("WARNING");

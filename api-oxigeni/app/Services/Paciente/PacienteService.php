@@ -36,4 +36,10 @@ use App\Repositories\Paciente\PacienteRepository;
        
         return $this->repository->verificaExistePacienteAgendamento($nome,$nascimento);
     }
+
+    public function existePacienteAgendamento(string $nome, string $nascimento): array
+    {
+       
+        return $this->repository->existePacienteAgendamento($nome,$nascimento);
+    }
 }

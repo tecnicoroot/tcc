@@ -13,6 +13,6 @@ class Agendamento extends Model
         'data_nascimento',
         'data_hora_marcada',
         'eh_paciente',
-        'id_convenio'
-    ];
+        'id_convenio',
+        'comfirmado'    ];
 }

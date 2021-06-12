@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UsersTableSeeder extends Seeder
+class AgendamentosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'David Luis da Silva',
-            'email' => 'tecnicoroot@gmail.com',
-            'perfil'=> 'Administrador',
-            'status' => 'Ativo',
-            'password' => Hash::make('1qaz2wsx'),
-            'created_at' => (new \DateTime())->format('Y-m-d H:i:s'),
-            'updated_at' => (new \DateTime())->format('Y-m-d H:i:s')
+        DB::table('agendamentos')->insert([
+            "data_hora_marcada" => "2021-06-12 07:00",
+            "data_nascimento"=> "2021-05-28",
+            "eh_paciente"=> "1",
+            "id_convenio"=> 1,
+            "nome"=> "Caio Gama dos Santos Silva"
         ]);
     }
 }

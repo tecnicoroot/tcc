@@ -14,18 +14,22 @@ class CreateAtendimentosTable extends Migration
     public function up()
     {
         Schema::create('atendimentos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->unsignedInteger('id_paciente');
-            $table->foreign('id_paciente')->references('id')->on('pacientes')->onDelete('cascade');
+            $table->foreign('id_paciente')->references('id')->on('pacientes');
+            
             $table->unsignedInteger('id_camara');
-            $table->foreign('id_camara')->references('id')->on('camaras')->onDelete('cascade');
+            $table->foreign('id_camara')->references('id')->on('camaras')->nullable()->default(null);
+            
             $table->unsignedInteger('id_convenio');
-            $table->foreign('id_convenio')->references('id')->on('convenios')->onDelete('cascade');
+            $table->foreign('id_convenio')->references('id')->on('convenios');
+            
             $table->unsignedInteger('id_agendamento');
-            $table->foreign('id_agendamento')->references('id')->on('agendamentos')->onDelete('cascade');
-            $table->dateTime('data_hora_chegada_paciente', 0);
-            $table->dateTime('data_hora_inicio_procedimento', 0);
-            $table->dateTime('data_hora_fim_procedimento', 0);
+            $table->foreign('id_agendamento')->references('id')->on('agendamentos');
+            
+            $table->dateTime('data_hora_chegada_paciente', 0)->nullable()->default(null);
+            $table->dateTime('data_hora_inicio_procedimento', 0)->nullable()->default(null);
+            $table->dateTime('data_hora_fim_procedimento', 0)->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -38,6 +42,6 @@ class CreateAtendimentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agendamentos');
+        Schema::dropIfExists('atendimentos');
     }
 }

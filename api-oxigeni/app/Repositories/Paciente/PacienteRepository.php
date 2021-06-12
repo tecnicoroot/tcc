@@ -45,4 +45,15 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
       }
       
     }
+
+    public function existePacienteAgendamento(string $nome, string $nascimento) : array
+    {
+     return db::select("update agendamentos 
+     set eh_paciente = 1
+     where 1=1
+     and (agendamentos.nome like concat('%', '".$nome."', '%'))
+     and agendamentos.data_nascimento in (select data_nascimento from pacientes where data_nascimento = '".$nascimento."');"
+         );
+    
+    }
  }
