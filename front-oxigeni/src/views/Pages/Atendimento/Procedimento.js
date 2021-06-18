@@ -28,19 +28,16 @@ import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import moment from 'moment';
 import Camara from "../../../componentes/camara";
-
-
-
+import Contador from "../../../componentes/cronometro/Contador";
 var now = new Date();
 
-const agenda = new Api("v1", "agenda");
-const camara = new Api("v1", "camara");
+const api1 = new Api("v1", "atendimento");
+const api2 = new Api("v1", "camara");
 const api3 = new Api("v1", "paciente");
 
 const validacaoCadastro = Yup.object().shape({
   
-  nome: Yup.string().required("O nome é obrigatório"),
-  email: Yup.string().required("O email é obrigatório").email("Email inválido"),
+  nome: Yup.string().required("O nome é obrigatório")
 });
 
 const grid = 8;
@@ -68,15 +65,17 @@ let id2List = {
   droppable2: 'selected'
 
 };
-class Atendimeto {
+class AtendimentoClass {
   'id' = "";
   'id_paciente' = 0;
   'id_camara' = 0;
   'id_convenio' = 0;
   'id_agendamento' = 0;
+  'status' ="";
   'data_hora_chegada_paciente' = "";
   'data_hora_inicio_procedimento' = "";
   'data_hora_fim_procedimento' = "";
+  'nome_camara' = "";
 }
 
 
@@ -93,8 +92,8 @@ class Atendimento extends Component {
       modal: false,
     };
 
-    this.dadosAtendimento();
     this.dadosCamaras();
+    this.dadosProcedimento();
 
   }
 
@@ -152,42 +151,45 @@ class Atendimento extends Component {
     });
   }
 
-  dadosAtendimento = async () => {
+  dadosProcedimento= async () => {
     const itens = [];
-    const elementos = [];
-    const { token } = localStorage;
-    fetch('http://localhost:8080/v1/agendadia', {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-
-    }).then(response => response.json()
-
-    ).then(data => {
-      const { data: elements = [] } = data;
-
-
-      elements.data.forEach(element => {
-        const item = {};
-        item._id = element.id;
-        item.name = element.nome;
-        item.startDateTime = new Date(element.data_hora_marcada);
-        item.endDateTime = new Date(element.data_hora_marcada).setMinutes(140);
-        item.classes = 'color-1';
-        item.data_nascimento = element.data_nascimento;
-        item.eh_paciente = element.eh_paciente;
-        item.id_convenio = element.id_convenio;
-
+    const result = await api1.get("");
+    const filtro = result.data.data.data.filter(function(data){
+        
+      return data.status == "Aguardando";
+    })
+    filtro.forEach(element => {
+      //console.log("element", element);
+      const item = {};
+      item.id = element.id;
+      item.data_hora_chegada_paciente = element.data_hora_chegada_paciente;
+      item.data_hora_fim_procedimento = element.data_hora_fim_procedimento;
+      item.data_hora_inicio_procedimento = element.data_hora_inicio_procedimento;
+      item.id_agendamento = element.id_agendamento;
+      item.id_camara = element.id_camara;
+      api2.get(element.id_camara).then(data => {
+        //console.log(data.data.data.nome);
+        item.nome_camara =  data.data.data.nome;
+        this.setState({ [data.data.data.nome]:data.data.data.nome });
+      });
+      
+      
+      item.id_convenio = element.id_convenio;
+      item.id_paciente = element.id_paciente;
+      api3.get(element.id_paciente).then(data =>{
+        //console.log("nome", data);
+        item.nome = data.data.data.nome;
+        this.setState({ [data.data.data.nome]:data.data.data.nome});
+      })
+      
+      item.status = element.status;
+      //console.log(item)
         itens.push(item);
 
       });
 
       this.setState({ items: itens });
-
-
-    });
+    
 
   }
 
@@ -223,7 +225,7 @@ class Atendimento extends Component {
     if (!destination) {
       return;
     }
-
+    console.log( destination.droppableId)
     if (source.droppableId === destination.droppableId) {
       const items = this.reorder(
         this.getList(source.droppableId),
@@ -248,6 +250,8 @@ class Atendimento extends Component {
         return;
       }
 
+     
+
       this.setState({
         [source.droppableId]: result[source.droppableId],
         [destination.droppableId]: result[destination.droppableId],
@@ -266,19 +270,14 @@ class Atendimento extends Component {
     this.props.history.push("/atendimentos");
   }
 
-  abrirModalCadastroAtendimento = (dados, camara) => {
-    console.log(dados)
-    const {atendimento } = this.state
-    atendimento.id_agendamento = dados._id;
-    atendimento.id_convenio = dados.id_convenio;
-    atendimento.id_camara = camara
-    
-    this.setState({atendimento})
-    this.setState({ modal: true})
-
-
+  iniciaProcedimento = (atendimento) => {
+    console.log('inicia procedimento', atendimento);
   }
 
+  finalizaProcedimento = (atendimento) => {
+    console.log('finaliza procedimento', atendimento);
+  }
+  
   render() {
 
     return (
@@ -305,8 +304,8 @@ class Atendimento extends Component {
                                 style={getListStyle(snapshot.isDraggingOver)}>
                                 {this.state.items.map((item, index) => (
                                   <Draggable
-                                    key={item._id}
-                                    draggableId={item.name + item._id}
+                                    key={item.id}
+                                    draggableId={`paciente${item.id_paciente}` + item.id}
                                     index={index}
 
                                   >
@@ -325,10 +324,22 @@ class Atendimento extends Component {
 
                                         >
                                           <CardHeader>
-                                            Paciente: {item.name} {item.eh_paciente}
+                                            
                                           </CardHeader>
-                                          <CardFooter>
+                                          <CardBody>
+                                            Paciente: {item.nome} <br></br>
+                                            Status do atendimento:   {
+                                              item.comfirmado == 1 ? <>
+                                                <strong>Confirmado</strong><br></br>
+                                              </> : ''
+                                            }
                                             Data Nascimento: {moment(item.data_nascimento).format('DD/MM/YYYY')} <br></br>
+                                            Agendado para: {moment(item.data_hora_marcada).format('DD/MM/YYYY HH:mm')} <br></br>
+                                            Status do Procedimento: {item.status} <br></br>
+                                            Utilizar a camara: {item.nome_camara}<br></br>
+                                          </CardBody>
+                                          <CardFooter>
+                                            
                                             {
 
                                               item.eh_paciente == 0 ? (
@@ -366,8 +377,8 @@ class Atendimento extends Component {
                                     style={getListStyle(snapshot.isDraggingOver)}>
                                     {this.state[`${camara.nome_descricao_sem_espaco}`].map((item, index) => (
                                       <Draggable
-                                        key={item._id}
-                                        draggableId={item.name + item._id}
+                                        key={item.id}
+                                        draggableId={item.nome + item.id}
                                         index={index}>
                                         {(provided, snapshot) => {
                                           return (
@@ -382,23 +393,10 @@ class Atendimento extends Component {
                                               {item.content}
                                               <Card className="card">
                                                 <CardHeader>
-                                                  Paciente: {item.name} Data Nascimento: {moment(item.data_nascimento).format('DD/MM/YYYY')}
+                                                  Paciente: {item.nome} Data Nascimento: {moment(item.data_nascimento).format('DD/MM/YYYY')}
                                                 </CardHeader>
                                                 <CardFooter>
-                                                  <Row>
-
-                                                    <Button className="btnagenda" color="info" onClick={() => this.abrirModalCadastroAtendimento(item, camara.id)}>Cadastro Atendimento</Button>
-
-                                                    <Button className="btnagenda" color="success" onClick={this.abrirModalCadastroAtendimento}>Iníciar Atendimento</Button>
-
-
-                                                    <Button className="btnagenda" color="success" onClick={this.abrirModalCadastroAtendimento}>Iníciar Procedimento</Button>
-
-                                                    <Button className="btnagenda" color="danger" onClick={this.abrirModalCadastroAtendimento}>Finalizar Procedimento</Button>
-
-                                                    <Button className="btnagenda" color="danger" onClick={this.abrirModalCadastroAtendimento}>Finalizar Atendimento</Button>
-
-                                                  </Row>
+                                                  <Contador atendimento={item.id}/>
 
                                                 </CardFooter>
                                               </Card>
@@ -552,10 +550,6 @@ class Atendimento extends Component {
               <Button color="secondary" onClick={this.fecharModal}>Cancelar</Button>
             </ModalFooter>
           </Modal>
-          
-          
-        
-
 
         </Row>
 

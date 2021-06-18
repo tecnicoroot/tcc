@@ -27,6 +27,7 @@ class CreateAtendimentosTable extends Migration
             $table->unsignedInteger('id_agendamento');
             $table->foreign('id_agendamento')->references('id')->on('agendamentos');
             
+            $table->enum( 'status',['Aguardando','Em andamento','Finalizado']);
             $table->dateTime('data_hora_chegada_paciente', 0)->nullable()->default(null);
             $table->dateTime('data_hora_inicio_procedimento', 0)->nullable()->default(null);
             $table->dateTime('data_hora_fim_procedimento', 0)->nullable()->default(null);
