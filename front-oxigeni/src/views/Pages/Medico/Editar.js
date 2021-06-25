@@ -4,10 +4,8 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   FormGroup,
   Label,
-  Input,
   Row,
   Button,
   Modal,
@@ -78,7 +76,7 @@ class Editar extends Component {
       const { data } = await api.get(`${id}`)
       
       
-      if(data.data.cnpj != ""){
+      if(data.data.cnpj !== ""){
         data.data.pessoa = "jurídica";
         this.setPessoajuridica();
       }else{
@@ -132,7 +130,7 @@ class Editar extends Component {
     this.setState({ pessoaFisica: false, pessoaJuridica: true });
   };
   render() {
-    const { profileImg} = this.state
+    
     return (
       <Row>
         <Col xs="12" sm="12">
@@ -154,7 +152,6 @@ class Editar extends Component {
                 enableReinitialize={true}
                 // remover este comentário 
                 validationSchema={validacaoCadastro}
-                validationSchema={null}
                 initialValues={this.state.medico}
                 onSubmit={this.salvar}
               >

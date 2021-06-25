@@ -4,7 +4,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   FormGroup,
   Label,
   Input,
@@ -19,7 +18,6 @@ import {
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Field from "../../../componentes/formulario/input";
-import FieldMask from "../../../componentes/formulario/input-mask";
 import "./camara.css";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
@@ -89,7 +87,7 @@ class Cadastro extends Component {
   }
   
   render() {
-    const { profileImg} = this.state
+    
     return (
       <Row>
          <Col xs="12" sm="12">

@@ -4,10 +4,8 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   FormGroup,
   Label,
-  Input,
   Row,
   Button,
   Modal,
@@ -102,7 +100,7 @@ class Editar extends Component {
 
   
   render() {
-    const { profileImg} = this.state
+  
     return (
       <Row>
         <Col xs="12" sm="12">
@@ -124,7 +122,6 @@ class Editar extends Component {
                 enableReinitialize={true}
                 // remover este comentário 
                 validationSchema={validacaoCadastro}
-                validationSchema={null}
                 initialValues={this.state.convenio}
                 onSubmit={this.salvar}
               >

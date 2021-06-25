@@ -17,7 +17,6 @@ import {
   //FormGroup,
   //Label,
 } from "reactstrap";
-import axios from "axios";
 import "./camara.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,10 +24,8 @@ import PrivateComponent from "../../../componentes/private-component";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
-import ReactPaginate from 'react-paginate';
-//import Pagination from '../../../componentes/formulario/Pagination';
 const api1 = new Api("v1","camara");
-const api2 = new Api("v1","camaras/search")
+
 class Consulta extends Component {
   constructor(props) {
     super(props);
@@ -175,7 +172,7 @@ class Consulta extends Component {
   }
   carregaDados = (busca) => {
     const lista = []
-    if(busca == 0){
+    if(busca === 0){
       const quantidade = this.state.quantidade;
       const totalPages = Math.ceil(quantidade/5);
           for(let i=0;  i < totalPages; i++){
@@ -188,11 +185,11 @@ class Consulta extends Component {
   }
   render() {
     
-    const lista = this.carregaDados(this.state.busca);
+   
         
     if (this.state.totalUsers.length === 0) return null;
 
-    const headerClass = ['text-dark py-2 pr-4 m-0', this.state.currentPage ? 'border-gray border-right' : ''].join(' ').trim();    
+    
     return (
       <>
      
@@ -266,7 +263,7 @@ class Consulta extends Component {
                       this.state.links.map((link) => (
                         link.label = this.alteralink(link.label),
                         <PaginationItem key={link.label}>
-                        <PaginationLink tag="button" className={link.label == this.state.currentPage ? 'isActive' : ''} onClick={() => this.exibePaginaSelecionada(link.url)}>{link.label}</PaginationLink>
+                        <PaginationLink tag="button" className={link.label === this.state.currentPage ? 'isActive' : ''} onClick={() => this.exibePaginaSelecionada(link.url)}>{link.label}</PaginationLink>
                       </PaginationItem>
                       ))
                       

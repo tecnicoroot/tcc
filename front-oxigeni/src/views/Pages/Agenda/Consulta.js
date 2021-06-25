@@ -17,7 +17,7 @@ import {
   //FormGroup,
   //Label,
 } from "reactstrap";
-import axios from "axios";
+
 import "./agenda.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,7 +25,7 @@ import PrivateComponent from "../../../componentes/private-component";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
-import ReactPaginate from 'react-paginate';
+
 const api1 = new Api("v1","agenda");
 const api2 = new Api("v1","agendas/search")
 class Consulta extends Component {

@@ -7,7 +7,6 @@ import {
   CardFooter,
   FormGroup,
   Label,
-  Input,
   Row,
   Button,
   Modal,
@@ -18,7 +17,6 @@ import {
  import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Field from "../../../componentes/formulario/input";
-import FieldMask from "../../../componentes/formulario/input-mask";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import "./atendimento.css";
 import { toast } from 'react-toastify';
@@ -30,7 +28,7 @@ import moment from 'moment';
 import Camara from "../../../componentes/camara";
 import Contador from "../../../componentes/cronometro/Contador";
 var now = new Date();
-
+require('moment/locale/pt-br.js');
 const api1 = new Api("v1", "atendimento");
 const api2 = new Api("v1", "camara");
 const api3 = new Api("v1", "paciente");
@@ -153,6 +151,7 @@ class Atendimento extends Component {
 
   dadosProcedimento= async () => {
     const itens = [];
+    const itens2 = [];
     const result = await api1.get("");
     const filtro = result.data.data.data.filter(function(data){
         
@@ -189,7 +188,48 @@ class Atendimento extends Component {
       });
 
       this.setState({ items: itens });
-    
+      
+      const filtroEmAndamento = result.data.data.data.filter(function(data){
+        
+        return data.status == "Em andamento";
+      })
+  
+      filtroEmAndamento.forEach(elemento => {
+        const item = {};
+      item.id = elemento.id;
+      item.data_hora_chegada_paciente = elemento.data_hora_chegada_paciente;
+      item.data_hora_fim_procedimento = elemento.data_hora_fim_procedimento;
+      item.data_hora_inicio_procedimento = elemento.data_hora_inicio_procedimento;
+      item.id_agendamento = elemento.id_agendamento;
+      item.id_camara = elemento.id_camara;
+      api2.get(elemento.id_camara).then(data => {
+        //console.log(data.data.data.nome);
+        item.nome_camara =  data.data.data.nome;
+        this.setState({ [data.data.data.nome]:data.data.data.nome });
+      });
+      
+      
+      item.id_convenio = elemento.id_convenio;
+      item.id_paciente = elemento.id_paciente;
+      api3.get(elemento.id_paciente).then(data =>{
+        //console.log("nome", data);
+        item.nome = data.data.data.nome;
+        this.setState({ [data.data.data.nome]:data.data.data.nome});
+      })
+      
+      item.status = elemento.status;
+      //console.log(item)
+      itens2.push(item);
+
+      
+        api2.get(elemento.id_camara).then(data => {
+          //console.log(data.data.data.nome_descricao_sem_espaco);
+          const nome = data.data.data.nome_descricao_sem_espaco;
+          //console.log(nome)
+          this.setState({ [nome]:itens2});
+          //console.log(this.state);
+        });
+      })
 
   }
 
@@ -269,15 +309,32 @@ class Atendimento extends Component {
   cancelarModal = () => {
     this.props.history.push("/atendimentos");
   }
-
-  iniciaProcedimento = (atendimento) => {
-    console.log('inicia procedimento', atendimento);
-  }
-
-  finalizaProcedimento = (atendimento) => {
-    console.log('finaliza procedimento', atendimento);
-  }
   
+  iniciaProcedimento = async (param1) => {
+    if(param1 != undefined){
+      const { data : {data} }= await api1.get(param1);
+      if(data.data_hora_inicio_procedimento == "" || data.data_hora_inicio_procedimento == null ){
+        data.data_hora_inicio_procedimento = moment(new Date()).format('YYYY-MM-DDTHH:mm');
+        data.status = "2";
+        api1.put(`register/${param1}`, data);
+  
+      }
+    }
+    
+  };
+
+  finalizaProcedimento = async (param1) => {
+    if(param1 != undefined){
+      const { data : {data} }= await api1.get(param1);
+      if(data.data_hora_fim_procedimento == "" || data.data_hora_fim_procedimento == null ){
+        data.data_hora_fim_procedimento = moment(new Date()).format('YYYY-MM-DDTHH:mm');
+        data.status = "3";
+        api1.put(`register/${param1}`, data);
+  
+      }
+    }
+  };
+
   render() {
 
     return (
@@ -396,7 +453,11 @@ class Atendimento extends Component {
                                                   Paciente: {item.nome} Data Nascimento: {moment(item.data_nascimento).format('DD/MM/YYYY')}
                                                 </CardHeader>
                                                 <CardFooter>
-                                                  <Contador atendimento={item.id}/>
+                                                  <Contador atendimento={item.id} 
+                                                            funcaoInicio={this.iniciaProcedimento} 
+                                                            tempoinicial={item.data_hora_inicio_procedimento}
+                                                            funcaoFinalizar={this.finalizaProcedimento}
+                                                  />
 
                                                 </CardFooter>
                                               </Card>

@@ -4,7 +4,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   FormGroup,
   Label,
   Input,
@@ -96,7 +95,7 @@ class Editar extends Component {
       Authorization: `Bearer ${token}`},
     }
     ).then(function(data) {
-      if(data.data.data == true){
+      if(data.data.data === true){
         return 1;
       }else{
         return 0;
@@ -166,7 +165,6 @@ class Editar extends Component {
                 enableReinitialize={true}
                 // remover este comentário 
                 validationSchema={validacaoCadastro}
-                validationSchema={null}
                 initialValues={this.state.paciente}
                 onSubmit={this.salvar}
               >

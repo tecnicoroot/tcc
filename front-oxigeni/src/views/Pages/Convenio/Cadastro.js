@@ -4,10 +4,8 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   FormGroup,
   Label,
-  Input,
   Row,
   Button,
   Modal,
@@ -90,7 +88,7 @@ class Cadastro extends Component {
   }
   
   render() {
-    const { profileImg} = this.state
+    
     return (
       <Row>
          <Col xs="12" sm="12">

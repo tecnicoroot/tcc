@@ -4,7 +4,7 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
+  
   FormGroup,
   Label,
   Input,
@@ -24,7 +24,7 @@ import "./paciente.css";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
-import { element } from "prop-types";
+
 
 const api = new Api("v1","paciente");
 const api2 = new Api("v1","convenio");
@@ -98,7 +98,7 @@ class Cadastro extends Component {
       }
       ).then(function(data) {
        
-        if(data.data.data == true){
+        if(data.data.data === true){
           return 1;
         }else{
           return 0;
@@ -159,7 +159,7 @@ class Cadastro extends Component {
                 enableReinitialize={true}
                 // remover este comentário 
                 validationSchema={validacaoCadastro}
-                validationSchema={null}
+               
                 initialValues={this.state.paciente}
                 onSubmit={this.salvar}
               >

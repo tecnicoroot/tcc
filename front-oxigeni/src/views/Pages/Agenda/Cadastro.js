@@ -4,7 +4,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   FormGroup,
   Label,
   Input,
@@ -19,13 +18,12 @@ import {
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Field from "../../../componentes/formulario/input";
-import FieldMask from "../../../componentes/formulario/input-mask";
 import "./agenda.css";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao"
 import moment from 'moment';
-import { element } from "prop-types";
+
 
 
 const api = new Api("v1","agenda");
@@ -110,9 +108,9 @@ class Cadastro extends Component {
   
   }
   render() {
-    const { profileImg} = this.state
+
     const elements = this.state.planos;
-    const {horaInicial} = localStorage;
+
     return (
       <Row>
          <Col xs="12" sm="12">
@@ -193,9 +191,9 @@ class Cadastro extends Component {
                             
                               this.setState({agenda : agend});
                               const { token } = localStorage;
-                              if(name == "data_nascimento"){
+                              if(name === "data_nascimento"){
                                 const {nome, data_nascimento} = this.state.agenda;
-                                const result =  await api3.post("pacineteIsRegistered", 
+                                await api3.post("pacineteIsRegistered", 
                                                   {
                                                     "nome": nome, 
                                                     "data_nascimento": data_nascimento
@@ -206,7 +204,7 @@ class Cadastro extends Component {
                                                   }
                                                   ).then(data => {
                                     const agend = this.state.agenda;
-                                  if(data.data.data.exist == true){
+                                  if(data.data.data.exist === true){
                                     setFieldValue("eh_paciente", "1", true);
                                   }else{
                                     setFieldValue("eh_paciente", "0", true);

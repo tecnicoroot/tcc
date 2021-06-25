@@ -17,7 +17,6 @@ import {
   //FormGroup,
   //Label,
 } from "reactstrap";
-import axios from "axios";
 import "./medico.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,7 +24,7 @@ import PrivateComponent from "../../../componentes/private-component";
 import Api from "../../../services/api";
 import { connect } from "react-redux";
 import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
-import ReactPaginate from 'react-paginate';
+
 //import Pagination from '../../../componentes/formulario/Pagination';
 const api1 = new Api("v1","medic");
 const api2 = new Api("v1","medics/search")

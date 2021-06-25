@@ -1,21 +1,7 @@
 import React from "react";
-import {
-    Col,
-    Card,
-    CardHeader,
-    CardBody,
-    FormGroup,
-    Label,
-    Input,
-    Row,
-    Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-   } from "reactstrap";
-   import ReactDOM from 'react-dom';
-   import {CCard, CCardBody, CCardHeader, CCardText, CCardTitle} from '@coreui/react';
+
+
+   import {CCard, CCardBody, CCardHeader} from '@coreui/react';
    
    function Camara(props){
        return(

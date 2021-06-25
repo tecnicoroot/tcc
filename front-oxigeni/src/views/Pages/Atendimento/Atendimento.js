@@ -18,7 +18,6 @@ import {
  import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Field from "../../../componentes/formulario/input";
-import FieldMask from "../../../componentes/formulario/input-mask";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import "./atendimento.css";
 import { toast } from 'react-toastify';
@@ -29,14 +28,10 @@ import { SET_STATUS_NOTIFICACAO, } from "../../../store/reducers/notificacao";
 import moment from 'moment';
 import Camara from "../../../componentes/camara";
 
-
-
-var now = new Date();
-
 const api1 = new Api("v1", "atendimento");
-const api2 = new Api("v1", "camara");
+
 const api3 = new Api("v1", "paciente");
-const api4 = new Api("v1", "convenio");
+
 const api5 = new Api("v1", "agenda");
 
 const validacaoCadastro = Yup.object().shape({
@@ -65,11 +60,6 @@ const getListStyle = isDraggingOver => ({
   width: '100%'
 });
 
-let id2List = {
-  droppable: 'items',
-  droppable2: 'atendimentos'
-
-};
 class AtendimentoClass {
   'id' = null;
   'id_paciente' = 0;
@@ -164,8 +154,7 @@ class Atendimento extends Component {
       const { data: elements = [] } = data;
       const itens = [];
       
-      let nome = 0
-      elements.data.forEach(element => {
+        elements.data.forEach(element => {
          const item = {};
         item.id = element.id
         item.nome = element.nome;
@@ -181,7 +170,7 @@ class Atendimento extends Component {
   dadosAgendamento = async () => {
     const itens = [];
     const itens2 =[]
-    const elementos = [];
+    
     const { token } = localStorage;
     fetch('http://localhost:8080/v1/agendadia', {
       method: 'get',
@@ -196,12 +185,12 @@ class Atendimento extends Component {
       const { data: elements = [] } = data;
       const filtro = elements.data.filter(function(data){
         
-        return data.comfirmado == 0 || data.comfirmado == null;
+        return data.comfirmado === 0 || data.comfirmado === null;
       })
 
       const filtro2 = elements.data.filter(function(data){
         
-        return data.comfirmado == 1;
+        return data.comfirmado === 1;
       })
 
       filtro.forEach(element => {
@@ -221,7 +210,7 @@ class Atendimento extends Component {
       });
 
       filtro2.forEach(element => {
-        const atendimentos = {};
+       
         itens._id = element.id;
         itens.name = element.nome;
         itens.startDateTime = new Date(element.data_hora_marcada);
@@ -293,15 +282,13 @@ class Atendimento extends Component {
         source,
         destination
       );
-      //if(result.atendimentos[0].eh_paciente){
-        if (result.atendimentos[0].eh_paciente == null || result.atendimentos[0].eh_paciente == 0) {
 
-          toast.error("Deve ser realizado o cadastro do paciente antes de confimar o agendamento!");
-          return;
-        }
+      if (result.atendimentos[0].eh_paciente == null || result.atendimentos[0].eh_paciente == 0) {
 
-     // }
-      
+        toast.error("Deve ser realizado o cadastro do paciente antes de confimar o agendamento!");
+        return;
+      }
+
 
       this.setState({
         [source.droppableId]: result[source.droppableId],
@@ -358,7 +345,7 @@ class Atendimento extends Component {
          }
         );
     
-    if(result.data.data != null || result.data.data != [] || result.data.data.length != '0'){
+    if(result.data.data !== null || result.data.data !== [] || result.data.data.length != '0'){
       console.log(result.data.data.length )
       const paciente = {};
       paciente.id = result.data.data[0].id;

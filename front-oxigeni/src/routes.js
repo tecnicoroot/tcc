@@ -35,15 +35,12 @@ const CadastroPaciente = React.lazy(() => import('./views/Pages/Paciente/Cadastr
 const EditarPaciente = React.lazy(() => import('./views/Pages/Paciente/Editar'));
 
 /* agenda*/
-const ConsultaAgenda = React.lazy(() => import('./views/Pages/Agenda/Consulta'));
+
 const CadastroAgenda = React.lazy(() => import('./views/Pages/Agenda/Cadastro'));
 const EditarAgenda = React.lazy(() => import('./views/Pages/Agenda/Editar'));
 const Agenda = React.lazy(() => import('./views/Pages/Agenda/Agenda'));
 
 /* atendimento*/
-//const ConsultaAtendimento = React.lazy(() => import('./views/Pages/Agenda/Consulta'));
-//const CadastroAtendimento = React.lazy(() => import('./views/Pages/Agenda/Cadastro'));
-//const EditarAgenda = React.lazy(() => import('./views/Pages/Agenda/Editar'));
 const Atendimento  = React.lazy(() => import('./views/Pages/Atendimento/Atendimento'));
 const Procedimento  = React.lazy(() => import('./views/Pages/Atendimento/Procedimento'));
 

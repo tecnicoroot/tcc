@@ -142,7 +142,6 @@ class Cadastro extends Component {
                 enableReinitialize={true}
                 // remover este comentário 
                 validationSchema={validacaoCadastro}
-                validationSchema={null}
                 initialValues={this.state.empresa}
                 onSubmit={this.salvar}
               >

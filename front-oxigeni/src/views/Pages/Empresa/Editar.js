@@ -83,7 +83,7 @@ class Editar extends Component {
       const { data } = await api.get(`${id}`)
       
       
-      if(data.data.cnpj != ""){
+      if(data.data.cnpj !== ""){
         data.data.pessoa = "jurídica";
         this.setPessoajuridica();
       }else{
@@ -159,7 +159,6 @@ class Editar extends Component {
                 enableReinitialize={true}
                 // remover este comentário 
                 validationSchema={validacaoCadastro}
-                validationSchema={null}
                 initialValues={this.state.empresa}
                 onSubmit={this.salvar}
               >

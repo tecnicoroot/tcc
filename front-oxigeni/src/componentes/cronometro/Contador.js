@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-    Col, Card, CardHeader, CardBody, CardFooter, FormGroup, Label, Input, Row, Button, Modal, ModalHeader, ModalBody,
-    ModalFooter
+    Col, Row, Button
    } from "reactstrap";
-  
+import moment from 'moment';
+require('moment/locale/pt-br.js');
 class Contador extends React.Component{
     constructor(props){
         super(props);
@@ -79,19 +79,29 @@ class Contador extends React.Component{
       }
       componentDidMount(){
         this.timer = setInterval(
-          () => this.incrementar(), 1000)
+          () => this.incrementar(), 1000);
+
+          if(this.props.tempoinicial){
+            const now = moment(new Date())
+            const tempo = moment.duration(now.diff(new Date(this.props.tempoinicial)))
+            this.setState({horas : tempo.hours()})
+            this.setState({minutos : tempo.minutes()})
+            this.setState({segundos : tempo.seconds()})
+            this.setState({stop:false})
+            
+            
+          }
       }
       
-      inicia = () => {
+      inicia = () => {        
         this.pararTempo();
+        this.props.funcaoInicio(this.props.atendimento);
+        
       }
     
       finaliza = () => {
-        const tempo =  this.state.horas +':'+ 
-                       this.state.minutos +':'+ 
-                       this.state.segundos;
-        console.log(tempo);
-
+        this.props.funcaoFinalizar(this.props.atendimento);
+        this.setState({stop:true})
       }
     
     render(){
@@ -99,7 +109,7 @@ class Contador extends React.Component{
             <Row>
                 <Col xl="6">
                 <Button
-                    onClick={ () => this.inicia()}
+                    onClick={ () => this.inicia(this.props.atendimento)}
                     style={{ width: "150px" }}
                     color="success"
                     className="btn mr-3"
@@ -116,7 +126,7 @@ class Contador extends React.Component{
                 </Button>
                 </Col>
                 <Col xl='6'>
-                    Tempo decorrido: {this.props.atendimento}<br></br>
+                    Tempo decorrido:<br></br>
                     <h1>{this.state.horas < 10 ? '0'+this.state.horas : this.state.horas }:{this.state.minutos < 10 ? '0'+this.state.minutos : this.state.minutos }:{this.state.segundos < 10 ? '0'+this.state.segundos : this.state.segundos}</h1>
                     
                 </Col>
